@@ -6,17 +6,6 @@ EpidemAI is an AI-driven public health surveillance and prediction system design
 
 The system integrates various technologies to track disease trends, analyze regional risks, and provide AI-generated insights. It is specifically designed to support public health surveillance with a focus on the Indian context, utilizing datasets from sources like Kaggle and Data.gov.in.
 
-## Technical Stack
-
-The project is built using a modern web development stack:
-
-* Frontend: React (Vite)
-* Backend: Node.js (Express)
-* Language: TypeScript (94.0%), JavaScript (4.0%), CSS (1.5%), HTML (0.5%)
-* Data Science: spaCy (NLP), Prophet (Forecasting)
-* Mapping: Mapbox
-* Database: MongoDB (optional, defaults to in-memory seed data)
-
 ## Repository Structure
 
 The project is divided into two primary components:
