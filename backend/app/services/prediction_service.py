@@ -9,7 +9,9 @@ def moving_average(data: list, window: int = 7) -> list:
     return np.convolve(data, np.ones(window) / window, mode="valid").tolist()
 
 def forecast_cases(current_cases: int, trend: str, days: int = 7) -> list:
-    velocity = 0.08 if trend == "up" else -0.04 if trend == "down" else 0.01
+    # Conservative, damped daily movement keeps a 7-day projection explainable
+    # and avoids implying exponential growth from a short signal window.
+    velocity = 0.04 if trend == "up" else -0.025 if trend == "down" else 0.005
     decay = 0.92
     result = [current_cases]
     for i in range(1, days):

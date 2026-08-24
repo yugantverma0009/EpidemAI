@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@600;700&family=Sora:wght@500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,56 +7,58 @@
 
 @layer base {
   :root {
-    --background: 220 25% 6%;
-    --foreground: 210 20% 90%;
+    --background: 202 55% 6%;
+    --foreground: 197 35% 94%;
 
-    --card: 220 22% 10%;
-    --card-foreground: 210 20% 90%;
+    --card: 203 49% 10%;
+    --card-foreground: 197 35% 94%;
 
-    --popover: 220 22% 10%;
-    --popover-foreground: 210 20% 90%;
+    --popover: 203 49% 10%;
+    --popover-foreground: 197 35% 94%;
 
-    --primary: 168 80% 42%;
-    --primary-foreground: 220 25% 6%;
+    --primary: 174 80% 40%;
+    --primary-foreground: 202 55% 6%;
 
-    --secondary: 220 20% 16%;
-    --secondary-foreground: 210 20% 85%;
+    --secondary: 204 48% 14%;
+    --secondary-foreground: 197 28% 89%;
 
-    --muted: 220 18% 14%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 203 42% 12%;
+    --muted-foreground: 204 18% 63%;
 
-    --accent: 145 70% 45%;
-    --accent-foreground: 220 25% 6%;
+    --accent: 142 71% 45%;
+    --accent-foreground: 202 55% 6%;
 
-    --destructive: 0 75% 55%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
     --warning: 38 92% 50%;
-    --warning-foreground: 220 25% 6%;
+    --warning-foreground: 202 55% 6%;
+    --info: 199 89% 60%;
 
-    --border: 220 18% 18%;
-    --input: 220 18% 18%;
-    --ring: 168 80% 42%;
+    --border: 201 38% 20%;
+    --input: 201 38% 20%;
+    --ring: 174 80% 40%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 220 22% 8%;
-    --sidebar-foreground: 210 20% 85%;
-    --sidebar-primary: 168 80% 42%;
-    --sidebar-primary-foreground: 220 25% 6%;
-    --sidebar-accent: 220 18% 14%;
-    --sidebar-accent-foreground: 210 20% 85%;
-    --sidebar-border: 220 18% 18%;
-    --sidebar-ring: 168 80% 42%;
+    --sidebar-background: 202 52% 8%;
+    --sidebar-foreground: 197 28% 89%;
+    --sidebar-primary: 174 80% 40%;
+    --sidebar-primary-foreground: 202 55% 6%;
+    --sidebar-accent: 203 42% 12%;
+    --sidebar-accent-foreground: 197 28% 89%;
+    --sidebar-border: 201 38% 20%;
+    --sidebar-ring: 174 80% 40%;
 
-    --glow-primary: 168 80% 42%;
-    --glow-danger: 0 75% 55%;
+    --glow-primary: 174 80% 40%;
+    --glow-danger: 0 84% 60%;
     --glow-warning: 38 92% 50%;
     --glow-safe: 145 70% 45%;
 
-    --font-display: 'Orbitron', sans-serif;
+    --font-display: 'Sora', sans-serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    --font-brand: 'Orbitron', sans-serif;
   }
 }
 
@@ -74,17 +76,21 @@
 }
 
 @layer utilities {
+  .font-brand { font-family: var(--font-brand); }
+}
+
+@layer utilities {
   .glow-primary {
-    box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.3), 0 0 60px hsl(var(--glow-primary) / 0.1);
+    box-shadow: 0 0 14px hsl(var(--glow-primary) / 0.22), 0 0 36px hsl(var(--glow-primary) / 0.08);
   }
   .glow-danger {
-    box-shadow: 0 0 20px hsl(var(--glow-danger) / 0.3), 0 0 60px hsl(var(--glow-danger) / 0.1);
+    box-shadow: 0 0 14px hsl(var(--glow-danger) / 0.22), 0 0 36px hsl(var(--glow-danger) / 0.08);
   }
   .glow-warning {
-    box-shadow: 0 0 20px hsl(var(--glow-warning) / 0.3), 0 0 60px hsl(var(--glow-warning) / 0.1);
+    box-shadow: 0 0 14px hsl(var(--glow-warning) / 0.22), 0 0 36px hsl(var(--glow-warning) / 0.08);
   }
   .glow-safe {
-    box-shadow: 0 0 20px hsl(var(--glow-safe) / 0.3), 0 0 60px hsl(var(--glow-safe) / 0.1);
+    box-shadow: 0 0 14px hsl(var(--glow-safe) / 0.22), 0 0 36px hsl(var(--glow-safe) / 0.08);
   }
   .text-glow {
     text-shadow: 0 0 20px hsl(var(--glow-primary) / 0.5);
@@ -117,8 +123,17 @@
   50% { transform: translateY(-10px); }
 }
 
-.epidemai-leaflet-map .leaflet-tile-pane { filter: brightness(0.48) saturate(0.7) hue-rotate(145deg) contrast(1.12); }
+.epidemai-leaflet-map .leaflet-tile-pane { filter: brightness(0.38) saturate(0.52) hue-rotate(145deg) contrast(1.08); }
 .epidemai-leaflet-map .leaflet-control-attribution { background: hsl(var(--card) / 0.88); color: hsl(var(--muted-foreground)); }
 .epidemai-leaflet-map .leaflet-control-attribution a { color: hsl(var(--primary)); }
 .epidemai-map-tooltip.leaflet-tooltip { border: 1px solid hsl(var(--primary) / 0.3); border-radius: 0.5rem; background: hsl(var(--card) / 0.96); color: hsl(var(--foreground)); box-shadow: 0 8px 20px hsl(var(--background) / 0.5); font-size: 0.75rem; line-height: 1.45; }
 .epidemai-map-tooltip.leaflet-tooltip::before { border-top-color: hsl(var(--card) / 0.96); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

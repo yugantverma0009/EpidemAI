@@ -1,8 +1,34 @@
 import Navbar from "@/components/Navbar";
-import TrendChart from "@/components/TrendChart";
 import { motion } from "framer-motion";
 import { useCities, useTopRiskRegions, correlationFactors, riskPredictions } from "@/hooks/useApi";
 import { TrendingUp, TrendingDown, Minus, AlertTriangle, BarChart3, Activity } from "lucide-react";
+import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import type { CityData } from "@/data/mockData";
+
+const forecastColors = ["#ef4444", "#f97316", "#f59e0b", "#14b8a6"];
+
+function ForecastChart({ cities }: { cities: CityData[] }) {
+  const forecastCities = [...cities].sort((a, b) => b.riskScore - a.riskScore).slice(0, 4);
+  const data = Array.from({ length: 7 }, (_, index) => ({
+    day: `Day ${index + 1}`,
+    ...Object.fromEntries(forecastCities.map((city) => [city.name, city.prediction7d[index] ?? 0])),
+  }));
+
+  return (
+    <div className="h-[300px] w-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={data} margin={{ top: 10, right: 12, left: -10, bottom: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
+          <XAxis dataKey="day" tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }} axisLine={false} tickLine={false} />
+          <YAxis tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }} axisLine={false} tickLine={false} width={38} />
+          <Tooltip contentStyle={{ backgroundColor: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: "8px", fontSize: "12px" }} labelStyle={{ color: "hsl(var(--foreground))" }} />
+          <Legend wrapperStyle={{ fontSize: "12px", paddingTop: "10px" }} />
+          {forecastCities.map((city, index) => <Line key={city.name} type="monotone" dataKey={city.name} stroke={forecastColors[index]} strokeWidth={2.5} dot={{ r: 3 }} activeDot={{ r: 5 }} />)}
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
 
 export default function Predictive() {
   const { data: cities = [] } = useCities();
@@ -15,17 +41,20 @@ export default function Predictive() {
       <div className="container mx-auto px-4 pt-20 pb-10">
         <div className="mb-6">
           <h1 className="font-display text-2xl font-bold">Predictive Analytics</h1>
-          <p className="text-sm text-muted-foreground">AI-driven outbreak forecasting using Prophet, ARIMA, and LSTM models</p>
+          <p className="text-sm text-muted-foreground">Explainable 7-day forecasts using weighted trend extrapolation and anomaly signals.</p>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-3">
-          {/* Disease Mention Trends */}
+          {/* City-level forecast */}
           <div className="lg:col-span-2 rounded-xl border border-border bg-card p-5">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-muted-foreground">Disease Mention Trends</h3>
-              <span className="text-xs text-muted-foreground">Last 7 days</span>
+              <div>
+                <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-muted-foreground">7-Day City Forecast</h3>
+                <p className="mt-1 text-[11px] text-muted-foreground">Projected active cases for the four highest-risk cities.</p>
+              </div>
+              <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-semibold text-primary">Forecast</span>
             </div>
-            <TrendChart />
+            <ForecastChart cities={cities} />
           </div>
 
           {/* Top Risk Regions */}
@@ -58,15 +87,15 @@ export default function Predictive() {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <BarChart3 className="h-4 w-4 text-primary" />
-                <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-muted-foreground">Correlation Factors</h3>
+                <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-muted-foreground">Why risk is rising</h3>
               </div>
-              <span className="text-[10px] text-muted-foreground">Based on 8,760 data points</span>
+              <span className="text-[10px] text-muted-foreground">Signals used in risk scoring</span>
             </div>
 
             <div className="mb-4 flex items-center justify-between rounded-lg bg-destructive/5 border border-destructive/20 px-4 py-3">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="h-4 w-4 text-destructive" />
-                <span className="text-sm font-semibold">Predictive Outbreak (24-72 hrs)</span>
+                <span className="text-sm font-semibold">Possible outbreak signal in the next 24–72 hours</span>
               </div>
               <span className="rounded-full bg-destructive/10 border border-destructive/20 px-2.5 py-0.5 text-xs font-bold text-destructive">High</span>
             </div>
@@ -85,14 +114,14 @@ export default function Predictive() {
                 </div>
               ))}
             </div>
-            <p className="mt-3 text-[10px] text-muted-foreground">Last model run: 19 Mar, 14:00. MAE 18.4 cases.</p>
+            <p className="mt-3 text-[10px] text-muted-foreground">Prototype model: weighted trend extrapolation with explainable input signals.</p>
           </motion.div>
 
           {/* Risk Predictions */}
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="rounded-xl border border-border bg-card p-5">
             <div className="flex items-center gap-2 mb-4">
               <Activity className="h-4 w-4 text-primary" />
-              <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-muted-foreground">Risk Predictions</h3>
+              <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-muted-foreground">Expected cases next</h3>
             </div>
 
             <div className="overflow-hidden rounded-lg border border-border">
@@ -101,7 +130,7 @@ export default function Predictive() {
                   <tr className="bg-secondary/50">
                     <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">Time Frame</th>
                     <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">Risk Level</th>
-                    <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">Predicted</th>
+                    <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">Expected cases</th>
                     <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">Range</th>
                   </tr>
                 </thead>
@@ -123,7 +152,7 @@ export default function Predictive() {
             </div>
 
             {/* 7-Day City Predictions */}
-            <h4 className="mt-6 mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">7-Day City Forecasts</h4>
+            <h4 className="mt-6 mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">City forecast summary</h4>
             <div className="grid gap-3 sm:grid-cols-2">
               {highRiskCities.slice(0, 4).map((city, i) => {
                 const maxVal = Math.max(...city.prediction7d);

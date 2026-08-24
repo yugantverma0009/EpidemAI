@@ -25,7 +25,7 @@ export default function Navbar() {
           <div className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 glow-primary">
             <Activity className="h-5 w-5 text-primary" />
           </div>
-          <span className="font-display text-lg font-bold tracking-wider text-foreground">
+          <span className="font-brand text-lg font-bold tracking-wider text-foreground">
             Epidem<span className="text-primary">AI</span>
           </span>
         </Link>

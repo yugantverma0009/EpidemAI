@@ -1,4 +1,4 @@
-import { X, TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { X, TrendingUp, TrendingDown, Minus, Siren } from "lucide-react";
 import type { CityData } from "@/data/mockData";
 
 function RiskGauge({ score }: { score: number }) {
@@ -37,6 +37,12 @@ const trendIcon = (t: string) => {
 
 export default function RegionDetail({ city, onClose }: { city: CityData; onClose: () => void }) {
   const maxPred = Math.max(...city.prediction7d);
+  const leadDisease = city.diseases[0];
+  const recommendedAction = city.riskLevel === "high"
+    ? `Arrange field verification and targeted response for ${leadDisease?.name ?? "the reported cluster"} within 24 hours.`
+    : city.riskLevel === "moderate"
+      ? "Monitor new reports daily and verify the strongest local signal."
+      : "Continue routine surveillance; no immediate escalation is recommended.";
 
   return (
     <div className="rounded-xl border border-border bg-card p-5 space-y-5">
@@ -66,6 +72,11 @@ export default function RegionDetail({ city, onClose }: { city: CityData; onClos
         </div>
       </div>
 
+      <div className={`rounded-lg border p-3 ${city.riskLevel === "high" ? "border-destructive/25 bg-destructive/5" : city.riskLevel === "moderate" ? "border-warning/25 bg-warning/5" : "border-accent/25 bg-accent/5"}`}>
+        <div className="flex items-center gap-1.5 text-xs font-semibold"><Siren className={`h-3.5 w-3.5 ${city.riskLevel === "high" ? "text-destructive" : city.riskLevel === "moderate" ? "text-warning" : "text-accent"}`} /> Recommended action</div>
+        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{recommendedAction}</p>
+      </div>
+
       {/* Symptoms */}
       <div>
         <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Top Symptoms</h4>
@@ -78,7 +89,7 @@ export default function RegionDetail({ city, onClose }: { city: CityData; onClos
 
       {/* 7-day Prediction */}
       <div>
-        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">7-Day Prediction</h4>
+        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Expected cases over 7 days</h4>
         <div className="flex items-end gap-1 h-16">
           {city.prediction7d.map((v, i) => (
             <div key={i} className="flex-1 flex flex-col items-center gap-1">

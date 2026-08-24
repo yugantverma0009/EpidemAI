@@ -3,11 +3,18 @@ import { useState, useEffect } from "react";
 
 export default function RealTimeIndicator() {
   const [mins, setMins] = useState(2);
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     const t = setInterval(() => setMins((m) => m + 1), 60000);
     return () => clearInterval(t);
   }, []);
+
+  const refresh = () => {
+    setMins(0);
+    setRefreshing(true);
+    window.setTimeout(() => setRefreshing(false), 550);
+  };
 
   return (
     <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2">
@@ -20,11 +27,11 @@ export default function RealTimeIndicator() {
       </div>
       <span className="text-xs text-muted-foreground">Updated {mins} min ago</span>
       <button
-        onClick={() => setMins(0)}
+        onClick={refresh}
         className="flex h-6 w-6 items-center justify-center rounded-md hover:bg-secondary transition-colors"
         aria-label="Refresh"
       >
-        <RefreshCw className="h-3 w-3 text-muted-foreground" />
+        <RefreshCw className={`h-3 w-3 text-muted-foreground ${refreshing ? "animate-spin" : ""}`} />
       </button>
     </div>
   );

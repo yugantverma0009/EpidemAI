@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,6 +19,33 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
+function AnimatedRoutes() {
+  const location = useLocation();
+  const reduceMotion = useReducedMotion();
+  const animation = reduceMotion
+    ? {}
+    : { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -6 }, transition: { duration: 0.22, ease: "easeOut" } };
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div key={location.pathname} {...animation}>
+        <Routes location={location}>
+          <Route path="/" element={<Index />} />
+          <Route path="/disease-map" element={<DiseaseMap />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/alerts" element={<Alerts />} />
+          <Route path="/predictive" element={<Predictive />} />
+          <Route path="/compare" element={<Compare />} />
+          <Route path="/what-if" element={<WhatIf />} />
+          <Route path="/reporter" element={<Reporter />} />
+          <Route path="/gov-portal" element={<GovPortal />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -25,18 +53,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Suspense fallback={<div className="flex items-center justify-center min-h-screen bg-background"><div className="text-muted-foreground">Loading…</div></div>}>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/disease-map" element={<DiseaseMap />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/alerts" element={<Alerts />} />
-            <Route path="/predictive" element={<Predictive />} />
-            <Route path="/compare" element={<Compare />} />
-            <Route path="/what-if" element={<WhatIf />} />
-            <Route path="/reporter" element={<Reporter />} />
-            <Route path="/gov-portal" element={<GovPortal />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AnimatedRoutes />
         </Suspense>
       </BrowserRouter>
     </TooltipProvider>

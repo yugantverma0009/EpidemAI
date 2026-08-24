@@ -10,7 +10,7 @@ import RealTimeIndicator from "@/components/RealTimeIndicator";
 import { useCities } from "@/hooks/useApi";
 import type { CityData } from "@/data/mockData";
 import { motion } from "framer-motion";
-import { Clock, BarChart3, Shield, Zap } from "lucide-react";
+import { Clock, BarChart3, Shield, Zap, AlertTriangle, ArrowRight, MapPin } from "lucide-react";
 
 const timeRanges = [
   { label: "24h", value: "Last 24h", multiplier: 0.15 },
@@ -66,6 +66,35 @@ function CityRiskCard({ city, isSelected, onClick, multiplier }: {
   );
 }
 
+function PriorityActionCard({ city, onSelect }: { city: CityData; onSelect: () => void }) {
+  const leadingDisease = city.diseases[0];
+  const predictedChange = city.prediction7d.length > 1
+    ? Math.round(((city.prediction7d.at(-1)! - city.prediction7d[0]) / Math.max(city.prediction7d[0], 1)) * 100)
+    : 0;
+  const recommendation = leadingDisease?.name === "Dengue"
+    ? "Deploy vector-control teams and verify local field signals."
+    : leadingDisease?.name === "Malaria"
+      ? "Prioritise testing access and targeted vector surveillance."
+      : "Validate field reports and prepare local health facilities.";
+
+  return (
+    <button onClick={onSelect} className="group w-full rounded-xl border border-destructive/20 bg-gradient-to-br from-destructive/10 to-card p-4 text-left transition-colors hover:border-destructive/45 hover:bg-destructive/15">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <div className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-destructive"><AlertTriangle className="h-3.5 w-3.5" /> Act now</div>
+          <h3 className="mt-1 text-base font-semibold">{city.name} · {leadingDisease?.name ?? "Disease signal"}</h3>
+        </div>
+        <span className="rounded-md bg-destructive/15 px-2 py-1 font-mono text-sm font-bold text-destructive">{city.riskScore}</span>
+      </div>
+      <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{recommendation}</p>
+      <div className="mt-3 flex items-center justify-between border-t border-border/70 pt-2.5 text-[10px] text-muted-foreground">
+        <span>{city.mentions.toLocaleString()} signals · forecast {predictedChange >= 0 ? "+" : ""}{predictedChange}%</span>
+        <span className="flex items-center gap-1 font-semibold text-primary group-hover:underline">View evidence <ArrowRight className="h-3 w-3" /></span>
+      </div>
+    </button>
+  );
+}
+
 export default function Dashboard() {
   const [search, setSearch] = useState("");
   const [disease, setDisease] = useState("");
@@ -96,6 +125,8 @@ export default function Dashboard() {
     { label: "High Risk Zones", value: highRiskCount.toString(), icon: Shield, color: "text-destructive", bg: "bg-destructive/10", sub: "Immediate attention" },
     { label: "Avg Risk Score", value: avgRisk.toString(), icon: Clock, color: "text-accent", bg: "bg-accent/10", sub: avgRisk > 60 ? "Elevated" : avgRisk > 40 ? "Moderate" : "Stable" },
   ];
+  const priorityCities = sortedCities.filter((city) => city.riskLevel !== "low").slice(0, 3);
+  const todayPriority = priorityCities[0];
 
   return (
     <div className="min-h-screen bg-background">
@@ -111,6 +142,14 @@ export default function Dashboard() {
           </div>
           <RealTimeIndicator />
         </div>
+
+        {todayPriority && (
+          <button onClick={() => setSelectedCity(todayPriority)} className="mb-5 flex w-full items-center gap-3 rounded-xl border border-destructive/25 bg-destructive/5 px-4 py-3 text-left transition-colors hover:bg-destructive/10">
+            <AlertTriangle className="h-4 w-4 shrink-0 text-destructive" />
+            <p className="text-sm"><span className="font-semibold">Today's priority:</span> {todayPriority.name} {todayPriority.diseases[0]?.name ?? "disease"} cluster — review recommended within 24 hours.</p>
+            <ArrowRight className="ml-auto h-4 w-4 shrink-0 text-muted-foreground" />
+          </button>
+        )}
 
         {/* Filters + Time Range */}
         <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -141,6 +180,20 @@ export default function Dashboard() {
           ))}
         </div>
 
+        {/* Decision-first alert queue */}
+        <section className="mb-6 rounded-xl border border-primary/20 bg-card p-4 sm:p-5">
+          <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /><h2 className="font-display text-sm font-semibold">Priority Actions</h2></div>
+              <p className="mt-1 text-xs text-muted-foreground">Highest-risk locations requiring a public-health response today.</p>
+            </div>
+            <span className="w-fit rounded-full border border-destructive/25 bg-destructive/10 px-2.5 py-1 text-[10px] font-semibold text-destructive">{highRiskCount} requiring immediate attention</span>
+          </div>
+          <div className="grid gap-3 lg:grid-cols-3">
+            {priorityCities.length > 0 ? priorityCities.map((city) => <PriorityActionCard key={city.name} city={city} onSelect={() => setSelectedCity(city)} />) : <p className="text-sm text-muted-foreground">No priority actions match the selected filters.</p>}
+          </div>
+        </section>
+
         {/* ── TOP SECTION: Map + Hotspot List ── */}
         <div className="grid gap-6 lg:grid-cols-12 mb-6">
           {/* India Hotspot Map — wider */}
@@ -160,7 +213,7 @@ export default function Dashboard() {
                 City Risk Scores
               </h3>
               <div className="space-y-2 max-h-[600px] overflow-y-auto pr-1">
-                {sortedCities.map((city) => (
+                {sortedCities.length ? sortedCities.map((city) => (
                   <CityRiskCard
                     key={city.name}
                     city={city}
@@ -168,7 +221,7 @@ export default function Dashboard() {
                     onClick={() => setSelectedCity(city)}
                     multiplier={currentMultiplier}
                   />
-                ))}
+                )) : <p className="rounded-lg bg-secondary/30 px-3 py-4 text-center text-xs text-muted-foreground">No matching active signals. Try another disease or location.</p>}
               </div>
             </div>
           </div>

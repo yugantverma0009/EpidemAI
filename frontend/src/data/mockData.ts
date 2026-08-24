@@ -33,7 +33,8 @@ export const cities: CityData[] = [
       { title: "AIIMS reports 30% rise in fever patients", source: "NDTV", time: "5h ago" },
       { title: "Delhi govt deploys fogging machines in 12 wards", source: "Hindustan Times", time: "8h ago" },
     ],
-    prediction7d: [342, 378, 410, 445, 460, 490, 520],
+    // Dengue response activity is expected to curb the cluster after a mid-week peak.
+    prediction7d: [342, 359, 386, 415, 432, 404, 366],
     population: "32M",
   },
   {
@@ -55,7 +56,8 @@ export const cities: CityData[] = [
       { title: "BMC intensifies vector control in slum areas", source: "Mid-Day", time: "6h ago" },
       { title: "Mumbai BMC deploys 500 health workers for malaria control", source: "Indian Express", time: "2h ago" },
     ],
-    prediction7d: [198, 215, 240, 258, 270, 285, 295],
+    // Malaria signals peak mid-week, then decline after targeted control measures.
+    prediction7d: [198, 209, 229, 251, 266, 239, 207],
     population: "21M",
   },
   {
@@ -75,7 +77,7 @@ export const cities: CityData[] = [
     news: [
       { title: "UP reports rising dengue cases in eastern districts", source: "Amar Ujala", time: "5h ago" },
     ],
-    prediction7d: [112, 120, 130, 138, 145, 150, 158],
+    prediction7d: [112, 119, 126, 132, 137, 142, 146],
     population: "3.5M",
   },
   {
@@ -94,7 +96,7 @@ export const cities: CityData[] = [
     news: [
       { title: "Rajasthan govt allocates ₹200 crore for monsoon disease prevention", source: "Rajasthan Patrika", time: "6h ago" },
     ],
-    prediction7d: [134, 145, 158, 165, 172, 180, 188],
+    prediction7d: [134, 141, 148, 154, 159, 164, 168],
     population: "4M",
   },
   {
