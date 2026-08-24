@@ -2,7 +2,9 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CircleMarker, MapContainer, Polyline, TileLayer, Tooltip } from "react-leaflet";
 import type { CityData } from "@/data/mockData";
+import indiaSatellite from "@/assets/india-satellite.png";
 import { useCities } from "@/hooks/useApi";
+import { useIsMobile } from "@/hooks/use-mobile";
 import RegionDetail from "./RegionDetail";
 import { Play, Pause, RotateCcw } from "lucide-react";
 import "leaflet/dist/leaflet.css";
@@ -32,6 +34,34 @@ const riskStyles = {
   low: { color: "#22c55e", fillColor: "#22c55e" },
 };
 
+function MobileIndiaMap({ cities, selected, onSelect }: { cities: CityData[]; selected: CityData | null; onSelect: (city: CityData | null) => void }) {
+  const positionFor = (city: CityData) => ({
+    left: `${Math.max(4, Math.min(96, ((city.lng - 67) / 32) * 100))}%`,
+    top: `${Math.max(4, Math.min(96, ((38.5 - city.lat) / 33) * 100))}%`,
+  });
+
+  return (
+    <div className="relative mx-auto aspect-[832/1257] w-full max-w-[420px] overflow-hidden rounded-xl bg-card">
+      <img src={indiaSatellite} alt="India disease hotspot map" className="h-full w-full object-cover" draggable={false} />
+      {cities.map((city) => {
+        const selectedCity = selected?.name === city.name;
+        const color = riskStyles[city.riskLevel].fillColor;
+        return (
+          <button
+            key={city.name}
+            type="button"
+            aria-label={`${city.name}: risk score ${city.riskScore}`}
+            title={`${city.name} · score ${city.riskScore}`}
+            onClick={() => onSelect(selectedCity ? null : city)}
+            className="absolute z-10 rounded-full border-2 border-white/70 shadow-lg transition-transform active:scale-90"
+            style={{ ...positionFor(city), width: `${Math.max(16, city.riskScore * 0.24)}px`, height: `${Math.max(16, city.riskScore * 0.24)}px`, backgroundColor: color, transform: "translate(-50%, -50%)" }}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
 interface Props {
   filteredCities?: CityData[];
   onSelectCity?: (city: CityData | null) => void;
@@ -41,6 +71,7 @@ interface Props {
 
 export default function IndiaMap({ filteredCities, onSelectCity, selectedCity, compact }: Props) {
   const { data: allCities = [] } = useCities();
+  const isMobile = useIsMobile();
   const [internalSelected, setInternalSelected] = useState<CityData | null>(null);
   const [spreadMode, setSpreadMode] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -66,8 +97,8 @@ export default function IndiaMap({ filteredCities, onSelectCity, selectedCity, c
 
   return (
     <div className="flex flex-col gap-4 lg:flex-row">
-      <div className={`relative flex-1 self-start overflow-hidden rounded-xl border border-border ${compact ? "min-h-[400px]" : "min-h-[600px]"}`}>
-        <MapContainer center={INDIA_CENTER} zoom={5} minZoom={4} maxZoom={11} maxBounds={INDIA_BOUNDS} maxBoundsViscosity={0.8} className={`${compact ? "h-[400px]" : "h-[460px] sm:h-[600px]"} w-full epidemai-leaflet-map`} scrollWheelZoom>
+      <div className={`relative flex-1 self-start overflow-hidden rounded-xl border border-border ${isMobile ? "min-h-0 p-2" : compact ? "min-h-[400px]" : "min-h-[600px]"}`}>
+        {isMobile ? <MobileIndiaMap cities={displayCities} selected={selected} onSelect={setSelected} /> : <MapContainer center={INDIA_CENTER} zoom={5} minZoom={4} maxZoom={11} maxBounds={INDIA_BOUNDS} maxBoundsViscosity={0.8} className={`${compact ? "h-[400px]" : "h-[460px] sm:h-[600px]"} w-full epidemai-leaflet-map`} scrollWheelZoom>
           <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {spreadMode && spreadConnections.filter((connection) => connection.day <= activeFrame.day).map((connection) => {
             const from = cityByName(connection.from); const to = cityByName(connection.to);
@@ -80,10 +111,10 @@ export default function IndiaMap({ filteredCities, onSelectCity, selectedCity, c
               <Tooltip direction="top" offset={[0, -8]} opacity={1} className="epidemai-map-tooltip"><strong>{city.name}</strong><br />{city.diseases[0]?.name ?? "Disease signal"} · Score: {city.riskScore}<br />{city.mentions.toLocaleString()} mentions</Tooltip>
             </CircleMarker>;
           })}
-        </MapContainer>
+        </MapContainer>}
         <div className="pointer-events-none absolute inset-0 bg-background/15" />
-        <div className="absolute right-3 top-3 z-[500]"><button onClick={toggleSpreadMode} className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold backdrop-blur-sm transition-all ${spreadMode ? "border-primary/40 bg-primary/20 text-primary" : "border-border bg-card/90 text-muted-foreground hover:bg-secondary hover:text-foreground"}`}>{spreadMode ? "Exit Spread View" : "▶ Spread Animation"}</button></div>
-        <AnimatePresence>{spreadMode && <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="absolute right-3 top-12 z-[500] flex flex-col gap-2"><div className="flex items-center gap-2 rounded-lg border border-border bg-card/95 px-3 py-2 backdrop-blur-md"><button onClick={() => setPlaying((value) => !value)} className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 text-primary hover:bg-primary/20">{playing ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}</button><button onClick={() => { setCurrentStep(0); setPlaying(true); }} className="flex h-7 w-7 items-center justify-center rounded-md bg-secondary text-muted-foreground hover:text-foreground"><RotateCcw className="h-3.5 w-3.5" /></button><div className="ml-1 flex items-center gap-1">{spreadTimeline.map((frame, index) => <button key={frame.day} aria-label={frame.label} onClick={() => { setCurrentStep(index); setPlaying(false); }} className={`h-2 w-2 rounded-full ${index <= currentStep ? "bg-primary" : "bg-muted-foreground/30"}`} />)}</div><span className="ml-2 font-mono text-xs font-bold text-primary">{activeFrame.label}</span></div><div className="rounded-lg border border-border bg-card/95 px-3 py-1.5 text-[10px] text-muted-foreground backdrop-blur-md"><span className="font-semibold text-foreground">{activeCityNames.size}</span> cities affected · Dengue outbreak simulation</div></motion.div>}</AnimatePresence>
+        {!isMobile && <div className="absolute right-3 top-3 z-[500]"><button onClick={toggleSpreadMode} className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold backdrop-blur-sm transition-all ${spreadMode ? "border-primary/40 bg-primary/20 text-primary" : "border-border bg-card/90 text-muted-foreground hover:bg-secondary hover:text-foreground"}`}>{spreadMode ? "Exit Spread View" : "▶ Spread Animation"}</button></div>}
+        <AnimatePresence>{!isMobile && spreadMode && <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="absolute right-3 top-12 z-[500] flex flex-col gap-2"><div className="flex items-center gap-2 rounded-lg border border-border bg-card/95 px-3 py-2 backdrop-blur-md"><button onClick={() => setPlaying((value) => !value)} className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 text-primary hover:bg-primary/20">{playing ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}</button><button onClick={() => { setCurrentStep(0); setPlaying(true); }} className="flex h-7 w-7 items-center justify-center rounded-md bg-secondary text-muted-foreground hover:text-foreground"><RotateCcw className="h-3.5 w-3.5" /></button><div className="ml-1 flex items-center gap-1">{spreadTimeline.map((frame, index) => <button key={frame.day} aria-label={frame.label} onClick={() => { setCurrentStep(index); setPlaying(false); }} className={`h-2 w-2 rounded-full ${index <= currentStep ? "bg-primary" : "bg-muted-foreground/30"}`} />)}</div><span className="ml-2 font-mono text-xs font-bold text-primary">{activeFrame.label}</span></div><div className="rounded-lg border border-border bg-card/95 px-3 py-1.5 text-[10px] text-muted-foreground backdrop-blur-md"><span className="font-semibold text-foreground">{activeCityNames.size}</span> cities affected · Dengue outbreak simulation</div></motion.div>}</AnimatePresence>
         <div className="absolute bottom-3 left-3 z-[500] flex flex-wrap gap-x-4 gap-y-1 rounded-lg border border-border bg-card/90 px-3 py-2 text-xs backdrop-blur-md"><span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-destructive" /> High · Act now</span><span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-warning" /> Moderate · Monitor</span><span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-accent" /> Low · Stable</span></div>
       </div>
       <AnimatePresence>{selected && <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 40 }} className="w-full lg:w-96"><RegionDetail city={selected} onClose={() => setSelected(null)} /></motion.div>}</AnimatePresence>

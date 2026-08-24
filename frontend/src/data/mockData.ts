@@ -384,14 +384,13 @@ export const cities: CityData[] = [
 export const allDiseases = ["Dengue", "Flu", "TB", "COVID-like", "Malaria"];
 
 export const trendData = [
-  { month: "Aug", dengue: 120, flu: 89, tb: 45, covid: 34, malaria: 56 },
-  { month: "Sep", dengue: 180, flu: 95, tb: 42, covid: 28, malaria: 62 },
-  { month: "Oct", dengue: 250, flu: 120, tb: 48, covid: 22, malaria: 78 },
-  { month: "Nov", dengue: 320, flu: 145, tb: 50, covid: 18, malaria: 85 },
-  { month: "Dec", dengue: 280, flu: 198, tb: 52, covid: 25, malaria: 72 },
-  { month: "Jan", dengue: 220, flu: 230, tb: 55, covid: 30, malaria: 60 },
-  { month: "Feb", dengue: 180, flu: 210, tb: 48, covid: 35, malaria: 52 },
-  { month: "Mar", dengue: 342, flu: 189, tb: 56, covid: 42, malaria: 68 },
+  { month: "6 days ago", dengue: 262, flu: 174, tb: 50, covid: 36, malaria: 64 },
+  { month: "5 days ago", dengue: 275, flu: 178, tb: 51, covid: 34, malaria: 68 },
+  { month: "4 days ago", dengue: 292, flu: 185, tb: 51, covid: 35, malaria: 72 },
+  { month: "3 days ago", dengue: 310, flu: 194, tb: 52, covid: 38, malaria: 75 },
+  { month: "2 days ago", dengue: 306, flu: 201, tb: 53, covid: 40, malaria: 71 },
+  { month: "Yesterday", dengue: 288, flu: 197, tb: 53, covid: 39, malaria: 67 },
+  { month: "Today", dengue: 272, flu: 188, tb: 54, covid: 41, malaria: 63 },
 ];
 
 export const alerts = [

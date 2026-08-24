@@ -233,8 +233,8 @@ export default function Dashboard() {
           <div className="lg:col-span-6">
             <div className="rounded-xl border border-border bg-card p-5">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display text-xs font-semibold uppercase tracking-wider text-muted-foreground">Disease Trends</h3>
-                <span className="text-[10px] text-muted-foreground">{timeRange}</span>
+                <h3 className="font-display text-xs font-semibold uppercase tracking-wider text-muted-foreground">7-Day Reported Case Trend</h3>
+                <span className="text-[10px] text-muted-foreground">Live surveillance signals · not a forecast</span>
               </div>
               <TrendChart selectedDisease={disease || undefined} />
             </div>
