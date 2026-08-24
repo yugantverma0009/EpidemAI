@@ -67,7 +67,7 @@ export default function IndiaMap({ filteredCities, onSelectCity, selectedCity, c
   return (
     <div className="flex flex-col gap-4 lg:flex-row">
       <div className={`relative flex-1 overflow-hidden rounded-xl border border-border ${compact ? "min-h-[400px]" : "min-h-[600px]"}`}>
-        <MapContainer center={INDIA_CENTER} zoom={5} minZoom={4} maxZoom={11} maxBounds={INDIA_BOUNDS} maxBoundsViscosity={0.8} className="h-full w-full epidemai-leaflet-map" scrollWheelZoom>
+        <MapContainer center={INDIA_CENTER} zoom={5} minZoom={4} maxZoom={11} maxBounds={INDIA_BOUNDS} maxBoundsViscosity={0.8} className={`${compact ? "h-[400px]" : "h-[460px] sm:h-[600px]"} w-full epidemai-leaflet-map`} scrollWheelZoom>
           <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {spreadMode && spreadConnections.filter((connection) => connection.day <= activeFrame.day).map((connection) => {
             const from = cityByName(connection.from); const to = cityByName(connection.to);
