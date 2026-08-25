@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { CircleMarker, MapContainer, Polyline, TileLayer, Tooltip } from "react-leaflet";
+import { CircleMarker, ImageOverlay, MapContainer, Polyline, TileLayer, Tooltip } from "react-leaflet";
 import type { CityData } from "@/data/mockData";
+import indiaSatellite from "@/assets/india-satellite.png";
 import { useCities } from "@/hooks/useApi";
+import { useIsMobile } from "@/hooks/use-mobile";
 import RegionDetail from "./RegionDetail";
 import { Play, Pause, RotateCcw } from "lucide-react";
 import "leaflet/dist/leaflet.css";
@@ -11,6 +13,7 @@ const INDIA_CENTER: [number, number] = [22.5937, 78.9629];
 // Leave enough room around the country for a smaller map viewport to pan fully
 // into the Northeast (including Arunachal Pradesh and the Seven Sisters).
 const INDIA_BOUNDS: [[number, number], [number, number]] = [[3, 58], [43, 110]];
+const INDIA_IMAGE_BOUNDS: [[number, number], [number, number]] = [[5.5, 67], [38.5, 99]];
 
 const spreadTimeline = [
   { day: 1, label: "Day 1", activeCities: ["Delhi"] },
@@ -41,6 +44,7 @@ interface Props {
 
 export default function IndiaMap({ filteredCities, onSelectCity, selectedCity, compact }: Props) {
   const { data: allCities = [] } = useCities();
+  const isMobile = useIsMobile();
   const [internalSelected, setInternalSelected] = useState<CityData | null>(null);
   const [spreadMode, setSpreadMode] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -68,7 +72,7 @@ export default function IndiaMap({ filteredCities, onSelectCity, selectedCity, c
     <div className="flex flex-col gap-4 lg:flex-row">
       <div className={`relative flex-1 self-start overflow-hidden rounded-xl border border-border ${compact ? "min-h-[400px]" : "min-h-[460px] sm:min-h-[600px]"}`}>
         <MapContainer center={INDIA_CENTER} zoom={5} minZoom={4} maxZoom={11} maxBounds={INDIA_BOUNDS} maxBoundsViscosity={0.8} className={`${compact ? "h-[400px]" : "h-[460px] sm:h-[600px]"} w-full epidemai-leaflet-map`} scrollWheelZoom>
-          <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          {isMobile ? <ImageOverlay url={indiaSatellite} bounds={INDIA_IMAGE_BOUNDS} opacity={0.95} /> : <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />}
           {spreadMode && spreadConnections.filter((connection) => connection.day <= activeFrame.day).map((connection) => {
             const from = cityByName(connection.from); const to = cityByName(connection.to);
             return from && to ? <Polyline key={`${connection.from}-${connection.to}`} positions={[[from.lat, from.lng], [to.lat, to.lng]]} pathOptions={{ color: "#ef4444", weight: connection.day === activeFrame.day ? 3 : 1.5, opacity: connection.day === activeFrame.day ? 0.8 : 0.35, dashArray: "6 8" }} /> : null;
