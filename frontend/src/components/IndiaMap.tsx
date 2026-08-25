@@ -34,6 +34,23 @@ const riskStyles = {
   low: { color: "#22c55e", fillColor: "#22c55e" },
 };
 
+function MobileHotspotMap({ cities, selected, onSelect }: { cities: CityData[]; selected: CityData | null; onSelect: (city: CityData | null) => void }) {
+  const positionFor = (city: CityData) => ({
+    left: `${Math.max(5, Math.min(95, ((city.lng - 67) / 32) * 100))}%`,
+    top: `${Math.max(5, Math.min(95, ((38.5 - city.lat) / 33) * 100))}%`,
+  });
+
+  return (
+    <div className="relative mx-auto aspect-[832/1257] w-full max-w-[430px] overflow-hidden rounded-lg bg-card">
+      <img src={indiaSatellite} alt="India disease hotspot map" className="h-full w-full object-cover" draggable={false} fetchPriority="high" />
+      {cities.map((city) => {
+        const active = selected?.name === city.name;
+        return <button key={city.name} type="button" aria-label={`${city.name}, risk score ${city.riskScore}`} onClick={() => onSelect(active ? null : city)} className="absolute z-10 rounded-full border-2 border-white/80 shadow-lg transition-transform active:scale-90" style={{ ...positionFor(city), width: `${Math.max(16, city.riskScore * 0.25)}px`, height: `${Math.max(16, city.riskScore * 0.25)}px`, backgroundColor: riskStyles[city.riskLevel].fillColor, transform: "translate(-50%, -50%)" }} />;
+      })}
+    </div>
+  );
+}
+
 interface Props {
   filteredCities?: CityData[];
   onSelectCity?: (city: CityData | null) => void;
@@ -69,8 +86,8 @@ export default function IndiaMap({ filteredCities, onSelectCity, selectedCity, c
 
   return (
     <div className="flex flex-col gap-4 lg:flex-row">
-      <div className={`relative flex-1 self-start overflow-hidden rounded-xl border border-border ${compact ? "min-h-[400px]" : "min-h-[460px] sm:min-h-[600px]"}`}>
-        <MapContainer
+      <div className={`relative flex-1 self-start overflow-hidden rounded-xl border border-border ${isMobile ? "min-h-0 p-2" : compact ? "min-h-[400px]" : "min-h-[460px] sm:min-h-[600px]"}`}>
+        {isMobile ? <MobileHotspotMap cities={displayCities} selected={selected} onSelect={setSelected} /> : <MapContainer
           center={INDIA_CENTER}
           zoom={5}
           minZoom={4}
@@ -78,10 +95,9 @@ export default function IndiaMap({ filteredCities, onSelectCity, selectedCity, c
           maxBounds={INDIA_BOUNDS}
           maxBoundsViscosity={0.8}
           className={`${compact ? "h-[400px]" : "h-[460px] sm:h-[600px]"} w-full epidemai-leaflet-map`}
-          style={isMobile ? { backgroundImage: `url(${indiaSatellite})`, backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize: "cover" } : undefined}
           scrollWheelZoom
         >
-          {!isMobile && <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />}
+          <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {spreadMode && spreadConnections.filter((connection) => connection.day <= activeFrame.day).map((connection) => {
             const from = cityByName(connection.from); const to = cityByName(connection.to);
             return from && to ? <Polyline key={`${connection.from}-${connection.to}`} positions={[[from.lat, from.lng], [to.lat, to.lng]]} pathOptions={{ color: "#ef4444", weight: connection.day === activeFrame.day ? 3 : 1.5, opacity: connection.day === activeFrame.day ? 0.8 : 0.35, dashArray: "6 8" }} /> : null;
@@ -93,7 +109,7 @@ export default function IndiaMap({ filteredCities, onSelectCity, selectedCity, c
               <Tooltip direction="top" offset={[0, -8]} opacity={1} className="epidemai-map-tooltip"><strong>{city.name}</strong><br />{city.diseases[0]?.name ?? "Disease signal"} · Score: {city.riskScore}<br />{city.mentions.toLocaleString()} mentions</Tooltip>
             </CircleMarker>;
           })}
-        </MapContainer>
+        </MapContainer>}
         <div className="pointer-events-none absolute inset-0 bg-background/15" />
         <div className="absolute right-3 top-3 z-[500]"><button onClick={toggleSpreadMode} className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold backdrop-blur-sm transition-all ${spreadMode ? "border-primary/40 bg-primary/20 text-primary" : "border-border bg-card/90 text-muted-foreground hover:bg-secondary hover:text-foreground"}`}>{spreadMode ? "Exit Spread View" : "▶ Spread Animation"}</button></div>
         <AnimatePresence>{spreadMode && <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="absolute right-3 top-12 z-[500] flex flex-col gap-2"><div className="flex items-center gap-2 rounded-lg border border-border bg-card/95 px-3 py-2 backdrop-blur-md"><button onClick={() => setPlaying((value) => !value)} className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 text-primary hover:bg-primary/20">{playing ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}</button><button onClick={() => { setCurrentStep(0); setPlaying(true); }} className="flex h-7 w-7 items-center justify-center rounded-md bg-secondary text-muted-foreground hover:text-foreground"><RotateCcw className="h-3.5 w-3.5" /></button><div className="ml-1 flex items-center gap-1">{spreadTimeline.map((frame, index) => <button key={frame.day} aria-label={frame.label} onClick={() => { setCurrentStep(index); setPlaying(false); }} className={`h-2 w-2 rounded-full ${index <= currentStep ? "bg-primary" : "bg-muted-foreground/30"}`} />)}</div><span className="ml-2 font-mono text-xs font-bold text-primary">{activeFrame.label}</span></div><div className="rounded-lg border border-border bg-card/95 px-3 py-1.5 text-[10px] text-muted-foreground backdrop-blur-md"><span className="font-semibold text-foreground">{activeCityNames.size}</span> cities affected · Dengue outbreak simulation</div></motion.div>}</AnimatePresence>
