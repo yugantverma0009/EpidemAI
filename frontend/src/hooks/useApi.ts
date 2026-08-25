@@ -12,7 +12,12 @@ import {
   allDiseases,
 } from "@/data/mockData";
 
-const API_BASE = import.meta.env.VITE_API_URL as string | undefined;
+const configuredApiBase = import.meta.env.VITE_API_URL as string | undefined;
+// A localhost API is only reachable while running the app locally. Never send a
+// deployed visitor's browser to its own localhost: it causes empty dashboards
+// and can trigger a browser local-network permission prompt.
+const isHostedApp = typeof window !== "undefined" && !["localhost", "127.0.0.1"].includes(window.location.hostname);
+const API_BASE = isHostedApp && configuredApiBase?.includes("localhost") ? undefined : configuredApiBase;
 
 async function apiFetch<T>(path: string): Promise<T> {
   if (!API_BASE) throw new Error("API_BASE not configured");
