@@ -10,14 +10,7 @@ import RealTimeIndicator from "@/components/RealTimeIndicator";
 import { useCities } from "@/hooks/useApi";
 import type { CityData } from "@/data/mockData";
 import { motion } from "framer-motion";
-import { Clock, BarChart3, Shield, Zap, AlertTriangle, ArrowRight, MapPin } from "lucide-react";
-
-const timeRanges = [
-  { label: "24h", value: "Last 24h", multiplier: 0.15 },
-  { label: "7d", value: "Last 7 days", multiplier: 0.5 },
-  { label: "30d", value: "Last 30 days", multiplier: 0.85 },
-  { label: "90d", value: "Last 90 days", multiplier: 1 },
-];
+import { BarChart3, Shield, AlertTriangle, ArrowRight, MapPin } from "lucide-react";
 
 function QuickStatCard({ label, value, icon: Icon, color, bg, sub, delay }: {
   label: string; value: string; icon: React.ElementType; color: string; bg: string; sub: string; delay: number;
@@ -39,14 +32,14 @@ function QuickStatCard({ label, value, icon: Icon, color, bg, sub, delay }: {
   );
 }
 
-function CityRiskCard({ city, isSelected, onClick, multiplier }: {
-  city: CityData; isSelected: boolean; onClick: () => void; multiplier: number;
+function CityRiskCard({ city, isSelected, onClick }: {
+  city: CityData; isSelected: boolean; onClick: () => void;
 }) {
   const color = city.riskLevel === "high" ? "bg-destructive" : city.riskLevel === "moderate" ? "bg-warning" : "bg-accent";
   return (
-    <div
+    <button
       onClick={onClick}
-      className={`cursor-pointer rounded-lg bg-secondary/30 px-3 py-2 transition-colors hover:bg-secondary/50 ${isSelected ? "ring-1 ring-primary/30" : ""}`}
+      className={`w-full rounded-lg bg-secondary/30 px-3 py-2 text-left transition-colors hover:bg-secondary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${isSelected ? "ring-1 ring-primary/30" : ""}`}
     >
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium">{city.name}</span>
@@ -59,37 +52,29 @@ function CityRiskCard({ city, isSelected, onClick, multiplier }: {
         <div className={`h-full rounded-full ${color}`} style={{ width: `${city.riskScore}%` }} />
       </div>
       <div className="mt-1 flex items-center justify-between text-[10px] text-muted-foreground">
-        <span>{Math.round(city.mentions * multiplier)} mentions</span>
-        <span>{city.riskLevel}</span>
+        <span>{city.mentions.toLocaleString()} example mentions</span>
+        <span>Sample score</span>
       </div>
-    </div>
+    </button>
   );
 }
 
 function PriorityActionCard({ city, onSelect }: { city: CityData; onSelect: () => void }) {
   const leadingDisease = city.diseases[0];
-  const predictedChange = city.prediction7d.length > 1
-    ? Math.round(((city.prediction7d.at(-1)! - city.prediction7d[0]) / Math.max(city.prediction7d[0], 1)) * 100)
-    : 0;
-  const recommendation = leadingDisease?.name === "Dengue"
-    ? "Deploy vector-control teams and verify local field signals."
-    : leadingDisease?.name === "Malaria"
-      ? "Prioritise testing access and targeted vector surveillance."
-      : "Validate field reports and prepare local health facilities.";
 
   return (
-    <button onClick={onSelect} className="group w-full rounded-xl border border-destructive/20 bg-gradient-to-br from-destructive/10 to-card p-4 text-left transition-colors hover:border-destructive/45 hover:bg-destructive/15">
+    <button onClick={onSelect} className="group w-full rounded-xl border border-border bg-secondary/25 p-4 text-left transition-colors hover:border-primary/40 hover:bg-secondary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <div className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-destructive"><AlertTriangle className="h-3.5 w-3.5" /> Act now</div>
+          <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-warning"><AlertTriangle className="h-3.5 w-3.5" /> Sample signal</div>
           <h3 className="mt-1 text-base font-semibold">{city.name} · {leadingDisease?.name ?? "Disease signal"}</h3>
         </div>
-        <span className="rounded-md bg-destructive/15 px-2 py-1 font-mono text-sm font-bold text-destructive">{city.riskScore}</span>
+        <span className="rounded-md bg-secondary px-2 py-1 font-mono text-sm font-bold text-foreground">{city.riskScore} <span className="text-[10px] font-normal">demo</span></span>
       </div>
-      <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{recommendation}</p>
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Example record from the bundled dataset.</p>
       <div className="mt-3 flex items-center justify-between border-t border-border/70 pt-2.5 text-[10px] text-muted-foreground">
-        <span>{city.mentions.toLocaleString()} signals · forecast {predictedChange >= 0 ? "+" : ""}{predictedChange}%</span>
-        <span className="flex items-center gap-1 font-semibold text-primary group-hover:underline">View evidence <ArrowRight className="h-3 w-3" /></span>
+        <span>{city.mentions.toLocaleString()} sample mentions</span>
+        <span className="flex items-center gap-1 font-semibold text-primary group-hover:underline">View record <ArrowRight className="h-3 w-3" /></span>
       </div>
     </button>
   );
@@ -99,10 +84,7 @@ export default function Dashboard() {
   const [search, setSearch] = useState("");
   const [disease, setDisease] = useState("");
   const [selectedCity, setSelectedCity] = useState<CityData | null>(null);
-  const [timeRange, setTimeRange] = useState("Last 24h");
-
-  const currentMultiplier = timeRanges.find(t => t.value === timeRange)?.multiplier ?? 1;
-  const { data: cities = [] } = useCities();
+  const { data: cities = [], isError: citiesError, isLoading: citiesLoading, refetch: refetchCities } = useCities();
 
   const filtered = useMemo(() => {
     return cities.filter((c) => {
@@ -114,62 +96,39 @@ export default function Dashboard() {
 
   const sortedCities = [...filtered].sort((a, b) => b.riskScore - a.riskScore);
 
-  const totalMentions = Math.round(filtered.reduce((sum, c) => sum + c.mentions, 0) * currentMultiplier);
-  const totalCases = Math.round(filtered.reduce((sum, c) => sum + c.diseases.reduce((s, d) => s + d.cases, 0), 0) * currentMultiplier);
+  const totalMentions = filtered.reduce((sum, c) => sum + c.mentions, 0);
+  const totalCases = filtered.reduce((sum, c) => sum + c.diseases.reduce((s, d) => s + d.cases, 0), 0);
   const highRiskCount = filtered.filter(c => c.riskLevel === "high").length;
-  const avgRisk = Math.round(filtered.reduce((sum, c) => sum + c.riskScore, 0) / (filtered.length || 1));
+  const avgRisk = filtered.length ? Math.round(filtered.reduce((sum, c) => sum + c.riskScore, 0) / filtered.length) : null;
 
   const stats = [
-    { label: "Total Mentions", value: totalMentions.toLocaleString(), icon: BarChart3, color: "text-primary", bg: "bg-primary/10", sub: `In ${timeRange.toLowerCase()}` },
-    { label: "Total Cases", value: totalCases.toLocaleString(), icon: Zap, color: "text-warning", bg: "bg-warning/10", sub: `Across ${filtered.length} cities` },
-    { label: "High Risk Zones", value: highRiskCount.toString(), icon: Shield, color: "text-destructive", bg: "bg-destructive/10", sub: "Immediate attention" },
-    { label: "Avg Risk Score", value: avgRisk.toString(), icon: Clock, color: "text-accent", bg: "bg-accent/10", sub: avgRisk > 60 ? "Elevated" : avgRisk > 40 ? "Moderate" : "Stable" },
+    { label: "Example mentions", value: totalMentions.toLocaleString(), icon: BarChart3, color: "text-primary", bg: "bg-primary/10", sub: "Bundled sample records" },
+    { label: "Example case counts", value: totalCases.toLocaleString(), icon: BarChart3, color: "text-warning", bg: "bg-warning/10", sub: "Bundled sample records" },
+    { label: "High-labelled records", value: highRiskCount.toString(), icon: AlertTriangle, color: "text-warning", bg: "bg-warning/10", sub: "Example signals" },
+    { label: "Average demo score", value: avgRisk === null ? "—" : avgRisk.toString(), icon: Shield, color: "text-accent", bg: "bg-accent/10", sub: "Illustrative score" },
   ];
   const priorityCities = sortedCities.filter((city) => city.riskLevel !== "low").slice(0, 3);
-  const todayPriority = priorityCities[0];
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <div className="container mx-auto px-4 pt-20 pb-10">
+      <main id="main-content" tabIndex={-1} className="container mx-auto px-4 pt-20 pb-10">
         {/* Header */}
         <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="font-display text-2xl font-bold">Command Dashboard</h1>
-            <p className="text-sm text-muted-foreground">
-              Live disease signals, focused alert queue, and region-level drill-down.
-            </p>
+            <p className="text-sm text-muted-foreground">Explore the structure of EpidemAI’s public health workspace and its example indicators.</p>
           </div>
           <RealTimeIndicator />
         </div>
 
-        {todayPriority && (
-          <button onClick={() => setSelectedCity(todayPriority)} className="mb-5 flex w-full items-center gap-3 rounded-xl border border-destructive/25 bg-destructive/5 px-4 py-3 text-left transition-colors hover:bg-destructive/10">
-            <AlertTriangle className="h-4 w-4 shrink-0 text-destructive" />
-            <p className="text-sm"><span className="font-semibold">Today's priority:</span> {todayPriority.name} {todayPriority.diseases[0]?.name ?? "disease"} cluster — review recommended within 24 hours.</p>
-            <ArrowRight className="ml-auto h-4 w-4 shrink-0 text-muted-foreground" />
-          </button>
-        )}
+        {citiesError && <div role="alert" className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-destructive/35 bg-destructive/10 p-4 text-sm text-foreground"><p>Dashboard sample data could not be loaded. The figures below are unavailable until the API responds.</p><button type="button" onClick={() => void refetchCities()} className="min-h-11 rounded-lg border border-border px-4 font-semibold hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">Retry</button></div>}
+        {citiesLoading && <p className="mb-5 text-sm text-muted-foreground" role="status">Loading sample indicators…</p>}
 
-        {/* Filters + Time Range */}
+        {/* Available sample-record filters */}
         <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center">
           <div className="flex-1">
             <SearchFilters searchQuery={search} onSearchChange={setSearch} selectedDisease={disease} onDiseaseChange={setDisease} />
-          </div>
-          <div className="flex items-center gap-1 rounded-lg border border-border bg-card p-1">
-            {timeRanges.map((t) => (
-              <button
-                key={t.value}
-                onClick={() => setTimeRange(t.value)}
-                className={`rounded-md px-3 py-1.5 text-xs font-semibold transition-all ${
-                  timeRange === t.value
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                }`}
-              >
-                {t.label}
-              </button>
-            ))}
           </div>
         </div>
 
@@ -184,10 +143,10 @@ export default function Dashboard() {
         <section className="mb-6 rounded-xl border border-primary/20 bg-card p-4 sm:p-5">
           <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <div className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /><h2 className="font-display text-sm font-semibold">Priority Actions</h2></div>
-              <p className="mt-1 text-xs text-muted-foreground">Highest-risk locations requiring a public-health response today.</p>
+              <div className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /><h2 className="font-display text-sm font-semibold">Example signal records</h2></div>
+              <p className="mt-1 text-sm text-muted-foreground">Illustrative examples to demonstrate review workflows.</p>
             </div>
-            <span className="w-fit rounded-full border border-destructive/25 bg-destructive/10 px-2.5 py-1 text-[10px] font-semibold text-destructive">{highRiskCount} requiring immediate attention</span>
+            <span className="w-fit rounded-full bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">Examples</span>
           </div>
           <div className="grid gap-3 lg:grid-cols-3">
             {priorityCities.length > 0 ? priorityCities.map((city) => <PriorityActionCard key={city.name} city={city} onSelect={() => setSelectedCity(city)} />) : <p className="text-sm text-muted-foreground">No priority actions match the selected filters.</p>}
@@ -219,9 +178,8 @@ export default function Dashboard() {
                     city={city}
                     isSelected={selectedCity?.name === city.name}
                     onClick={() => setSelectedCity(city)}
-                    multiplier={currentMultiplier}
                   />
-                )) : <p className="rounded-lg bg-secondary/30 px-3 py-4 text-center text-xs text-muted-foreground">No matching active signals. Try another disease or location.</p>}
+                )) : <p className="rounded-lg bg-secondary/30 px-3 py-4 text-center text-xs text-muted-foreground">No records match these filters. Try another disease or location.</p>}
               </div>
             </div>
           </div>
@@ -234,7 +192,6 @@ export default function Dashboard() {
             <div className="rounded-xl border border-border bg-card p-5">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-display text-xs font-semibold uppercase tracking-wider text-muted-foreground">7-Day Reported Case Trend</h3>
-                <span className="text-[10px] text-muted-foreground">Live surveillance signals · not a forecast</span>
               </div>
               <TrendChart selectedDisease={disease || undefined} />
             </div>
@@ -263,7 +220,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

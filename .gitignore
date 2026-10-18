@@ -7,8 +7,10 @@
 
 # Dependencies
 node_modules/
-.venv/
+.venv
+.venv*
 venv/
+.vscode/
 
 # Build output
 dist/
@@ -18,6 +20,14 @@ build/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+
+# Public datasets are downloaded locally; use the importer to reproduce them.
+backend/app/data/datasets/kaggle_raw/
+
+# Opt-in personal health assistant data
+backend/app/data/assistant.sqlite3
+backend/app/data/assistant.sqlite3-*
+backend/app/data/health_navigator/schemes.sqlite3*
 
 # Logs
 *.log

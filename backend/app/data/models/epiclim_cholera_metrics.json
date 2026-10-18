@@ -1,0 +1,41 @@
+{
+  "disease": "Cholera",
+  "data_file": "epiclim_final_data.csv",
+  "observed_district_month_rows": 378,
+  "district_count": 179,
+  "source_date_start": "2009-05-05",
+  "source_date_end": "2022-06-06",
+  "train_rows": 334,
+  "test_rows": 44,
+  "train_through_month": "2018-07",
+  "test_from_month": "2018-08",
+  "test_through_month": "2022-06",
+  "best_model": "random_forest",
+  "evaluation": {
+    "split": "chronological holdout by calendar month",
+    "future_weather": "held-out rows use climate normals from training period only",
+    "selected_artifact_model": "random_forest",
+    "ridge_regression": {
+      "mae_reported_cases": 114.7,
+      "rmse_reported_cases": 338.69
+    },
+    "random_forest": {
+      "mae_reported_cases": 106.38,
+      "rmse_reported_cases": 329.21
+    },
+    "gradient_boosting": {
+      "mae_reported_cases": 147.39,
+      "rmse_reported_cases": 417.94
+    },
+    "seasonal_month_mean_baseline": {
+      "mae_reported_cases": 191.34,
+      "rmse_reported_cases": 357.35
+    }
+  },
+  "target": "sum of reported cholera outbreak cases in observed district-months",
+  "available_models": [
+    "ridge_regression",
+    "random_forest",
+    "gradient_boosting"
+  ]
+}

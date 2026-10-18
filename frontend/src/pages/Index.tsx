@@ -1,133 +1,71 @@
+import { ArrowRight, BarChart3, FileText, HeartPulse, Landmark, Map, ShieldCheck, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Activity, Map, BarChart3, Brain, Bell, ArrowRight, Zap, Globe, TrendingUp, Clock, Database, Beaker, FileText } from "lucide-react";
 import Navbar from "@/components/Navbar";
-import { cities, alerts } from "@/data/mockData";
 
-const capabilities = [
-  { icon: Brain, title: "Real-time NLP Processing", desc: "Monitors 2,400+ news and social media sources using Named Entity Recognition to detect disease mentions.", to: "/dashboard" },
-  { icon: Map, title: "Hotspot Detection", desc: "Geo-tags and clusters disease mentions using DBSCAN to identify outbreak regions across India.", to: "/disease-map" },
-  { icon: BarChart3, title: "Predictive Forecasting", desc: "Prophet & LSTM models forecast disease spread 24-72 hours ahead with confidence intervals.", to: "/predictive" },
-  { icon: Beaker, title: "What-If Simulation", desc: "Adjust humidity, temperature, and mobility to simulate outbreak scenarios and understand environmental disease drivers.", to: "/what-if" },
-  { icon: FileText, title: "Field Reporter", desc: "Field workers submit location-tagged disease cluster reports via mobile forms — with offline mode and auto-sync.", to: "/reporter" },
+const governmentTools = [
+  { to: "/disease-map", label: "Disease map", description: "Explore sample geographic indicators and available historical records.", icon: Map },
+  { to: "/dashboard", label: "Public health dashboard", description: "Review bundled example signals, charts and data limitations.", icon: BarChart3 },
+  { to: "/alerts", label: "Alert examples", description: "See how a signal review queue could be organized.", icon: ShieldCheck },
+  { to: "/predictive", label: "Forecast experiments", description: "Inspect experimental estimates, input periods and assumptions.", icon: Sparkles },
+  { to: "/what-if", label: "Scenario analysis", description: "Adjust assumptions and compare modelled scenarios.", icon: BarChart3 },
+  { to: "/reporter", label: "Field reporting demo", description: "Explore a local, temporary reporting workflow.", icon: FileText },
 ];
 
-const topCluster = cities.reduce((a, b) => a.riskScore > b.riskScore ? a : b);
-const regionsAboveThreshold = cities.filter(c => c.riskScore >= 40).length;
-
 export default function Index() {
-  return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-
-      {/* Hero */}
-      <section className="relative overflow-hidden pt-16">
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: "linear-gradient(hsl(168,80%,42%) 1px, transparent 1px), linear-gradient(90deg, hsl(168,80%,42%) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-primary/5 blur-[120px]" />
-
-        <div className="container relative mx-auto px-4 py-24 lg:py-32">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mx-auto max-w-3xl text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5">
-              <Activity className="h-3.5 w-3.5 text-primary" />
-              <span className="text-xs font-medium text-primary">AI-Powered Disease Surveillance</span>
+  return <div className="min-h-screen bg-background text-foreground">
+    <Navbar />
+    <main id="main-content" tabIndex={-1}>
+      <section className="relative overflow-hidden border-b border-border bg-[radial-gradient(ellipse_at_75%_10%,hsl(var(--primary)/0.13),transparent_45%)]">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
+          <div className="max-w-3xl">
+            <p className="inline-flex min-h-9 items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 text-xs font-semibold uppercase tracking-wide text-primary"><Landmark className="h-4 w-4" />Public health intelligence</p>
+            <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-[3.4rem]">Turning health signals into <span className="text-primary">public health action</span></h1>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">EpidemAI brings together public health indicators, experimental analysis and individual symptom reporting to support informed health decisions.</p>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">The platform is a demonstration and decision-support prototype. It provides general information and analytical examples; it does not replace medical professionals or official surveillance systems.</p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link to="/gov-portal" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">Government Portal <ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/health-portal" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><HeartPulse className="h-4 w-4 text-primary" />Individual Health Portal</Link>
             </div>
+          </div>
 
-            <h1 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-              Epidem<span className="text-primary text-glow">AI</span>
-            </h1>
-
-            {/* Today at a Glance */}
-            <div className="mx-auto mt-6 max-w-lg rounded-xl border border-border bg-card/50 p-4 text-left backdrop-blur-sm">
-              <h2 className="font-display text-[10px] font-bold uppercase tracking-widest text-primary mb-2">Today at a Glance</h2>
-              <p className="text-sm text-foreground mb-1">Detect outbreaks before they spread.</p>
-              <div className="space-y-1 text-xs text-muted-foreground">
-                <p>Regions above Risk Threshold: <span className="font-semibold text-foreground">{regionsAboveThreshold}</span> <span className="text-destructive">(+5 since morning)</span></p>
-                <p>Most affected cluster: <span className="font-semibold text-foreground">East {topCluster.name} — {topCluster.diseases[0]?.name}</span></p>
-                <p>Social media + news dominant</p>
-              </div>
-              <p className="mt-2 text-[10px] text-muted-foreground italic">Updated continuously from news feeds, social media, and model inference</p>
-            </div>
-
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link to="/dashboard" className="inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 glow-primary">
-                <Zap className="h-4 w-4" /> Open Live Dashboard
-              </Link>
-              <Link to="/what-if" className="inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-6 text-sm font-medium text-foreground transition-colors hover:bg-secondary">
-                What-If Simulator <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </motion.div>
-
-          {/* Stats ribbon */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.5 }} className="mx-auto mt-12 grid max-w-3xl grid-cols-4 gap-3 rounded-xl border border-border bg-card/50 p-4 backdrop-blur-sm">
-            {[
-              { label: "States Monitored", value: "14", icon: Globe },
-              { label: "Data Sources", value: "2.4K", icon: Database },
-              { label: "Real-time Tracking", value: "24/7", icon: Clock },
-              { label: "Active Alerts", value: alerts.length.toString(), icon: Bell },
-            ].map((s) => (
-              <div key={s.label} className="text-center">
-                <p className="font-display text-2xl font-bold text-primary">{s.value}</p>
-                <p className="text-[10px] text-muted-foreground">{s.label}</p>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Platform Capabilities */}
-      <section className="container mx-auto px-4 py-20">
-        <h2 className="mb-1 text-center font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">Platform Capabilities</h2>
-        <p className="mx-auto mb-10 max-w-md text-center text-sm text-muted-foreground">AI-powered surveillance at every layer</p>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {capabilities.map((c, i) => (
-            <motion.div key={c.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
-              <Link to={c.to} className="group flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                  <c.icon className="h-5 w-5 text-primary" />
-                </div>
-                <h3 className="font-display text-sm font-bold">{c.title}</h3>
-                <p className="mt-1.5 flex-1 text-xs text-muted-foreground leading-relaxed">{c.desc}</p>
-                <div className="mt-4 flex items-center text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                  Explore <ArrowRight className="ml-1 h-3 w-3" />
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="border-t border-border bg-card/30 py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-2 font-display text-2xl font-bold">Ready to monitor disease outbreaks?</h2>
-          <p className="mx-auto mb-8 max-w-md text-sm text-muted-foreground">
-            EpidemAI helps health authorities detect outbreaks early, predict spread, and respond faster.
-          </p>
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link to="/dashboard" className="inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 glow-primary">
-              Open Dashboard
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+            <Link to="/gov-portal" className="group rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)] transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:p-6">
+              <div className="flex items-start gap-4"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary"><Landmark className="h-5 w-5" /></span><div><p className="text-xs font-semibold uppercase tracking-wide text-primary">For public health teams</p><h2 className="mt-1 text-xl font-semibold">Government Portal</h2></div></div>
+              <p className="mt-4 text-sm leading-6 text-muted-foreground">Review geographic indicators, trends, example alerts, forecasts and reporting workflows. Sample and historical content is labeled in the workspace.</p>
+              <span className="mt-4 inline-flex min-h-10 items-center gap-2 text-sm font-semibold text-primary">Open workspace <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
             </Link>
-            <Link to="/reporter" className="inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-6 text-sm font-medium text-foreground transition-colors hover:bg-secondary">
-              Field Reporter
+            <Link to="/health-portal" className="group rounded-2xl border border-primary/25 bg-card p-5 shadow-[var(--shadow-card)] transition-colors hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:p-6">
+              <div className="flex items-start gap-4"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary"><HeartPulse className="h-5 w-5" /></span><div><p className="text-xs font-semibold uppercase tracking-wide text-primary">For individuals and families</p><h2 className="mt-1 text-xl font-semibold">Individual Health</h2></div></div>
+              <p className="mt-4 text-sm leading-6 text-muted-foreground">Report symptoms, review general next steps, explore historical district records and find government health scheme information.</p>
+              <span className="mt-4 inline-flex min-h-10 items-center gap-2 text-sm font-semibold text-primary">Open health portal <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border py-8">
-        <div className="container mx-auto flex flex-col items-center gap-2 px-4 text-center">
-          <div className="flex items-center gap-2">
-            <Activity className="h-4 w-4 text-primary" />
-            <span className="font-display text-sm font-bold">Epidem<span className="text-primary">AI</span></span>
-          </div>
-          <p className="text-xs text-muted-foreground">AI-Powered Public Health Surveillance & Prediction System</p>
+      <section id="platform-capabilities" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16" aria-labelledby="capabilities-heading">
+        <div className="max-w-2xl"><p className="text-xs font-semibold uppercase tracking-wide text-primary">Platform capabilities</p><h2 id="capabilities-heading" className="mt-2 text-2xl font-bold sm:text-3xl">A connected set of public health tools</h2><p className="mt-3 text-sm leading-6 text-muted-foreground">Each tool keeps its scope visible. Analytics are exploratory, individual guidance is general, and scheme eligibility is confirmed by the responsible authority.</p></div>
+        <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {governmentTools.map(({ to, label, description, icon: Icon }) => <Link key={to} to={to} className="group flex min-h-36 gap-4 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/35 hover:bg-secondary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary"><Icon className="h-5 w-5" /></span>
+            <span><strong className="text-sm">{label}</strong><span className="mt-1 block text-sm leading-6 text-muted-foreground">{description}</span><span className="mt-3 inline-flex min-h-8 items-center gap-1 text-sm font-semibold text-primary">Open tool <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span></span>
+          </Link>)}
         </div>
-      </footer>
-    </div>
-  );
+      </section>
+
+      <section id="about-epidemai" className="border-y border-border bg-secondary/25">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-3 lg:px-8">
+          <div><h2 className="font-semibold">About EpidemAI</h2><p className="mt-2 text-sm leading-6 text-muted-foreground">A public health technology prototype connecting individual-facing information tools with population-level analysis demonstrations.</p></div>
+          <div><h2 className="font-semibold">Data limitations</h2><p className="mt-2 text-sm leading-6 text-muted-foreground">Bundled surveillance indicators, alert examples and news examples are not live official counts. Check each page for sources, dates and coverage limits.</p></div>
+          <div><h2 className="font-semibold">Privacy and health information</h2><p className="mt-2 text-sm leading-6 text-muted-foreground">Symptom text is processed by the assistant API. History is separately opt-in and temporary. General guidance is not a diagnosis; seek professional care for medical advice.</p><Link to="/health-assistant" className="mt-3 inline-flex min-h-10 items-center gap-2 text-sm font-semibold text-primary hover:underline">Review health information choices <ArrowRight className="h-4 w-4" /></Link></div>
+        </div>
+      </section>
+    </main>
+    <footer className="border-t border-border">
+      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+        <span>EpidemAI · Public health information prototype</span>
+        <div className="flex flex-wrap gap-x-5 gap-y-2"><a href="#about-epidemai" className="min-h-10 inline-flex items-center hover:text-foreground">About</a><a href="#platform-capabilities" className="min-h-10 inline-flex items-center hover:text-foreground">Platform capabilities</a><Link to="/health-profile" className="min-h-10 inline-flex items-center hover:text-foreground">Privacy choices</Link><Link to="/health-assistant" className="min-h-10 inline-flex items-center hover:text-foreground">Health information</Link></div>
+      </div>
+    </footer>
+  </div>;
 }

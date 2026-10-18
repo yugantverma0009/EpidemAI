@@ -1,0 +1,41 @@
+{
+  "disease": "Acute Diarrhoeal Disease",
+  "data_file": "epiclim_final_data.csv",
+  "observed_district_month_rows": 2892,
+  "district_count": 636,
+  "source_date_start": "2009-06-12",
+  "source_date_end": "2022-06-29",
+  "train_rows": 2603,
+  "test_rows": 289,
+  "train_through_month": "2019-10",
+  "test_from_month": "2019-11",
+  "test_through_month": "2022-06",
+  "best_model": "ridge_regression",
+  "evaluation": {
+    "split": "chronological holdout by calendar month",
+    "future_weather": "held-out rows use climate normals from training period only",
+    "selected_artifact_model": "ridge_regression",
+    "ridge_regression": {
+      "mae_reported_cases": 32.96,
+      "rmse_reported_cases": 58.15
+    },
+    "random_forest": {
+      "mae_reported_cases": 34.41,
+      "rmse_reported_cases": 59.7
+    },
+    "gradient_boosting": {
+      "mae_reported_cases": 34.49,
+      "rmse_reported_cases": 59.6
+    },
+    "seasonal_month_mean_baseline": {
+      "mae_reported_cases": 43.16,
+      "rmse_reported_cases": 60.59
+    }
+  },
+  "target": "sum of reported acute diarrhoeal disease outbreak cases in observed district-months",
+  "available_models": [
+    "ridge_regression",
+    "random_forest",
+    "gradient_boosting"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "model": "LSTM",
+  "target": "sum of reported dengue outbreak cases in observed district-months after three previous observed district-months",
+  "sequence_length": 3,
+  "eligible_windows": 312,
+  "train_windows": 240,
+  "holdout_windows": 72,
+  "train_through_month": "2019-09",
+  "holdout_from_month": "2019-10",
+  "holdout_through_month": "2022-06",
+  "holdout": {
+    "lstm": {
+      "mae_reported_cases": 32.4070216698779,
+      "rmse_reported_cases": 72.00988136538771
+    },
+    "ridge_regression": {
+      "mae_reported_cases": 15.091657696259213,
+      "rmse_reported_cases": 19.940581732816998
+    },
+    "seasonal_month_mean": {
+      "mae_reported_cases": 48.994193505818636,
+      "rmse_reported_cases": 67.00756533427251
+    }
+  },
+  "limitations": [
+    "Only districts with at least four observed district-month reports can contribute sequence windows.",
+    "The source is irregular outbreak reporting, not a complete district-month panel.",
+    "Evaluation predicts the next observed district-month record, not verified complete monthly incidence.",
+    "Single chronological holdout is preliminary; dataset ends in June 2022."
+  ],
+  "best_on_holdout": "ridge_regression"
+}

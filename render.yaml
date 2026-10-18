@@ -1,3 +1,4 @@
+# Render deployment configuration for EpidemAI
 services:
   - type: web
     name: epidemai-backend

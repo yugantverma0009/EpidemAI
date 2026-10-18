@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
-import { MapPin, Wifi, Send, FileText, Shield, Clock, Navigation, CircleAlert, ScanSearch } from "lucide-react";
+import { MapPin, Send, FileText, Shield, Clock, Navigation, CircleAlert, ScanSearch, Wifi } from "lucide-react";
 import { useCities } from "@/hooks/useApi";
-import { allDiseases } from "@/data/mockData";
+import { allDiseases, cities as sampleCities } from "@/data/mockData";
 import { toast } from "sonner";
 
 const symptomOptions = ["Fever", "Cough", "Headache", "Joint Pain", "Rash", "Chills", "Fatigue", "Nausea", "Vomiting", "Difficulty Breathing"];
@@ -14,7 +14,6 @@ const unknownDiseaseOption = "New / unknown condition";
 
 interface Report {
   id: string;
-  name: string;
   city: string;
   disease: string;
   cases: number;
@@ -30,9 +29,8 @@ interface Report {
 
 export default function Reporter() {
   const { data: cities = [] } = useCities();
+  const cityOptions = cities.length > 0 ? cities : sampleCities;
   const [tab, setTab] = useState<"new" | "reports">("new");
-  const [name, setName] = useState("");
-  const [contactId, setContactId] = useState("");
   const [selectedCity, setSelectedCity] = useState("Delhi");
   const [selectedDisease, setSelectedDisease] = useState("Dengue");
   const [newDiseaseName, setNewDiseaseName] = useState("");
@@ -43,9 +41,7 @@ export default function Reporter() {
   const [gpsLocation, setGpsLocation] = useState("");
   const [selectedSymptoms, setSelectedSymptoms] = useState<Set<string>>(new Set());
   const [notes, setNotes] = useState("");
-  const [reports, setReports] = useState<Report[]>(() => {
-    try { return JSON.parse(localStorage.getItem("epidem_reports") || "[]"); } catch { return []; }
-  });
+  const [reports, setReports] = useState<Report[]>([]);
 
   const toggleSymptom = (s: string) => {
     setSelectedSymptoms(prev => {
@@ -59,15 +55,14 @@ export default function Reporter() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => setGpsLocation(`${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)}`),
-        () => setGpsLocation("28.6139, 77.2090 (simulated)")
+        () => toast.error("Location access was not granted. Enter an area manually if you want to add one.")
       );
     } else {
-      setGpsLocation("28.6139, 77.2090 (simulated)");
+      toast.error("Location is not available in this browser. Enter an area manually if you want to add one.");
     }
   };
 
   const submitReport = () => {
-    if (!name.trim() && reportSource !== "System-detected anomaly") { toast.error("Please enter your name"); return; }
     if (!caseCount) { toast.error("Please enter case count"); return; }
     if (selectedDisease === unknownDiseaseOption && !newDiseaseName.trim()) { toast.error("Please name the new or unknown condition"); return; }
 
@@ -77,7 +72,6 @@ export default function Reporter() {
 
     const report: Report = {
       id: `FR${Date.now()}`,
-      name: name.trim() || "EpidemAI system",
       city: selectedCity,
       disease: diseaseName,
       cases,
@@ -93,12 +87,9 @@ export default function Reporter() {
 
     const updated = [report, ...reports];
     setReports(updated);
-    localStorage.setItem("epidem_reports", JSON.stringify(updated));
-    toast.success(outbreakReview ? "Signal saved and flagged for outbreak review" : "Report submitted to surveillance system");
+    toast.success("Example added to this tab. It has not been sent to a health authority.");
 
     // Reset
-    setName("");
-    setContactId("");
     setCaseCount("");
     setNewDiseaseName("");
     setGpsLocation("");
@@ -109,15 +100,15 @@ export default function Reporter() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <div className="container mx-auto px-4 pt-20 pb-10">
+      <main id="main-content" tabIndex={-1} className="container mx-auto px-4 pt-20 pb-10">
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-1">
             <h1 className="font-display text-2xl font-bold">Disease Reporter</h1>
             <span className="flex items-center gap-1 rounded-full border border-accent/30 bg-accent/10 px-2.5 py-0.5 text-[10px] font-semibold text-accent">
-              <Wifi className="h-3 w-3" /> Online — live sync active
+              Demo workspace
             </span>
           </div>
-          <p className="text-sm text-muted-foreground">Submit cluster reports from the field. Works offline — auto-syncs when connected.</p>
+          <p className="text-sm text-muted-foreground">Create a local example of a community health signal. This prototype does not transmit reports or notify public health teams.</p>
         </div>
 
         {/* Tabs */}
@@ -134,21 +125,6 @@ export default function Reporter() {
           <div className="grid gap-6 lg:grid-cols-3">
             {/* Form */}
             <div className="lg:col-span-2 space-y-4">
-              {/* Reporter Info */}
-              <div className="rounded-xl border border-border bg-card p-5">
-                <h3 className="font-display text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">Reporter Information</h3>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="text-xs font-semibold text-muted-foreground">{reportSource === "System-detected anomaly" ? "System / analyst name" : "Your Name *"}</label>
-                    <input value={name} onChange={(e) => setName(e.target.value)} placeholder={reportSource === "System-detected anomaly" ? "Optional — defaults to EpidemAI system" : "Field worker name"} className="mt-1 w-full h-10 rounded-lg border border-border bg-secondary/50 px-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none" />
-                  </div>
-                  <div>
-                    <label className="text-xs font-semibold text-muted-foreground">Contact / Worker ID</label>
-                    <input value={contactId} onChange={(e) => setContactId(e.target.value)} placeholder="Phone or ID" className="mt-1 w-full h-10 rounded-lg border border-border bg-secondary/50 px-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none" />
-                  </div>
-                </div>
-              </div>
-
               {/* Cluster Details */}
               <div className="rounded-xl border border-border bg-card p-5">
                 <h3 className="font-display text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">Cluster Details</h3>
@@ -159,7 +135,7 @@ export default function Reporter() {
                   <div>
                     <label className="text-xs font-semibold text-muted-foreground">City</label>
                     <select value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="mt-1 w-full h-10 rounded-lg border border-border bg-secondary/50 px-3 text-sm text-foreground focus:border-primary/50 focus:outline-none">
-                      {cities.map(c => <option key={c.name} value={c.name}>{c.name}, {c.state}</option>)}
+                      {cityOptions.map(c => <option key={c.name} value={c.name}>{c.name}, {c.state}</option>)}
                     </select>
                   </div>
                   <div>
@@ -238,7 +214,7 @@ export default function Reporter() {
               {/* Notes */}
               <div className="rounded-xl border border-border bg-card p-5">
                 <h3 className="font-display text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Additional Notes</h3>
-                <p className="mb-2 text-xs text-muted-foreground">Include who is affected, where, when it started, and what makes it unusual.</p>
+                <p className="mb-2 text-xs text-muted-foreground">Use a general area and time period. Do not include names, phone numbers, or other identifying details.</p>
                 <textarea
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
@@ -250,7 +226,7 @@ export default function Reporter() {
 
               {/* Submit */}
               <button onClick={submitReport} className="w-full flex items-center justify-center gap-2 h-12 rounded-lg bg-primary text-primary-foreground font-semibold text-sm transition-all hover:opacity-90 glow-primary">
-                <Send className="h-4 w-4" /> Submit to Surveillance System
+                <Send className="h-4 w-4" /> Add example to this tab
               </button>
             </div>
 
@@ -292,7 +268,7 @@ export default function Reporter() {
                     </div>
                     <div>
                       <h4 className="text-xs font-semibold">Offline mode</h4>
-                      <p className="text-[11px] text-muted-foreground">Reports save locally when offline and auto-sync when you regain connectivity</p>
+                      <p className="text-[11px] text-muted-foreground">Examples remain in memory in this tab and are cleared when you reload or close it.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -313,7 +289,7 @@ export default function Reporter() {
           <div className="space-y-3">
             {reports.length === 0 ? (
               <div className="rounded-xl border border-border bg-card p-10 text-center">
-                <p className="text-sm text-muted-foreground">No reports submitted yet.</p>
+                <p className="text-sm text-muted-foreground">No examples added in this tab yet.</p>
               </div>
             ) : (
               reports.map((r) => (
@@ -322,7 +298,7 @@ export default function Reporter() {
                     <div className="flex items-center gap-2">
                       <span className="font-mono text-xs text-muted-foreground">{r.id}</span>
                       <span className="rounded-full border border-primary/20 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">{r.disease}</span>
-                      {r.outbreakReview && <span className="rounded-full border border-warning/25 bg-warning/10 px-2 py-0.5 text-[10px] font-semibold text-warning">Review queued</span>}
+                      {r.outbreakReview && <span className="rounded-full border border-warning/25 bg-warning/10 px-2 py-0.5 text-[10px] font-semibold text-warning">Example review label · not queued</span>}
                     </div>
                     <span className="text-[10px] text-muted-foreground flex items-center gap-1"><Clock className="h-3 w-3" /> {r.time}</span>
                   </div>
@@ -339,7 +315,7 @@ export default function Reporter() {
             )}
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 }

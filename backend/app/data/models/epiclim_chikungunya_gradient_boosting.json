@@ -1,0 +1,4277 @@
+{
+  "model_type": "gradient_boosting",
+  "disease": "Chikungunya",
+  "feature_fields": [
+    "month",
+    "month_sin",
+    "month_cos",
+    "latitude",
+    "longitude",
+    "preci",
+    "lai",
+    "temp",
+    "state",
+    "district"
+  ],
+  "trained_through": "2022-06-12",
+  "source_date_start": "2009-06-15",
+  "data_file": "epiclim_final_data.csv",
+  "selected_after_holdout": "ridge_regression",
+  "scaler_mean": [
+    7.175398633257403,
+    -0.15605248645822772,
+    -0.057476197739336946,
+    16.58306489305239,
+    77.0359870705467,
+    0.22738017964883472,
+    8.742596810933941,
+    307.00786610774486
+  ],
+  "scaler_scale": [
+    3.120033841750047,
+    0.7023541699259326,
+    0.6921291267901442,
+    5.02246298642358,
+    3.3673849933033226,
+    0.3878372458249496,
+    5.051286475105761,
+    6.033122034790558
+  ],
+  "encoder_categories": [
+    [
+      "Andhra Pradesh",
+      "Arunachal Pradesh",
+      "Assam",
+      "Bihar",
+      "Dadra and Nagar Haveli",
+      "Goa",
+      "Gujarat",
+      "Haryana",
+      "Jharkhand",
+      "Karnataka",
+      "Kerala",
+      "Madhya Pradesh",
+      "Maharashtra",
+      "Meghalaya",
+      "Odisha",
+      "Puducherry",
+      "Rajasthan",
+      "Tamil Nadu",
+      "Telangana",
+      "Uttar Pradesh",
+      "West Bengal"
+    ],
+    [
+      "Ahmadabad",
+      "Ahmednagar",
+      "Akola",
+      "Alwar",
+      "Amreli",
+      "Bagalkot",
+      "Ballari",
+      "Bangalore Rural",
+      "Bangalore Urban",
+      "Bardhaman",
+      "Barmer",
+      "Barwani",
+      "Beed",
+      "Belagavi",
+      "Belgaum",
+      "Bengaluru",
+      "Bengaluru Urban",
+      "Betul",
+      "Bharuch",
+      "Bhind",
+      "Bhopal",
+      "Bidar",
+      "Bijapur",
+      "Bikaner",
+      "Bolangir",
+      "Budaun",
+      "Burdwan",
+      "Burhanpur",
+      "Chamarajanagar",
+      "Chamarajnagar",
+      "Chamrajnagar",
+      "Chhindwara",
+      "Chikkaballapur",
+      "Chikkaballapura",
+      "Chitradurga",
+      "Chittoor",
+      "Coimbatore",
+      "Cuddalore",
+      "Dadra and Nagar Haveli",
+      "Davangere",
+      "Devbhoomi Dwarka",
+      "Dhanbad",
+      "Dharmapuri",
+      "Dharwad",
+      "Dhule",
+      "Dindigul",
+      "East Siang",
+      "East Singhbhum",
+      "Erode",
+      "Gadag",
+      "Ganganagar",
+      "Gwalior",
+      "Hassan",
+      "Haveri",
+      "Hooghly",
+      "Howrah",
+      "Idukki",
+      "Jaipur",
+      "Jajpur",
+      "Jalgaon",
+      "Jalpaiguri",
+      "Jamnagar",
+      "Junagadh",
+      "Junagarh",
+      "Kadapa",
+      "Kalaburagi",
+      "Kalaburgi",
+      "Kamrup",
+      "Karur",
+      "Khandwa",
+      "Khargone",
+      "Kheda",
+      "Khunti",
+      "Kodagu",
+      "Kolar",
+      "Kolhapur",
+      "Koppal",
+      "Krishnagiri",
+      "Kutch",
+      "Latur",
+      "Madurai",
+      "Mahaboobnagar",
+      "Mahabubnagar",
+      "Mahesana",
+      "Malappuram",
+      "Malda",
+      "Mallapuram",
+      "Mandya",
+      "Medak",
+      "Mehsana",
+      "Morbi",
+      "Morena",
+      "Nadia",
+      "Nagaur",
+      "Nalanda",
+      "Nalgonda",
+      "Namakkal",
+      "Nanded",
+      "Nandurbar",
+      "Narmada",
+      "Nashik",
+      "Osmanabad",
+      "Panchkula",
+      "Panchmahal",
+      "Parbhani",
+      "Patan",
+      "Perambalur",
+      "Prakasam",
+      "Puducherry",
+      "Pudukkottai",
+      "Pudukottai",
+      "Pune",
+      "Puri",
+      "Raichur",
+      "Raigad",
+      "Rajgarh",
+      "Ramanagara",
+      "Ratnagiri",
+      "Sabarkantha",
+      "Salem",
+      "Sangli",
+      "Satara",
+      "Satna",
+      "Sehore",
+      "Shimoga",
+      "Shivamogga",
+      "Sivaganga",
+      "South Goa",
+      "Tenkasi (Tirunelveli)",
+      "Thane",
+      "Thanjavur",
+      "Theni",
+      "Thiruvananthapuram",
+      "Thiruvannamalai",
+      "Thoothukudi",
+      "Tikamgarh",
+      "Tiruchirapalli",
+      "Tiruchirappalli",
+      "Tirunelveli",
+      "Tiruppur",
+      "Tiruvannamalai",
+      "Tiruvarur",
+      "Trichy",
+      "Trivandrum",
+      "Tumkur",
+      "Uttara Kannada",
+      "Vadodara",
+      "Vellore",
+      "Vijayapur",
+      "Vijayapura",
+      "Villupuram",
+      "Virudhunagar",
+      "Virudhunagar Sivakasi",
+      "Virudhunagar- Sivakasi",
+      "Visakhapatnam",
+      "Washim",
+      "Wayanad",
+      "West Garo Hills",
+      "West Singhbhum",
+      "Yadgiri",
+      "Yamuna Nagar"
+    ]
+  ],
+  "regressor": {
+    "type": "gradient_boosting",
+    "n_estimators": 150,
+    "max_depth": 5,
+    "learning_rate": 0.1,
+    "feature_importances": [
+      0.030961357063743287,
+      0.0313121868415736,
+      0.02380769278584325,
+      0.06854640800298399,
+      0.19968307527881085,
+      0.21737243150386348,
+      0.09747483005121622,
+      0.138230898730355,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0009643543163234885,
+      0.0,
+      0.002139115463363963,
+      0.0032674285584905556,
+      0.0,
+      0.0617409383447573,
+      0.0026654388810450867,
+      0.0,
+      0.0,
+      0.0004207436426192921,
+      0.0,
+      0.00228687518600604,
+      0.00040829340856006285,
+      0.0,
+      0.027281836993773585,
+      0.0,
+      0.013912909223582341,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0036655412682592564,
+      0.0,
+      0.001850652853971807,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      2.9092042905336383e-05,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0005438009464337592,
+      0.0,
+      0.000868820488782864,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0006398504837428929,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.001176466255996516,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.00028283981367055303,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0015116406601528975,
+      0.0007185990228396068,
+      0.0,
+      0.0,
+      0.0,
+      0.02137127600753914,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.007202682813236797,
+      0.0,
+      0.0006039792978236588,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0017832338059012626,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0007349143076738369,
+      0.0,
+      0.0,
+      0.006468774694773716,
+      0.0,
+      0.0023011824694093336,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0013507868903966883,
+      5.072081343972546e-05,
+      0.01529714238661582,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0002582135994907151,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0034439556813572326,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0001279625307305237,
+      0.0019472205819449306,
+      1.842109027961942e-05,
+      0.0,
+      0.0,
+      0.0,
+      7.037775317377321e-05,
+      0.0,
+      0.002122690012187763,
+      0.0,
+      0.0,
+      0.0010823471503585778,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "monthly_climate_by_district": {
+    "Tamil Nadu|Vellore|6": {
+      "latitude": 12.7948109,
+      "longitude": 79.0006411,
+      "preci": 0.18521496141666668,
+      "lai": 11.333333333333334,
+      "temp": 306.34
+    },
+    "Tamil Nadu|Salem|6": {
+      "latitude": 11.0600516,
+      "longitude": 77.0679581,
+      "preci": 0.12852663769,
+      "lai": 7.5,
+      "temp": 306.8675
+    },
+    "Tamil Nadu|Namakkal|6": {
+      "latitude": 11.28422485,
+      "longitude": 78.16615284,
+      "preci": 0.14691937654999998,
+      "lai": 6.0,
+      "temp": 312.1613333
+    },
+    "Tamil Nadu|Krishnagiri|6": {
+      "latitude": 12.5188835,
+      "longitude": 78.2206536,
+      "preci": 0.1711496253,
+      "lai": 11.0,
+      "temp": 308.955
+    },
+    "Goa|South Goa|7": {
+      "latitude": 15.21961365,
+      "longitude": 74.1152813,
+      "preci": 3.755514997,
+      "lai": 3.0,
+      "temp": 292.66
+    },
+    "Tamil Nadu|Salem|7": {
+      "latitude": 11.0600516,
+      "longitude": 77.0679581,
+      "preci": 0.3096632839,
+      "lai": 4.5,
+      "temp": 300.56
+    },
+    "Tamil Nadu|Theni|7": {
+      "latitude": 9.9696643,
+      "longitude": 77.47420049,
+      "preci": 0.16014008935500001,
+      "lai": 4.0,
+      "temp": 315.10333330000003
+    },
+    "Kerala|Malappuram|8": {
+      "latitude": 11.10684475,
+      "longitude": 76.1099551,
+      "preci": 0.4440940566,
+      "lai": 16.0,
+      "temp": 298.97
+    },
+    "Kerala|Mallapuram|8": {
+      "latitude": 10.82220375,
+      "longitude": 76.46703714,
+      "preci": 0.4440940566,
+      "lai": 16.0,
+      "temp": 298.97
+    },
+    "Tamil Nadu|Salem|8": {
+      "latitude": 11.0600516,
+      "longitude": 77.0679581,
+      "preci": 0.2945496566,
+      "lai": 8.0,
+      "temp": 308.22
+    },
+    "Tamil Nadu|Theni|8": {
+      "latitude": 9.9696643,
+      "longitude": 77.47420049,
+      "preci": 0.30589818305,
+      "lai": 4.5,
+      "temp": 316.765
+    },
+    "Tamil Nadu|Karur|8": {
+      "latitude": 10.9301522,
+      "longitude": 78.08485455,
+      "preci": 0.01174368439,
+      "lai": 4.0,
+      "temp": 309.79
+    },
+    "Tamil Nadu|Tirunelveli|8": {
+      "latitude": 8.7284271,
+      "longitude": 77.7112925,
+      "preci": 0.09101110964,
+      "lai": 5.0,
+      "temp": 312.8
+    },
+    "Tamil Nadu|Namakkal|9": {
+      "latitude": 11.28422485,
+      "longitude": 78.16615284,
+      "preci": 0.2588042895,
+      "lai": 7.0,
+      "temp": 308.22400000000005
+    },
+    "Tamil Nadu|Karur|9": {
+      "latitude": 10.9301522,
+      "longitude": 78.08485455,
+      "preci": 0.5334647889,
+      "lai": 7.0,
+      "temp": 306.65000000000003
+    },
+    "Odisha|Puri|9": {
+      "latitude": 19.8076083,
+      "longitude": 85.8252538,
+      "preci": 0.6457313805,
+      "lai": 14.0,
+      "temp": 301.556
+    },
+    "Tamil Nadu|Tiruchirappalli|9": {
+      "latitude": 10.7992254,
+      "longitude": 78.6811423,
+      "preci": 0.5714350858,
+      "lai": 9.0,
+      "temp": 305.684
+    },
+    "Tamil Nadu|Trichy|10": {
+      "latitude": 10.7992254,
+      "longitude": 78.6811423,
+      "preci": 0.1131071402,
+      "lai": 7.0,
+      "temp": 308.672
+    },
+    "West Bengal|Howrah|10": {
+      "latitude": 22.5736296,
+      "longitude": 88.3251045,
+      "preci": 0.05016815469,
+      "lai": 17.0,
+      "temp": 303.16400000000004
+    },
+    "Tamil Nadu|Perambalur|10": {
+      "latitude": 11.2287716,
+      "longitude": 78.81825555,
+      "preci": 0.01342844467,
+      "lai": 6.0,
+      "temp": 307.264
+    },
+    "Tamil Nadu|Karur|11": {
+      "latitude": 10.9301522,
+      "longitude": 78.08485455,
+      "preci": 0.1796470802,
+      "lai": 5.0,
+      "temp": 304.52
+    },
+    "West Bengal|Malda|11": {
+      "latitude": 25.0057449,
+      "longitude": 88.1398483,
+      "preci": 7.61e-05,
+      "lai": 12.0,
+      "temp": 301.608
+    },
+    "Maharashtra|Ratnagiri|11": {
+      "latitude": 17.2826079,
+      "longitude": 73.4569787,
+      "preci": 0.2765353113,
+      "lai": 15.0,
+      "temp": 303.075
+    },
+    "Tamil Nadu|Coimbatore|11": {
+      "latitude": 11.0600516,
+      "longitude": 77.0679581,
+      "preci": 0.2932651034,
+      "lai": 9.0,
+      "temp": 301.54
+    },
+    "Tamil Nadu|Dindigul|12": {
+      "latitude": 10.3303299,
+      "longitude": 78.06739791,
+      "preci": 0.08804291906,
+      "lai": 12.0,
+      "temp": 301.548
+    },
+    "Tamil Nadu|Trichy|12": {
+      "latitude": 10.7992254,
+      "longitude": 78.6811423,
+      "preci": 0.1823243828,
+      "lai": 15.0,
+      "temp": 302.42
+    },
+    "Goa|South Goa|12": {
+      "latitude": 15.21961365,
+      "longitude": 74.1152813,
+      "preci": 0.006113389157,
+      "lai": 24.0,
+      "temp": 301.36400000000003
+    },
+    "Puducherry|Puducherry|1": {
+      "latitude": 11.9340568,
+      "longitude": 79.8306447,
+      "preci": 0.03498111588,
+      "lai": 10.0,
+      "temp": 300.115
+    },
+    "Tamil Nadu|Virudhunagar|2": {
+      "latitude": 9.5208936,
+      "longitude": 77.8784564,
+      "preci": 0.0001739029875,
+      "lai": 8.0,
+      "temp": 306.688
+    },
+    "Maharashtra|Thane|2": {
+      "latitude": 19.1943294,
+      "longitude": 72.9701779,
+      "preci": 0.002743676953,
+      "lai": 8.0,
+      "temp": 304.86400000000003
+    },
+    "Rajasthan|Jaipur|3": {
+      "latitude": 26.9154576,
+      "longitude": 75.8189817,
+      "preci": 4.38e-05,
+      "lai": 3.0,
+      "temp": 317.74333340000004
+    },
+    "Karnataka|Tumkur|4": {
+      "latitude": 13.3400771,
+      "longitude": 77.1006208,
+      "preci": 0.13546581427499998,
+      "lai": 7.0,
+      "temp": 310.5635
+    },
+    "Karnataka|Chamarajnagar|5": {
+      "latitude": 14.3683154,
+      "longitude": 76.6538415,
+      "preci": 0.1732381209,
+      "lai": 7.0,
+      "temp": 308.5333334
+    },
+    "Kerala|Wayanad|7": {
+      "latitude": 11.715219,
+      "longitude": 76.12690295,
+      "preci": 0.696739417,
+      "lai": 7.0,
+      "temp": 294.48
+    },
+    "Tamil Nadu|Vellore|7": {
+      "latitude": 12.7948109,
+      "longitude": 79.0006411,
+      "preci": 0.13751569215,
+      "lai": 8.5,
+      "temp": 305.36
+    },
+    "Gujarat|Kutch|8": {
+      "latitude": 23.583333,
+      "longitude": 70.0,
+      "preci": 0.8300368866,
+      "lai": 5.0,
+      "temp": 294.44
+    },
+    "Tamil Nadu|Pudukkottai|8": {
+      "latitude": 10.5,
+      "longitude": 78.833333,
+      "preci": 0.2143385869,
+      "lai": 7.0,
+      "temp": 310.75
+    },
+    "Karnataka|Kodagu|8": {
+      "latitude": 12.38217745,
+      "longitude": 75.66531992,
+      "preci": 2.301587439,
+      "lai": 7.0,
+      "temp": 296.40000000000003
+    },
+    "West Bengal|Nadia|8": {
+      "latitude": 23.48454125,
+      "longitude": 88.55676307,
+      "preci": 0.4282829269,
+      "lai": 8.0,
+      "temp": 300.09000000000003
+    },
+    "Karnataka|Belgaum|8": {
+      "latitude": 15.8572666,
+      "longitude": 74.5069343,
+      "preci": 0.6160425642,
+      "lai": 11.0,
+      "temp": 294.62
+    },
+    "Tamil Nadu|Tiruvannamalai|9": {
+      "latitude": 12.22721295,
+      "longitude": 79.07015555,
+      "preci": 0.5170620122,
+      "lai": 9.0,
+      "temp": 310.88
+    },
+    "Gujarat|Sabarkantha|9": {
+      "latitude": 24.0294885,
+      "longitude": 73.0459884,
+      "preci": 0.037996853295,
+      "lai": 21.5,
+      "temp": 301.2066667
+    },
+    "Tamil Nadu|Tiruvannamalai|10": {
+      "latitude": 12.22721295,
+      "longitude": 79.07015555,
+      "preci": 0.1838960268,
+      "lai": 12.0,
+      "temp": 303.4066666
+    },
+    "Maharashtra|Beed|10": {
+      "latitude": 18.9918442,
+      "longitude": 75.909784,
+      "preci": 0.615300345156,
+      "lai": 13.6,
+      "temp": 303.65
+    },
+    "Madhya Pradesh|Bhind|10": {
+      "latitude": 26.5,
+      "longitude": 78.75,
+      "preci": 0.0022069055779,
+      "lai": 7.5,
+      "temp": 305.847
+    },
+    "Madhya Pradesh|Morena|11": {
+      "latitude": 26.166667,
+      "longitude": 77.5,
+      "preci": 0.01270885435,
+      "lai": 8.0,
+      "temp": 303.37333340000004
+    },
+    "Rajasthan|Bikaner|11": {
+      "latitude": 28.0159286,
+      "longitude": 73.3171367,
+      "preci": 0.01683520048,
+      "lai": 2.0,
+      "temp": 307.832
+    },
+    "Madhya Pradesh|Bhind|11": {
+      "latitude": 26.5,
+      "longitude": 78.75,
+      "preci": 0.13818104093,
+      "lai": 5.5,
+      "temp": 301.1773333
+    },
+    "Madhya Pradesh|Bhind|12": {
+      "latitude": 26.5,
+      "longitude": 78.75,
+      "preci": 7.55e-05,
+      "lai": 11.0,
+      "temp": 296.7566666
+    },
+    "Madhya Pradesh|Satna|12": {
+      "latitude": 24.5,
+      "longitude": 81.0,
+      "preci": 0.03711341118,
+      "lai": 8.0,
+      "temp": 298.355
+    },
+    "Telangana|Mahabubnagar|1": {
+      "latitude": 16.69656855,
+      "longitude": 77.95911462,
+      "preci": 0.0007232686035,
+      "lai": 7.0,
+      "temp": 305.312
+    },
+    "Karnataka|Bidar|2": {
+      "latitude": 18.083333,
+      "longitude": 77.333333,
+      "preci": 0.04504007391,
+      "lai": 4.0,
+      "temp": 308.16
+    },
+    "Karnataka|Bidar|4": {
+      "latitude": 18.083333,
+      "longitude": 77.333333,
+      "preci": 0.018190562650000002,
+      "lai": 3.0,
+      "temp": 319.7623333
+    },
+    "Gujarat|Amreli|4": {
+      "latitude": 20.866667,
+      "longitude": 70.75,
+      "preci": 0.000820893836,
+      "lai": 6.5,
+      "temp": 314.94500000000005
+    },
+    "Gujarat|Kheda|4": {
+      "latitude": 22.75,
+      "longitude": 72.833333,
+      "preci": 0.0008986943925,
+      "lai": 5.0,
+      "temp": 314.9483333
+    },
+    "Rajasthan|Barmer|4": {
+      "latitude": 25.5819034,
+      "longitude": 71.61966243,
+      "preci": 3.48e-05,
+      "lai": 2.0,
+      "temp": 326.5066666
+    },
+    "Madhya Pradesh|Khargone|5": {
+      "latitude": 21.825599,
+      "longitude": 75.614182,
+      "preci": 0.0007785707953,
+      "lai": 4.0,
+      "temp": 318.0966666
+    },
+    "Maharashtra|Nashik|5": {
+      "latitude": 20.0112475,
+      "longitude": 73.7902364,
+      "preci": 0.08906537250070001,
+      "lai": 5.666666666666667,
+      "temp": 315.37488886666665
+    },
+    "Karnataka|Belgaum|6": {
+      "latitude": 15.8572666,
+      "longitude": 74.5069343,
+      "preci": 0.6886999553,
+      "lai": 4.0,
+      "temp": 311.1733334
+    },
+    "Madhya Pradesh|Betul|7": {
+      "latitude": 21.8796162,
+      "longitude": 77.87568125,
+      "preci": 0.3515865295,
+      "lai": 6.0,
+      "temp": 301.2666666
+    },
+    "Jharkhand|East Singhbhum|7": {
+      "latitude": 22.8092139,
+      "longitude": 86.2091549,
+      "preci": 0.4403591812,
+      "lai": 6.0,
+      "temp": 305.40000000000003
+    },
+    "Tamil Nadu|Erode|7": {
+      "latitude": 11.3692044,
+      "longitude": 77.67662687,
+      "preci": 0.3980800576,
+      "lai": 4.0,
+      "temp": 309.42
+    },
+    "Jharkhand|West Singhbhum|8": {
+      "latitude": 22.7859232,
+      "longitude": 86.1716093,
+      "preci": 0.2252366595,
+      "lai": 9.0,
+      "temp": 302.2
+    },
+    "Maharashtra|Parbhani|8": {
+      "latitude": 19.29031365,
+      "longitude": 76.60290343,
+      "preci": 0.2515310148,
+      "lai": 6.0,
+      "temp": 301.57
+    },
+    "Maharashtra|Nashik|8": {
+      "latitude": 20.0112475,
+      "longitude": 73.7902364,
+      "preci": 0.3677492428,
+      "lai": 6.0,
+      "temp": 300.5
+    },
+    "Jharkhand|East Singhbhum|8": {
+      "latitude": 22.8092139,
+      "longitude": 86.2091549,
+      "preci": 0.4851321963,
+      "lai": 7.5,
+      "temp": 298.74
+    },
+    "Madhya Pradesh|Bhind|9": {
+      "latitude": 26.5,
+      "longitude": 78.75,
+      "preci": 0.4936372819,
+      "lai": 12.0,
+      "temp": 303.29
+    },
+    "Tamil Nadu|Coimbatore|9": {
+      "latitude": 11.0600516,
+      "longitude": 77.0679581,
+      "preci": 0.95056669725,
+      "lai": 7.0,
+      "temp": 306.78
+    },
+    "Madhya Pradesh|Tikamgarh|9": {
+      "latitude": 24.85577805,
+      "longitude": 79.04706347,
+      "preci": 0.4215212739,
+      "lai": 11.0,
+      "temp": 300.145
+    },
+    "Maharashtra|Osmanabad|9": {
+      "latitude": 18.16984395,
+      "longitude": 76.11796321,
+      "preci": 0.168325801405,
+      "lai": 10.0,
+      "temp": 302.4483333
+    },
+    "Maharashtra|Akola|9": {
+      "latitude": 20.76181225,
+      "longitude": 77.19211567,
+      "preci": 0.07470984846,
+      "lai": 17.0,
+      "temp": 305.06
+    },
+    "Haryana|Panchkula|10": {
+      "latitude": 30.7137692,
+      "longitude": 76.868276,
+      "preci": 0.07678103099,
+      "lai": 15.0,
+      "temp": 302.0333334
+    },
+    "West Bengal|Bardhaman|10": {
+      "latitude": 23.41146995,
+      "longitude": 87.84499445,
+      "preci": 0.2890344527,
+      "lai": 24.0,
+      "temp": 300.91
+    },
+    "West Bengal|Burdwan|10": {
+      "latitude": 23.2495714,
+      "longitude": 87.8681751,
+      "preci": 0.283694283,
+      "lai": 21.0,
+      "temp": 301.375
+    },
+    "Karnataka|Belgaum|10": {
+      "latitude": 15.8572666,
+      "longitude": 74.5069343,
+      "preci": 0.2800980786,
+      "lai": 19.0,
+      "temp": 303.328
+    },
+    "Madhya Pradesh|Khargone|10": {
+      "latitude": 21.825599,
+      "longitude": 75.614182,
+      "preci": 0.0049394514035,
+      "lai": 17.5,
+      "temp": 305.6963333
+    },
+    "Maharashtra|Ahmednagar|10": {
+      "latitude": 19.1627725,
+      "longitude": 74.8580243,
+      "preci": 0.023164856004999998,
+      "lai": 14.5,
+      "temp": 304.97350000000006
+    },
+    "West Bengal|Hooghly|10": {
+      "latitude": 22.9052114,
+      "longitude": 88.3760639,
+      "preci": 0.08795907942,
+      "lai": 19.0,
+      "temp": 303.084
+    },
+    "Gujarat|Vadodara|10": {
+      "latitude": 22.2973142,
+      "longitude": 73.1942567,
+      "preci": 0.001700838664,
+      "lai": 11.0,
+      "temp": 308.17
+    },
+    "Madhya Pradesh|Burhanpur|10": {
+      "latitude": 21.3118839,
+      "longitude": 76.2291992,
+      "preci": 0.4675396622165,
+      "lai": 15.0,
+      "temp": 307.48400000000004
+    },
+    "Haryana|Yamuna Nagar|10": {
+      "latitude": 30.1389108,
+      "longitude": 77.301064,
+      "preci": 0.04768943848,
+      "lai": 9.0,
+      "temp": 304.448
+    },
+    "Maharashtra|Nashik|10": {
+      "latitude": 20.0112475,
+      "longitude": 73.7902364,
+      "preci": 0.10760081084433333,
+      "lai": 12.666666666666666,
+      "temp": 304.2291111333334
+    },
+    "Jharkhand|Dhanbad|10": {
+      "latitude": 23.7952809,
+      "longitude": 86.4309638,
+      "preci": 0.05961393745,
+      "lai": 14.0,
+      "temp": 303.14
+    },
+    "Madhya Pradesh|Khandwa|10": {
+      "latitude": 21.9778642,
+      "longitude": 76.56882823,
+      "preci": 0.0011528925585000001,
+      "lai": 11.0,
+      "temp": 309.04499999999996
+    },
+    "Madhya Pradesh|Rajgarh|11": {
+      "latitude": 23.87167135,
+      "longitude": 76.7748902,
+      "preci": 5.96e-05,
+      "lai": 5.0,
+      "temp": 310.192
+    },
+    "Madhya Pradesh|Gwalior|11": {
+      "latitude": 26.2037247,
+      "longitude": 78.1573628,
+      "preci": 5.06e-05,
+      "lai": 7.0,
+      "temp": 307.74
+    },
+    "Madhya Pradesh|Tikamgarh|11": {
+      "latitude": 24.85577805,
+      "longitude": 79.04706347,
+      "preci": 5.06e-05,
+      "lai": 5.0,
+      "temp": 307.8333334
+    },
+    "West Bengal|Jalpaiguri|11": {
+      "latitude": 26.4733048,
+      "longitude": 88.67886686,
+      "preci": 0.01132713893,
+      "lai": 34.0,
+      "temp": 298.056
+    },
+    "Bihar|Nalanda|11": {
+      "latitude": 25.1364914,
+      "longitude": 85.44365465,
+      "preci": 0.0008950611861,
+      "lai": 9.0,
+      "temp": 301.625
+    },
+    "Madhya Pradesh|Bhopal|11": {
+      "latitude": 23.2584857,
+      "longitude": 77.401989,
+      "preci": 6.24e-05,
+      "lai": 8.0,
+      "temp": 306.6633334
+    },
+    "Madhya Pradesh|Chhindwara|11": {
+      "latitude": 22.13983105,
+      "longitude": 78.80964495,
+      "preci": 5.82e-05,
+      "lai": 9.0,
+      "temp": 306.19
+    },
+    "Maharashtra|Washim|11": {
+      "latitude": 20.28741775,
+      "longitude": 77.2369655,
+      "preci": 4.57e-05,
+      "lai": 7.0,
+      "temp": 309.4033334
+    },
+    "Maharashtra|Nashik|11": {
+      "latitude": 20.0112475,
+      "longitude": 73.7902364,
+      "preci": 0.0014295111226666666,
+      "lai": 11.0,
+      "temp": 305.18555553333334
+    },
+    "Maharashtra|Jalgaon|11": {
+      "latitude": 20.84288265,
+      "longitude": 75.52612464,
+      "preci": 5.44e-05,
+      "lai": 8.0,
+      "temp": 304.4766666
+    },
+    "Gujarat|Patan|12": {
+      "latitude": 23.77405735,
+      "longitude": 71.68373466,
+      "preci": 5.28e-05,
+      "lai": 4.0,
+      "temp": 309.75333340000003
+    },
+    "Tamil Nadu|Salem|12": {
+      "latitude": 11.0600516,
+      "longitude": 77.0679581,
+      "preci": 0.1249275227,
+      "lai": 10.0,
+      "temp": 301.82
+    },
+    "Madhya Pradesh|Khargone|12": {
+      "latitude": 21.825599,
+      "longitude": 75.614182,
+      "preci": 2.74e-05,
+      "lai": 5.0,
+      "temp": 306.3766666
+    },
+    "Andhra Pradesh|Visakhapatnam|12": {
+      "latitude": 17.7222517,
+      "longitude": 83.32670984,
+      "preci": 0.005255753106,
+      "lai": 9.0,
+      "temp": 302.38
+    },
+    "Tamil Nadu|Cuddalore|12": {
+      "latitude": 11.7564329,
+      "longitude": 79.7634644,
+      "preci": 0.1001201888,
+      "lai": 13.0,
+      "temp": 299.34000000000003
+    },
+    "Tamil Nadu|Dindigul|1": {
+      "latitude": 10.3303299,
+      "longitude": 78.06739791,
+      "preci": 0.035279338442699995,
+      "lai": 9.5,
+      "temp": 302.84000000000003
+    },
+    "Tamil Nadu|Cuddalore|2": {
+      "latitude": 11.7564329,
+      "longitude": 79.7634644,
+      "preci": 0.01694272744,
+      "lai": 8.0,
+      "temp": 303.836
+    },
+    "Tamil Nadu|Thoothukudi|3": {
+      "latitude": 8.8052602,
+      "longitude": 78.1452745,
+      "preci": 0.006415241047,
+      "lai": 7.0,
+      "temp": 312.02
+    },
+    "Tamil Nadu|Villupuram|3": {
+      "latitude": 11.9415377,
+      "longitude": 79.4861469,
+      "preci": 0.004706182434,
+      "lai": 8.0,
+      "temp": 306.81
+    },
+    "Gujarat|Narmada|4": {
+      "latitude": 21.8678464,
+      "longitude": 73.5025585,
+      "preci": 6.86e-05,
+      "lai": 5.0,
+      "temp": 315.7866666
+    },
+    "Gujarat|Jamnagar|4": {
+      "latitude": 22.4732415,
+      "longitude": 70.0552102,
+      "preci": 2.87e-05,
+      "lai": 4.0,
+      "temp": 318.79200000000003
+    },
+    "Maharashtra|Beed|4": {
+      "latitude": 18.9918442,
+      "longitude": 75.909784,
+      "preci": 0.001103384156,
+      "lai": 4.0,
+      "temp": 320.30333340000004
+    },
+    "Tamil Nadu|Tiruchirapalli|4": {
+      "latitude": 10.8219673,
+      "longitude": 78.6830614,
+      "preci": 0.01557259856,
+      "lai": 6.0,
+      "temp": 316.05
+    },
+    "Tamil Nadu|Thoothukudi|4": {
+      "latitude": 8.8052602,
+      "longitude": 78.1452745,
+      "preci": 0.07551768305,
+      "lai": 5.0,
+      "temp": 311.975
+    },
+    "Tamil Nadu|Dharmapuri|4": {
+      "latitude": 12.09680475,
+      "longitude": 78.19304301,
+      "preci": 0.001627891495,
+      "lai": 7.0,
+      "temp": 314.25333340000003
+    },
+    "Maharashtra|Sangli|4": {
+      "latitude": 17.1726928,
+      "longitude": 74.58676543,
+      "preci": 0.09295113816,
+      "lai": 6.0,
+      "temp": 316.11
+    },
+    "Tamil Nadu|Dindigul|4": {
+      "latitude": 10.3303299,
+      "longitude": 78.06739791,
+      "preci": 0.1853458105575,
+      "lai": 8.0,
+      "temp": 311.1616667
+    },
+    "Gujarat|Ahmadabad|5": {
+      "latitude": 23.0216238,
+      "longitude": 72.5797068,
+      "preci": 4.05e-05,
+      "lai": 5.0,
+      "temp": 316.2666666
+    },
+    "Gujarat|Panchmahal|5": {
+      "latitude": 22.7748893,
+      "longitude": 73.620404,
+      "preci": 3.74e-05,
+      "lai": 4.0,
+      "temp": 320.78000000000003
+    },
+    "Maharashtra|Ahmednagar|5": {
+      "latitude": 19.1627725,
+      "longitude": 74.8580243,
+      "preci": 0.008942417315,
+      "lai": 4.0,
+      "temp": 318.2403333
+    },
+    "Gujarat|Kheda|5": {
+      "latitude": 22.75,
+      "longitude": 72.833333,
+      "preci": 4.4200000000000004e-05,
+      "lai": 5.0,
+      "temp": 317.32166659999996
+    },
+    "Gujarat|Bharuch|5": {
+      "latitude": 21.75,
+      "longitude": 73.0,
+      "preci": 0.001852235288,
+      "lai": 6.0,
+      "temp": 312.016
+    },
+    "West Bengal|Jalpaiguri|5": {
+      "latitude": 26.4733048,
+      "longitude": 88.67886686,
+      "preci": 0.25796123815,
+      "lai": 27.0,
+      "temp": 295.62
+    },
+    "Telangana|Mahabubnagar|5": {
+      "latitude": 16.69656855,
+      "longitude": 77.95911462,
+      "preci": 0.0001909062532,
+      "lai": 4.0,
+      "temp": 318.54
+    },
+    "Tamil Nadu|Dindigul|5": {
+      "latitude": 10.3303299,
+      "longitude": 78.06739791,
+      "preci": 0.2737304604,
+      "lai": 12.0,
+      "temp": 305.54
+    },
+    "Gujarat|Jamnagar|6": {
+      "latitude": 22.4732415,
+      "longitude": 70.0552102,
+      "preci": 0.002220530685,
+      "lai": 2.0,
+      "temp": 313.6733334
+    },
+    "West Bengal|Jalpaiguri|6": {
+      "latitude": 26.4733048,
+      "longitude": 88.67886686,
+      "preci": 1.492751894,
+      "lai": 15.0,
+      "temp": 294.9666666
+    },
+    "Telangana|Mahabubnagar|7": {
+      "latitude": 16.69656855,
+      "longitude": 77.95911462,
+      "preci": 0.49913035945,
+      "lai": 6.0,
+      "temp": 308.69
+    },
+    "Telangana|Mahabubnagar|8": {
+      "latitude": 16.69656855,
+      "longitude": 77.95911462,
+      "preci": 0.1756630812,
+      "lai": 8.0,
+      "temp": 303.02
+    },
+    "Maharashtra|Beed|8": {
+      "latitude": 18.9918442,
+      "longitude": 75.909784,
+      "preci": 0.08174632545999999,
+      "lai": 4.5,
+      "temp": 307.25
+    },
+    "Tamil Nadu|Tiruchirapalli|8": {
+      "latitude": 10.8219673,
+      "longitude": 78.6830614,
+      "preci": 0.1723455923,
+      "lai": 7.0,
+      "temp": 307.92
+    },
+    "Maharashtra|Beed|9": {
+      "latitude": 18.9918442,
+      "longitude": 75.909784,
+      "preci": 0.39310389084999997,
+      "lai": 7.0,
+      "temp": 306.51666666666665
+    },
+    "Gujarat|Panchmahal|9": {
+      "latitude": 22.7748893,
+      "longitude": 73.620404,
+      "preci": 1.84157285135,
+      "lai": 17.0,
+      "temp": 299.67
+    },
+    "Tamil Nadu|Thanjavur|9": {
+      "latitude": 10.7860267,
+      "longitude": 79.1381497,
+      "preci": 0.13958410013,
+      "lai": 7.5,
+      "temp": 307.8725
+    },
+    "Tamil Nadu|Tiruchirapalli|9": {
+      "latitude": 10.8219673,
+      "longitude": 78.6830614,
+      "preci": 0.07849861396,
+      "lai": 8.0,
+      "temp": 308.635
+    },
+    "Tamil Nadu|Dindigul|11": {
+      "latitude": 10.3303299,
+      "longitude": 78.06739791,
+      "preci": 0.06692680828,
+      "lai": 16.0,
+      "temp": 304.05
+    },
+    "Tamil Nadu|Tirunelveli|1": {
+      "latitude": 8.7284271,
+      "longitude": 77.7112925,
+      "preci": 0.2726167614,
+      "lai": 15.0,
+      "temp": 301.425
+    },
+    "Tamil Nadu|Karur|1": {
+      "latitude": 10.9301522,
+      "longitude": 78.08485455,
+      "preci": 0.0001513654507,
+      "lai": 6.0,
+      "temp": 309.86
+    },
+    "Tamil Nadu|Tirunelveli|2": {
+      "latitude": 8.7284271,
+      "longitude": 77.7112925,
+      "preci": 0.004292547772,
+      "lai": 15.0,
+      "temp": 305.068
+    },
+    "Tamil Nadu|Dindigul|2": {
+      "latitude": 10.3303299,
+      "longitude": 78.06739791,
+      "preci": 0.02577595032,
+      "lai": 9.0,
+      "temp": 308.1733334
+    },
+    "Tamil Nadu|Karur|2": {
+      "latitude": 10.9301522,
+      "longitude": 78.08485455,
+      "preci": 0.006745872444,
+      "lai": 5.0,
+      "temp": 311.2745
+    },
+    "Karnataka|Tumkur|3": {
+      "latitude": 13.3400771,
+      "longitude": 77.1006208,
+      "preci": 0.0001218205381,
+      "lai": 6.0,
+      "temp": 312.9143333
+    },
+    "Tamil Nadu|Vellore|3": {
+      "latitude": 12.7948109,
+      "longitude": 79.0006411,
+      "preci": 0.06182826599,
+      "lai": 9.0,
+      "temp": 308.57
+    },
+    "Andhra Pradesh|Prakasam|3": {
+      "latitude": 15.6589741,
+      "longitude": 79.47164373,
+      "preci": 0.01582499826,
+      "lai": 7.0,
+      "temp": 311.6
+    },
+    "Andhra Pradesh|Chittoor|3": {
+      "latitude": 13.1601048,
+      "longitude": 79.15555062,
+      "preci": 0.0001769088606,
+      "lai": 10.0,
+      "temp": 308.26
+    },
+    "Karnataka|Gadag|3": {
+      "latitude": 15.4206667,
+      "longitude": 75.6225644,
+      "preci": 4.54e-05,
+      "lai": 4.0,
+      "temp": 318.968
+    },
+    "Tamil Nadu|Tiruchirappalli|3": {
+      "latitude": 10.7992254,
+      "longitude": 78.6811423,
+      "preci": 0.01754858152,
+      "lai": 7.0,
+      "temp": 315.628
+    },
+    "Gujarat|Mehsana|4": {
+      "latitude": 23.6015557,
+      "longitude": 72.3867981,
+      "preci": 5.57e-05,
+      "lai": 6.0,
+      "temp": 313.43
+    },
+    "Telangana|Mahabubnagar|4": {
+      "latitude": 16.69656855,
+      "longitude": 77.95911462,
+      "preci": 0.0012623978790000001,
+      "lai": 5.0,
+      "temp": 318.14
+    },
+    "Karnataka|Shimoga|5": {
+      "latitude": 13.9326093,
+      "longitude": 75.574978,
+      "preci": 0.13438809,
+      "lai": 10.0,
+      "temp": 306.69599999999997
+    },
+    "Karnataka|Belgaum|5": {
+      "latitude": 15.8572666,
+      "longitude": 74.5069343,
+      "preci": 0.2690983977,
+      "lai": 7.0,
+      "temp": 311.46
+    },
+    "Karnataka|Tumkur|7": {
+      "latitude": 13.3400771,
+      "longitude": 77.1006208,
+      "preci": 0.36982072955,
+      "lai": 5.0,
+      "temp": 305.33500000000004
+    },
+    "Maharashtra|Osmanabad|7": {
+      "latitude": 18.16984395,
+      "longitude": 76.11796321,
+      "preci": 1.047265867,
+      "lai": 3.0,
+      "temp": 302.54
+    },
+    "Tamil Nadu|Tiruvarur|7": {
+      "latitude": 10.7760127,
+      "longitude": 79.6199369,
+      "preci": 0.09663766654,
+      "lai": 6.0,
+      "temp": 297.84000000000003
+    },
+    "Tamil Nadu|Virudhunagar|8": {
+      "latitude": 9.5208936,
+      "longitude": 77.8784564,
+      "preci": 0.03245187607,
+      "lai": 4.0,
+      "temp": 315.09000000000003
+    },
+    "Karnataka|Raichur|10": {
+      "latitude": 16.083333,
+      "longitude": 77.166667,
+      "preci": 0.056832103854999996,
+      "lai": 18.0,
+      "temp": 305.36166660000004
+    },
+    "Karnataka|Kolar|10": {
+      "latitude": 13.1367201,
+      "longitude": 78.1337246,
+      "preci": 0.23249903134275002,
+      "lai": 12.0,
+      "temp": 304.326
+    },
+    "Madhya Pradesh|Khargone|11": {
+      "latitude": 21.825599,
+      "longitude": 75.614182,
+      "preci": 0.0004803827406666666,
+      "lai": 11.0,
+      "temp": 306.30555553333335
+    },
+    "Gujarat|Panchmahal|11": {
+      "latitude": 22.7748893,
+      "longitude": 73.620404,
+      "preci": 4.73e-05,
+      "lai": 10.0,
+      "temp": 306.5866666
+    },
+    "Maharashtra|Latur|11": {
+      "latitude": 18.35159075,
+      "longitude": 76.75542361,
+      "preci": 5.365e-05,
+      "lai": 10.0,
+      "temp": 304.7563333
+    },
+    "Telangana|Medak|12": {
+      "latitude": 17.9375095,
+      "longitude": 78.21174499,
+      "preci": 0.007756390548,
+      "lai": 9.0,
+      "temp": 300.69
+    },
+    "Tamil Nadu|Tiruchirappalli|1": {
+      "latitude": 10.7992254,
+      "longitude": 78.6811423,
+      "preci": 0.02187047771,
+      "lai": 8.0,
+      "temp": 304.436
+    },
+    "Telangana|Nalgonda|2": {
+      "latitude": 16.8579636,
+      "longitude": 79.21749353,
+      "preci": 0.0001085946434,
+      "lai": 7.0,
+      "temp": 303.616
+    },
+    "Karnataka|Raichur|3": {
+      "latitude": 16.083333,
+      "longitude": 77.166667,
+      "preci": 5.08e-05,
+      "lai": 8.0,
+      "temp": 315.58
+    },
+    "Karnataka|Bijapur|4": {
+      "latitude": 16.8269911,
+      "longitude": 75.7175387,
+      "preci": 0.07462727938040001,
+      "lai": 4.0,
+      "temp": 318.50516665
+    },
+    "Maharashtra|Ahmednagar|4": {
+      "latitude": 19.1627725,
+      "longitude": 74.8580243,
+      "preci": 0.012024055395,
+      "lai": 5.5,
+      "temp": 318.262
+    },
+    "Madhya Pradesh|Khargone|4": {
+      "latitude": 21.825599,
+      "longitude": 75.614182,
+      "preci": 0.01632683527,
+      "lai": 4.0,
+      "temp": 318.81333340000003
+    },
+    "Karnataka|Tumkur|5": {
+      "latitude": 13.3400771,
+      "longitude": 77.1006208,
+      "preci": 0.27563722043333333,
+      "lai": 7.666666666666667,
+      "temp": 310.8546666666667
+    },
+    "Karnataka|Chitradurga|5": {
+      "latitude": 14.2266443,
+      "longitude": 76.4005122,
+      "preci": 0.209693292065,
+      "lai": 6.5,
+      "temp": 309.8045
+    },
+    "Madhya Pradesh|Sehore|5": {
+      "latitude": 23.1156882,
+      "longitude": 77.06623939,
+      "preci": 0.001122450004,
+      "lai": 5.0,
+      "temp": 319.1666666
+    },
+    "Karnataka|Chamrajnagar|5": {
+      "latitude": 11.9269937,
+      "longitude": 76.9424311,
+      "preci": 0.3599561886,
+      "lai": 12.0,
+      "temp": 306.355
+    },
+    "Tamil Nadu|Tiruchirappalli|6": {
+      "latitude": 10.7992254,
+      "longitude": 78.6811423,
+      "preci": 0.1879498449,
+      "lai": 9.0,
+      "temp": 309.87
+    },
+    "Maharashtra|Sangli|6": {
+      "latitude": 17.1726928,
+      "longitude": 74.58676543,
+      "preci": 0.2193411965,
+      "lai": 8.0,
+      "temp": 307.445
+    },
+    "Tamil Nadu|Theni|6": {
+      "latitude": 9.9696643,
+      "longitude": 77.47420049,
+      "preci": 0.07077659884500001,
+      "lai": 6.5,
+      "temp": 312.0166667
+    },
+    "Telangana|Mahabubnagar|6": {
+      "latitude": 16.69656855,
+      "longitude": 77.95911462,
+      "preci": 0.06572753159,
+      "lai": 4.0,
+      "temp": 315.5
+    },
+    "Karnataka|Tumkur|6": {
+      "latitude": 13.3400771,
+      "longitude": 77.1006208,
+      "preci": 0.45092755617499997,
+      "lai": 7.375,
+      "temp": 305.0466667
+    },
+    "Tamil Nadu|Tiruchirappalli|7": {
+      "latitude": 10.7992254,
+      "longitude": 78.6811423,
+      "preci": 0.1672357026,
+      "lai": 6.0,
+      "temp": 314.40000000000003
+    },
+    "Maharashtra|Sangli|7": {
+      "latitude": 17.1726928,
+      "longitude": 74.58676543,
+      "preci": 0.2346251609,
+      "lai": 6.0,
+      "temp": 310.2
+    },
+    "Karnataka|Koppal|7": {
+      "latitude": 15.3484144,
+      "longitude": 76.1547421,
+      "preci": 0.7893956956,
+      "lai": 3.0,
+      "temp": 302.16
+    },
+    "Madhya Pradesh|Sehore|7": {
+      "latitude": 23.1156882,
+      "longitude": 77.06623939,
+      "preci": 0.7541823366,
+      "lai": 1.0,
+      "temp": 283.96
+    },
+    "Tamil Nadu|Thiruvannamalai|8": {
+      "latitude": 9.539867,
+      "longitude": 77.6197904,
+      "preci": 0.1517497553,
+      "lai": 4.0,
+      "temp": 317.54
+    },
+    "Andhra Pradesh|Visakhapatnam|8": {
+      "latitude": 17.7222517,
+      "longitude": 83.32670984,
+      "preci": 0.2358781122,
+      "lai": 17.0,
+      "temp": 305.24666659999997
+    },
+    "Madhya Pradesh|Sehore|9": {
+      "latitude": 23.1156882,
+      "longitude": 77.06623939,
+      "preci": 1.320522651,
+      "lai": 13.0,
+      "temp": 301.0
+    },
+    "Karnataka|Dharwad|9": {
+      "latitude": 15.4540505,
+      "longitude": 75.0066516,
+      "preci": 0.2682410499,
+      "lai": 9.0,
+      "temp": 304.212
+    },
+    "Tamil Nadu|Pudukottai|9": {
+      "latitude": 10.3826515,
+      "longitude": 78.8191259,
+      "preci": 0.02296332081,
+      "lai": 9.0,
+      "temp": 312.9466666
+    },
+    "Tamil Nadu|Pudukkottai|9": {
+      "latitude": 10.5,
+      "longitude": 78.833333,
+      "preci": 0.05216851253,
+      "lai": 9.0,
+      "temp": 312.30666659999997
+    },
+    "Karnataka|Ballari|9": {
+      "latitude": 15.2485413,
+      "longitude": 76.8323648,
+      "preci": 0.056812457215,
+      "lai": 10.0,
+      "temp": 302.3333333
+    },
+    "Tamil Nadu|Thiruvannamalai|9": {
+      "latitude": 9.539867,
+      "longitude": 77.6197904,
+      "preci": 0.09246116795,
+      "lai": 5.0,
+      "temp": 315.5333334
+    },
+    "Tamil Nadu|Virudhunagar|9": {
+      "latitude": 9.5208936,
+      "longitude": 77.8784564,
+      "preci": 0.07242752053,
+      "lai": 6.0,
+      "temp": 315.04
+    },
+    "Karnataka|Kolar|9": {
+      "latitude": 13.1367201,
+      "longitude": 78.1337246,
+      "preci": 0.3073141933,
+      "lai": 8.0,
+      "temp": 307.76
+    },
+    "Madhya Pradesh|Sehore|10": {
+      "latitude": 23.1156882,
+      "longitude": 77.06623939,
+      "preci": 0.020795566100000003,
+      "lai": 12.5,
+      "temp": 308.7633333
+    },
+    "Tamil Nadu|Madurai|10": {
+      "latitude": 9.9261153,
+      "longitude": 78.1140983,
+      "preci": 0.40493839389999997,
+      "lai": 6.5,
+      "temp": 305.1983333
+    },
+    "Tamil Nadu|Thanjavur|10": {
+      "latitude": 10.7860267,
+      "longitude": 79.1381497,
+      "preci": 0.4247855229,
+      "lai": 8.0,
+      "temp": 302.4066666
+    },
+    "Maharashtra|Dhule|11": {
+      "latitude": 21.13170235,
+      "longitude": 74.48990147,
+      "preci": 3.05e-05,
+      "lai": 8.0,
+      "temp": 309.808
+    },
+    "Karnataka|Dharwad|11": {
+      "latitude": 15.4540505,
+      "longitude": 75.0066516,
+      "preci": 0.7838241008,
+      "lai": 14.0,
+      "temp": 304.11
+    },
+    "Madhya Pradesh|Khandwa|12": {
+      "latitude": 21.9778642,
+      "longitude": 76.56882823,
+      "preci": 2.71e-05,
+      "lai": 6.0,
+      "temp": 306.53000000000003
+    },
+    "Madhya Pradesh|Sehore|12": {
+      "latitude": 23.1156882,
+      "longitude": 77.06623939,
+      "preci": 2.71e-05,
+      "lai": 7.0,
+      "temp": 305.09000000000003
+    },
+    "Karnataka|Dharwad|1": {
+      "latitude": 15.4540505,
+      "longitude": 75.0066516,
+      "preci": 0.04006455077,
+      "lai": 10.5,
+      "temp": 303.9366666
+    },
+    "Maharashtra|Sangli|3": {
+      "latitude": 17.1726928,
+      "longitude": 74.58676543,
+      "preci": 0.01775389672,
+      "lai": 7.0,
+      "temp": 307.7933334
+    },
+    "Karnataka|Shimoga|4": {
+      "latitude": 13.9326093,
+      "longitude": 75.574978,
+      "preci": 0.03375958537,
+      "lai": 12.0,
+      "temp": 309.42
+    },
+    "Karnataka|Raichur|4": {
+      "latitude": 16.083333,
+      "longitude": 77.166667,
+      "preci": 0.3718947415,
+      "lai": 5.0,
+      "temp": 307.86
+    },
+    "Tamil Nadu|Vellore|4": {
+      "latitude": 12.7948109,
+      "longitude": 79.0006411,
+      "preci": 0.3469043541,
+      "lai": 11.0,
+      "temp": 309.53000000000003
+    },
+    "Karnataka|Tumkur|8": {
+      "latitude": 13.3400771,
+      "longitude": 77.1006208,
+      "preci": 0.2760640289333333,
+      "lai": 6.666666666666667,
+      "temp": 302.65500000000003
+    },
+    "Arunachal Pradesh|East Siang|8": {
+      "latitude": 28.3,
+      "longitude": 95.15,
+      "preci": 3.054230503,
+      "lai": 8.0,
+      "temp": 298.36
+    },
+    "Karnataka|Kolar|8": {
+      "latitude": 13.1367201,
+      "longitude": 78.1337246,
+      "preci": 0.3524937651,
+      "lai": 8.0,
+      "temp": 307.15000000000003
+    },
+    "Dadra and Nagar Haveli|Dadra and Nagar Haveli|8": {
+      "latitude": 20.2712521,
+      "longitude": 73.0014588,
+      "preci": 0.3033070767,
+      "lai": 15.0,
+      "temp": 300.2066666
+    },
+    "Karnataka|Dharwad|8": {
+      "latitude": 15.4540505,
+      "longitude": 75.0066516,
+      "preci": 0.2520707477,
+      "lai": 4.0,
+      "temp": 306.7666666
+    },
+    "Karnataka|Ramanagara|9": {
+      "latitude": 12.7252766,
+      "longitude": 77.2804797,
+      "preci": 0.02718189489,
+      "lai": 15.0,
+      "temp": 302.085
+    },
+    "Karnataka|Tumkur|9": {
+      "latitude": 13.3400771,
+      "longitude": 77.1006208,
+      "preci": 0.46604025282249995,
+      "lai": 8.75,
+      "temp": 302.88541665
+    },
+    "Karnataka|Ballari|10": {
+      "latitude": 15.2485413,
+      "longitude": 76.8323648,
+      "preci": 0.1483971941,
+      "lai": 14.0,
+      "temp": 305.77
+    },
+    "Tamil Nadu|Thiruvannamalai|10": {
+      "latitude": 9.539867,
+      "longitude": 77.6197904,
+      "preci": 0.4633541367,
+      "lai": 8.0,
+      "temp": 310.66
+    },
+    "Telangana|Medak|11": {
+      "latitude": 17.9375095,
+      "longitude": 78.21174499,
+      "preci": 0.01483482862,
+      "lai": 9.0,
+      "temp": 305.185
+    },
+    "Rajasthan|Nagaur|11": {
+      "latitude": 27.0607859,
+      "longitude": 74.17667538,
+      "preci": 0.004505655533,
+      "lai": 3.0,
+      "temp": 308.3533334
+    },
+    "Maharashtra|Osmanabad|11": {
+      "latitude": 18.16984395,
+      "longitude": 76.11796321,
+      "preci": 3.69e-05,
+      "lai": 5.0,
+      "temp": 309.8533334
+    },
+    "Karnataka|Bidar|12": {
+      "latitude": 18.083333,
+      "longitude": 77.333333,
+      "preci": 0.0001210373101,
+      "lai": 4.0,
+      "temp": 308.072
+    },
+    "Karnataka|Gadag|2": {
+      "latitude": 15.4206667,
+      "longitude": 75.6225644,
+      "preci": 7.64e-05,
+      "lai": 4.0,
+      "temp": 314.00333340000003
+    },
+    "Karnataka|Vijayapur|3": {
+      "latitude": 16.8054103,
+      "longitude": 75.7179353,
+      "preci": 0.000221185141,
+      "lai": 3.0,
+      "temp": 320.35066670000003
+    },
+    "Maharashtra|Satara|4": {
+      "latitude": 17.63612885,
+      "longitude": 74.29827808,
+      "preci": 4.28e-05,
+      "lai": 3.0,
+      "temp": 319.0966666
+    },
+    "Telangana|Mahaboobnagar|4": {
+      "latitude": 17.720535,
+      "longitude": 79.627202,
+      "preci": 0.004185301086,
+      "lai": 5.0,
+      "temp": 318.628
+    },
+    "Maharashtra|Pune|4": {
+      "latitude": 18.521428,
+      "longitude": 73.8544541,
+      "preci": 0.00026894553765,
+      "lai": 5.0,
+      "temp": 319.2633334
+    },
+    "Karnataka|Dharwad|4": {
+      "latitude": 15.4540505,
+      "longitude": 75.0066516,
+      "preci": 0.035872300122,
+      "lai": 4.0,
+      "temp": 320.202
+    },
+    "Maharashtra|Raigad|5": {
+      "latitude": 18.4928092,
+      "longitude": 73.13807095,
+      "preci": 0.001138335289,
+      "lai": 9.0,
+      "temp": 316.05
+    },
+    "Karnataka|Hassan|5": {
+      "latitude": 13.0070817,
+      "longitude": 76.0992703,
+      "preci": 0.49976548045,
+      "lai": 9.0,
+      "temp": 306.571
+    },
+    "Maharashtra|Pune|5": {
+      "latitude": 18.521428,
+      "longitude": 73.8544541,
+      "preci": 0.05586967941,
+      "lai": 5.0,
+      "temp": 310.3266666
+    },
+    "Karnataka|Bangalore Rural|5": {
+      "latitude": 13.0010872,
+      "longitude": 77.3361225,
+      "preci": 0.08964089824,
+      "lai": 9.0,
+      "temp": 308.035
+    },
+    "Karnataka|Mandya|6": {
+      "latitude": 12.5238888,
+      "longitude": 76.8961961,
+      "preci": 0.6239831535,
+      "lai": 6.0,
+      "temp": 305.12
+    },
+    "Karnataka|Gadag|6": {
+      "latitude": 15.4206667,
+      "longitude": 75.6225644,
+      "preci": 0.4462376606,
+      "lai": 2.0,
+      "temp": 310.235
+    },
+    "Karnataka|Bagalkot|7": {
+      "latitude": 16.1853166,
+      "longitude": 75.6967919,
+      "preci": 0.2048601581,
+      "lai": 3.0,
+      "temp": 305.63
+    },
+    "Maharashtra|Ahmednagar|7": {
+      "latitude": 19.1627725,
+      "longitude": 74.8580243,
+      "preci": 0.201673404835,
+      "lai": 7.5,
+      "temp": 304.865
+    },
+    "Karnataka|Chikkaballapura|8": {
+      "latitude": 13.4358702,
+      "longitude": 77.7312434,
+      "preci": 0.09883120074,
+      "lai": 8.0,
+      "temp": 302.13
+    },
+    "Rajasthan|Alwar|8": {
+      "latitude": 27.5,
+      "longitude": 76.5,
+      "preci": 0.4360500959,
+      "lai": 13.0,
+      "temp": 299.38
+    },
+    "Maharashtra|Ahmednagar|8": {
+      "latitude": 19.1627725,
+      "longitude": 74.8580243,
+      "preci": 0.20582812995,
+      "lai": 8.0,
+      "temp": 304.375
+    },
+    "Maharashtra|Washim|9": {
+      "latitude": 20.28741775,
+      "longitude": 77.2369655,
+      "preci": 0.05554069873,
+      "lai": 19.0,
+      "temp": 298.0
+    },
+    "Uttar Pradesh|Budaun|9": {
+      "latitude": 28.06831165,
+      "longitude": 79.04607312,
+      "preci": 0.05554498863,
+      "lai": 15.0,
+      "temp": 304.01
+    },
+    "Maharashtra|Ahmednagar|9": {
+      "latitude": 19.1627725,
+      "longitude": 74.8580243,
+      "preci": 0.7803041902000001,
+      "lai": 9.0,
+      "temp": 299.57
+    },
+    "Assam|Kamrup|10": {
+      "latitude": 26.12755515,
+      "longitude": 91.29987148,
+      "preci": 0.00218317406,
+      "lai": 19.0,
+      "temp": 301.76
+    },
+    "Gujarat|Mahesana|10": {
+      "latitude": 23.6015557,
+      "longitude": 72.3867981,
+      "preci": 2.73e-05,
+      "lai": 11.0,
+      "temp": 306.86333340000004
+    },
+    "Rajasthan|Ganganagar|10": {
+      "latitude": 29.9049489,
+      "longitude": 73.87929341,
+      "preci": 3.58e-05,
+      "lai": 5.0,
+      "temp": 307.15000000000003
+    },
+    "Gujarat|Mahesana|11": {
+      "latitude": 23.6015557,
+      "longitude": 72.3867981,
+      "preci": 9.91e-05,
+      "lai": 10.0,
+      "temp": 307.83
+    },
+    "Madhya Pradesh|Barwani|11": {
+      "latitude": 22.0333621,
+      "longitude": 74.8978374,
+      "preci": 8.94e-05,
+      "lai": 9.0,
+      "temp": 307.3166666
+    },
+    "Karnataka|Vijayapur|11": {
+      "latitude": 16.8054103,
+      "longitude": 75.7179353,
+      "preci": 0.0123252014,
+      "lai": 10.0,
+      "temp": 307.96
+    },
+    "Karnataka|Gadag|11": {
+      "latitude": 15.4206667,
+      "longitude": 75.6225644,
+      "preci": 5e-05,
+      "lai": 5.0,
+      "temp": 311.3266666
+    },
+    "Maharashtra|Satara|11": {
+      "latitude": 17.63612885,
+      "longitude": 74.29827808,
+      "preci": 0.0467922362648,
+      "lai": 7.666666666666667,
+      "temp": 306.4262222666667
+    },
+    "Maharashtra|Nashik|12": {
+      "latitude": 20.0112475,
+      "longitude": 73.7902364,
+      "preci": 0.001035558465375,
+      "lai": 9.5,
+      "temp": 303.81550000000004
+    },
+    "Karnataka|Shimoga|12": {
+      "latitude": 13.9326093,
+      "longitude": 75.574978,
+      "preci": 0.0001870727494,
+      "lai": 6.0,
+      "temp": 306.25333340000003
+    },
+    "Karnataka|Mandya|1": {
+      "latitude": 12.5238888,
+      "longitude": 76.8961961,
+      "preci": 4.41e-05,
+      "lai": 6.0,
+      "temp": 304.5066666
+    },
+    "Karnataka|Tumkur|1": {
+      "latitude": 13.3400771,
+      "longitude": 77.1006208,
+      "preci": 0.1186286328,
+      "lai": 5.0,
+      "temp": 306.5
+    },
+    "Karnataka|Chamarajanagar|1": {
+      "latitude": 11.9346006,
+      "longitude": 76.9328209,
+      "preci": 0.26894665495000003,
+      "lai": 16.5,
+      "temp": 304.7133333
+    },
+    "Karnataka|Tumkur|2": {
+      "latitude": 13.3400771,
+      "longitude": 77.1006208,
+      "preci": 3.36e-05,
+      "lai": 6.0,
+      "temp": 309.216
+    },
+    "Karnataka|Yadgiri|2": {
+      "latitude": 16.7469536,
+      "longitude": 77.1327594,
+      "preci": 4.43e-05,
+      "lai": 7.0,
+      "temp": 308.056
+    },
+    "Andhra Pradesh|Kadapa|3": {
+      "latitude": 14.4752936,
+      "longitude": 78.8216861,
+      "preci": 0.01313335307,
+      "lai": 7.0,
+      "temp": 312.212
+    },
+    "Gujarat|Junagarh|3": {
+      "latitude": 21.25,
+      "longitude": 70.333333,
+      "preci": 0.0001316036471,
+      "lai": 5.0,
+      "temp": 314.568
+    },
+    "Gujarat|Mahesana|3": {
+      "latitude": 23.6015557,
+      "longitude": 72.3867981,
+      "preci": 5.77e-05,
+      "lai": 7.0,
+      "temp": 310.69
+    },
+    "Gujarat|Junagadh|4": {
+      "latitude": 21.5174104,
+      "longitude": 70.4642754,
+      "preci": 9.09e-05,
+      "lai": 5.0,
+      "temp": 320.184
+    },
+    "Karnataka|Hassan|4": {
+      "latitude": 13.0070817,
+      "longitude": 76.0992703,
+      "preci": 0.046666037224,
+      "lai": 7.5,
+      "temp": 309.878
+    },
+    "Maharashtra|Pune|6": {
+      "latitude": 18.521428,
+      "longitude": 73.8544541,
+      "preci": 0.747517521,
+      "lai": 7.0,
+      "temp": 307.7375
+    },
+    "Maharashtra|Satara|6": {
+      "latitude": 17.63612885,
+      "longitude": 74.29827808,
+      "preci": 0.2209512468,
+      "lai": 4.75,
+      "temp": 310.57899999999995
+    },
+    "Meghalaya|West Garo Hills|6": {
+      "latitude": 25.60631425,
+      "longitude": 90.21139055,
+      "preci": 1.142944984,
+      "lai": 25.0,
+      "temp": 297.87
+    },
+    "Karnataka|Hassan|7": {
+      "latitude": 13.0070817,
+      "longitude": 76.0992703,
+      "preci": 0.4464811026,
+      "lai": 4.0,
+      "temp": 307.38
+    },
+    "Karnataka|Bijapur|7": {
+      "latitude": 16.8269911,
+      "longitude": 75.7175387,
+      "preci": 0.06490278469,
+      "lai": 3.0,
+      "temp": 303.74
+    },
+    "Tamil Nadu|Thoothukudi|8": {
+      "latitude": 8.8052602,
+      "longitude": 78.1452745,
+      "preci": 0.09788972959,
+      "lai": 3.0,
+      "temp": 316.4866666
+    },
+    "Karnataka|Vijayapura|8": {
+      "latitude": 16.666667,
+      "longitude": 75.916667,
+      "preci": 0.3364169723,
+      "lai": 3.0,
+      "temp": 309.05
+    },
+    "Telangana|Mahaboobnagar|8": {
+      "latitude": 17.720535,
+      "longitude": 79.627202,
+      "preci": 0.3855423934,
+      "lai": 13.0,
+      "temp": 304.48
+    },
+    "Madhya Pradesh|Khargone|8": {
+      "latitude": 21.825599,
+      "longitude": 75.614182,
+      "preci": 0.6359981043,
+      "lai": 8.0,
+      "temp": 298.2
+    },
+    "Maharashtra|Pune|9": {
+      "latitude": 18.521428,
+      "longitude": 73.8544541,
+      "preci": 0.8376791424,
+      "lai": 13.0,
+      "temp": 296.48
+    },
+    "Madhya Pradesh|Khandwa|9": {
+      "latitude": 21.9778642,
+      "longitude": 76.56882823,
+      "preci": 1.010341305,
+      "lai": 17.0,
+      "temp": 304.90000000000003
+    },
+    "Madhya Pradesh|Barwani|9": {
+      "latitude": 22.0333621,
+      "longitude": 74.8978374,
+      "preci": 1.206248664,
+      "lai": 12.0,
+      "temp": 302.81
+    },
+    "Karnataka|Chikkaballapura|10": {
+      "latitude": 13.4358702,
+      "longitude": 77.7312434,
+      "preci": 0.6298140204,
+      "lai": 15.0,
+      "temp": 298.28000000000003
+    },
+    "Gujarat|Morbi|10": {
+      "latitude": 22.8176662,
+      "longitude": 70.8345928,
+      "preci": 7.82e-05,
+      "lai": 9.0,
+      "temp": 309.9566666
+    },
+    "Maharashtra|Satara|10": {
+      "latitude": 17.63612885,
+      "longitude": 74.29827808,
+      "preci": 0.3151596142,
+      "lai": 12.0,
+      "temp": 302.565
+    },
+    "Maharashtra|Sangli|10": {
+      "latitude": 17.1726928,
+      "longitude": 74.58676543,
+      "preci": 0.03600951433,
+      "lai": 17.0,
+      "temp": 303.24
+    },
+    "Maharashtra|Sangli|11": {
+      "latitude": 17.1726928,
+      "longitude": 74.58676543,
+      "preci": 0.102474046515,
+      "lai": 9.5,
+      "temp": 304.5325
+    },
+    "Maharashtra|Sangli|12": {
+      "latitude": 17.1726928,
+      "longitude": 74.58676543,
+      "preci": 0.045859820679999996,
+      "lai": 8.5,
+      "temp": 302.595
+    },
+    "Maharashtra|Nandurbar|12": {
+      "latitude": 21.51450155,
+      "longitude": 74.54070115,
+      "preci": 0.01750649204,
+      "lai": 7.0,
+      "temp": 303.536
+    },
+    "Karnataka|Kalaburagi|1": {
+      "latitude": 17.166667,
+      "longitude": 77.083333,
+      "preci": 4.34e-05,
+      "lai": 6.5,
+      "temp": 306.588
+    },
+    "Karnataka|Kalaburgi|1": {
+      "latitude": 17.31506295,
+      "longitude": 76.83148612,
+      "preci": 9.23e-05,
+      "lai": 5.0,
+      "temp": 305.13
+    },
+    "Karnataka|Davangere|1": {
+      "latitude": 14.4679807,
+      "longitude": 75.9195682,
+      "preci": 8.28e-05,
+      "lai": 7.0,
+      "temp": 307.28400000000005
+    },
+    "Tamil Nadu|Dindigul|3": {
+      "latitude": 10.3303299,
+      "longitude": 78.06739791,
+      "preci": 0.0002636578141,
+      "lai": 8.0,
+      "temp": 313.836
+    },
+    "Madhya Pradesh|Morena|3": {
+      "latitude": 26.166667,
+      "longitude": 77.5,
+      "preci": 0.002149271036,
+      "lai": 6.0,
+      "temp": 309.5166666
+    },
+    "Karnataka|Bagalkot|3": {
+      "latitude": 16.1853166,
+      "longitude": 75.6967919,
+      "preci": 0.0837246015,
+      "lai": 5.0,
+      "temp": 314.5
+    },
+    "Tamil Nadu|Sivaganga|3": {
+      "latitude": 9.851231,
+      "longitude": 78.53047155,
+      "preci": 0.01019267569,
+      "lai": 5.0,
+      "temp": 315.09200000000004
+    },
+    "Maharashtra|Nashik|4": {
+      "latitude": 20.0112475,
+      "longitude": 73.7902364,
+      "preci": 0.003291825075,
+      "lai": 6.0,
+      "temp": 317.124
+    },
+    "Karnataka|Kalaburagi|4": {
+      "latitude": 17.166667,
+      "longitude": 77.083333,
+      "preci": 0.001087584582,
+      "lai": 3.0,
+      "temp": 322.6533334
+    },
+    "Maharashtra|Satara|5": {
+      "latitude": 17.63612885,
+      "longitude": 74.29827808,
+      "preci": 0.0033443813929999997,
+      "lai": 4.5,
+      "temp": 316.86366670000007
+    },
+    "Maharashtra|Kolhapur|5": {
+      "latitude": 16.7028412,
+      "longitude": 74.2405329,
+      "preci": 0.1703639866,
+      "lai": 7.0,
+      "temp": 310.27500000000003
+    },
+    "Tamil Nadu|Tiruchirapalli|5": {
+      "latitude": 10.8219673,
+      "longitude": 78.6830614,
+      "preci": 0.137969752,
+      "lai": 8.0,
+      "temp": 310.38
+    },
+    "Tamil Nadu|Madurai|6": {
+      "latitude": 9.9261153,
+      "longitude": 78.1140983,
+      "preci": 0.08342478546,
+      "lai": 7.0,
+      "temp": 309.44
+    },
+    "Karnataka|Haveri|6": {
+      "latitude": 14.7874825,
+      "longitude": 75.3996731,
+      "preci": 0.3708185645,
+      "lai": 14.0,
+      "temp": 302.54
+    },
+    "Karnataka|Ramanagara|6": {
+      "latitude": 12.7252766,
+      "longitude": 77.2804797,
+      "preci": 0.5952799922,
+      "lai": 9.0,
+      "temp": 300.47
+    },
+    "Karnataka|Dharwad|6": {
+      "latitude": 15.4540505,
+      "longitude": 75.0066516,
+      "preci": 0.45723532275,
+      "lai": 3.0,
+      "temp": 308.9573333
+    },
+    "Karnataka|Bijapur|6": {
+      "latitude": 16.8269911,
+      "longitude": 75.7175387,
+      "preci": 0.2205118565,
+      "lai": 2.0,
+      "temp": 308.94
+    },
+    "Karnataka|Shivamogga|6": {
+      "latitude": 13.9326093,
+      "longitude": 75.574978,
+      "preci": 0.4231431664,
+      "lai": 10.0,
+      "temp": 302.26
+    },
+    "Tamil Nadu|Virudhunagar|7": {
+      "latitude": 9.5208936,
+      "longitude": 77.8784564,
+      "preci": 0.1895831553,
+      "lai": 6.0,
+      "temp": 311.1666666
+    },
+    "Tamil Nadu|Madurai|7": {
+      "latitude": 9.9261153,
+      "longitude": 78.1140983,
+      "preci": 0.16882211257000002,
+      "lai": 6.5,
+      "temp": 310.754
+    },
+    "Tamil Nadu|Sivaganga|7": {
+      "latitude": 9.851231,
+      "longitude": 78.53047155,
+      "preci": 0.1954551777,
+      "lai": 7.0,
+      "temp": 310.38
+    },
+    "Tamil Nadu|Madurai|8": {
+      "latitude": 9.9261153,
+      "longitude": 78.1140983,
+      "preci": 0.0705989225,
+      "lai": 4.5,
+      "temp": 314.12
+    },
+    "Karnataka|Bagalkot|8": {
+      "latitude": 16.1853166,
+      "longitude": 75.6967919,
+      "preci": 0.123990867,
+      "lai": 3.0,
+      "temp": 297.92
+    },
+    "Karnataka|Bengaluru|8": {
+      "latitude": 12.9767936,
+      "longitude": 77.590082,
+      "preci": 0.06711051424,
+      "lai": 3.0,
+      "temp": 300.52
+    },
+    "Tamil Nadu|Virudhunagar- Sivakasi|8": {
+      "latitude": 9.4477045,
+      "longitude": 77.8000434,
+      "preci": 0.04841057558,
+      "lai": 4.0,
+      "temp": 314.5
+    },
+    "Karnataka|Shimoga|8": {
+      "latitude": 13.9326093,
+      "longitude": 75.574978,
+      "preci": 0.2462196016,
+      "lai": 15.0,
+      "temp": 295.76
+    },
+    "Maharashtra|Satara|8": {
+      "latitude": 17.63612885,
+      "longitude": 74.29827808,
+      "preci": 0.182198086975,
+      "lai": 6.75,
+      "temp": 302.64
+    },
+    "Tamil Nadu|Sivaganga|9": {
+      "latitude": 9.851231,
+      "longitude": 78.53047155,
+      "preci": 0.3444830988,
+      "lai": 7.0,
+      "temp": 313.375
+    },
+    "Tamil Nadu|Tiruppur|9": {
+      "latitude": 11.1017815,
+      "longitude": 77.345192,
+      "preci": 0.1093620474,
+      "lai": 4.0,
+      "temp": 312.02
+    },
+    "Karnataka|Kalaburagi|9": {
+      "latitude": 17.166667,
+      "longitude": 77.083333,
+      "preci": 0.1273356553,
+      "lai": 16.0,
+      "temp": 306.0466666
+    },
+    "Maharashtra|Pune|10": {
+      "latitude": 18.521428,
+      "longitude": 73.8544541,
+      "preci": 0.38544318735,
+      "lai": 19.0,
+      "temp": 303.26599999999996
+    },
+    "Puducherry|Puducherry|10": {
+      "latitude": 11.9340568,
+      "longitude": 79.8306447,
+      "preci": 0.02062496327,
+      "lai": 9.0,
+      "temp": 302.92
+    },
+    "Karnataka|Kalaburagi|12": {
+      "latitude": 17.166667,
+      "longitude": 77.083333,
+      "preci": 0.007915876432,
+      "lai": 6.0,
+      "temp": 306.94
+    },
+    "Karnataka|Davangere|12": {
+      "latitude": 14.4679807,
+      "longitude": 75.9195682,
+      "preci": 0.0003752598041,
+      "lai": 7.0,
+      "temp": 302.25
+    },
+    "Tamil Nadu|Salem|1": {
+      "latitude": 11.0600516,
+      "longitude": 77.0679581,
+      "preci": 0.07573510553,
+      "lai": 7.0,
+      "temp": 301.56
+    },
+    "Tamil Nadu|Pudukottai|2": {
+      "latitude": 10.3826515,
+      "longitude": 78.8191259,
+      "preci": 0.02520112055,
+      "lai": 8.0,
+      "temp": 304.52500000000003
+    },
+    "Tamil Nadu|Villupuram|2": {
+      "latitude": 11.9415377,
+      "longitude": 79.4861469,
+      "preci": 0.03007789526,
+      "lai": 8.0,
+      "temp": 303.58
+    },
+    "Tamil Nadu|Erode|3": {
+      "latitude": 11.3692044,
+      "longitude": 77.67662687,
+      "preci": 0.02002703379,
+      "lai": 5.0,
+      "temp": 311.68
+    },
+    "Tamil Nadu|Trichy|3": {
+      "latitude": 10.7992254,
+      "longitude": 78.6811423,
+      "preci": 0.006489457821,
+      "lai": 6.0,
+      "temp": 312.632
+    },
+    "Karnataka|Hassan|3": {
+      "latitude": 13.0070817,
+      "longitude": 76.0992703,
+      "preci": 0.003303466915,
+      "lai": 7.0,
+      "temp": 311.428
+    },
+    "Jharkhand|Khunti|3": {
+      "latitude": 23.10018105,
+      "longitude": 85.34545936,
+      "preci": 0.01662686566,
+      "lai": 9.0,
+      "temp": 304.47
+    },
+    "Tamil Nadu|Madurai|3": {
+      "latitude": 9.9261153,
+      "longitude": 78.1140983,
+      "preci": 0.006165418869,
+      "lai": 5.0,
+      "temp": 316.66400000000004
+    },
+    "Puducherry|Puducherry|4": {
+      "latitude": 11.9340568,
+      "longitude": 79.8306447,
+      "preci": 0.0008623288635,
+      "lai": 8.0,
+      "temp": 312.7
+    },
+    "Karnataka|Belagavi|4": {
+      "latitude": 15.8572666,
+      "longitude": 74.5069343,
+      "preci": 0.1043416407,
+      "lai": 9.0,
+      "temp": 316.60400000000004
+    },
+    "Maharashtra|Sangli|5": {
+      "latitude": 17.1726928,
+      "longitude": 74.58676543,
+      "preci": 0.001723798489,
+      "lai": 7.0,
+      "temp": 315.9633334
+    },
+    "Gujarat|Devbhoomi Dwarka|5": {
+      "latitude": 22.2105363,
+      "longitude": 69.653336,
+      "preci": 0.0002652657501,
+      "lai": 2.0,
+      "temp": 316.036
+    },
+    "Tamil Nadu|Madurai|5": {
+      "latitude": 9.9261153,
+      "longitude": 78.1140983,
+      "preci": 0.03958777948,
+      "lai": 5.0,
+      "temp": 314.96500000000003
+    },
+    "Karnataka|Bangalore Urban|6": {
+      "latitude": 12.94514225,
+      "longitude": 77.553645,
+      "preci": 0.7047662041,
+      "lai": 10.0,
+      "temp": 305.5733334
+    },
+    "Karnataka|Shimoga|6": {
+      "latitude": 13.9326093,
+      "longitude": 75.574978,
+      "preci": 0.142101161,
+      "lai": 11.0,
+      "temp": 307.99333340000004
+    },
+    "Karnataka|Kolar|6": {
+      "latitude": 13.1367201,
+      "longitude": 78.1337246,
+      "preci": 0.6459420959,
+      "lai": 10.0,
+      "temp": 306.7266666
+    },
+    "Karnataka|Chamarajanagar|6": {
+      "latitude": 11.9346006,
+      "longitude": 76.9328209,
+      "preci": 0.2789780155,
+      "lai": 14.0,
+      "temp": 303.48400000000004
+    },
+    "Karnataka|Chikkaballapura|6": {
+      "latitude": 13.4358702,
+      "longitude": 77.7312434,
+      "preci": 0.09329984611,
+      "lai": 6.0,
+      "temp": 307.19
+    },
+    "Kerala|Idukki|7": {
+      "latitude": 9.8497872,
+      "longitude": 76.9797914,
+      "preci": 0.7307986165,
+      "lai": 20.0,
+      "temp": 299.31
+    },
+    "Arunachal Pradesh|East Siang|7": {
+      "latitude": 28.3,
+      "longitude": 95.15000000000002,
+      "preci": 1.589279616,
+      "lai": 5.0,
+      "temp": 294.02
+    },
+    "Karnataka|Dharwad|7": {
+      "latitude": 15.4540505,
+      "longitude": 75.0066516,
+      "preci": 0.7146117531666666,
+      "lai": 2.6666666666666665,
+      "temp": 307.7633333333333
+    },
+    "Tamil Nadu|Theni|9": {
+      "latitude": 9.9696643,
+      "longitude": 77.47420049,
+      "preci": 0.04284734381,
+      "lai": 6.0,
+      "temp": 313.90000000000003
+    },
+    "Karnataka|Bidar|9": {
+      "latitude": 18.083333,
+      "longitude": 77.333333,
+      "preci": 0.1599483745,
+      "lai": 15.0,
+      "temp": 297.485
+    },
+    "Karnataka|Kalaburgi|9": {
+      "latitude": 17.31506295,
+      "longitude": 76.83148612,
+      "preci": 0.1665694378,
+      "lai": 11.0,
+      "temp": 305.1533334
+    },
+    "Karnataka|Tumkur|10": {
+      "latitude": 13.3400771,
+      "longitude": 77.1006208,
+      "preci": 0.9561099346,
+      "lai": 13.0,
+      "temp": 301.572
+    },
+    "Karnataka|Chikkaballapur|10": {
+      "latitude": 13.6102243,
+      "longitude": 77.5127721,
+      "preci": 0.6473324486,
+      "lai": 15.0,
+      "temp": 301.07
+    },
+    "Karnataka|Dharwad|10": {
+      "latitude": 15.4540505,
+      "longitude": 75.0066516,
+      "preci": 0.520312312,
+      "lai": 5.0,
+      "temp": 300.94
+    },
+    "Tamil Nadu|Virudhunagar Sivakasi|11": {
+      "latitude": 9.4477045,
+      "longitude": 77.8000434,
+      "preci": 0.1080855292,
+      "lai": 16.0,
+      "temp": 303.635
+    },
+    "Odisha|Jajpur|11": {
+      "latitude": 20.8522696,
+      "longitude": 86.3385714,
+      "preci": 0.7888433418,
+      "lai": 18.0,
+      "temp": 298.7933334
+    },
+    "Kerala|Trivandrum|11": {
+      "latitude": 8.4882267,
+      "longitude": 76.947551,
+      "preci": 0.612975951,
+      "lai": 37.0,
+      "temp": 300.988
+    },
+    "Tamil Nadu|Madurai|11": {
+      "latitude": 9.9261153,
+      "longitude": 78.1140983,
+      "preci": 0.3634270427,
+      "lai": 11.0,
+      "temp": 304.735
+    },
+    "Karnataka|Bengaluru Urban|11": {
+      "latitude": 12.94514225,
+      "longitude": 77.553645,
+      "preci": 0.08024081939,
+      "lai": 10.0,
+      "temp": 300.305
+    },
+    "Karnataka|Bagalkot|11": {
+      "latitude": 16.1853166,
+      "longitude": 75.6967919,
+      "preci": 0.005961262581,
+      "lai": 11.0,
+      "temp": 305.0
+    },
+    "Karnataka|Tumkur|11": {
+      "latitude": 13.3400771,
+      "longitude": 77.1006208,
+      "preci": 0.11071039183333334,
+      "lai": 12.666666666666668,
+      "temp": 300.09094443333333
+    },
+    "Maharashtra|Kolhapur|12": {
+      "latitude": 16.7028412,
+      "longitude": 74.2405329,
+      "preci": 0.004644168004,
+      "lai": 9.5,
+      "temp": 302.379
+    },
+    "Karnataka|Uttara Kannada|12": {
+      "latitude": 14.72447415,
+      "longitude": 74.64223734,
+      "preci": 0.03427887668,
+      "lai": 37.0,
+      "temp": 301.376
+    },
+    "Maharashtra|Kolhapur|1": {
+      "latitude": 16.7028412,
+      "longitude": 74.2405329,
+      "preci": 4.58e-05,
+      "lai": 7.0,
+      "temp": 306.268
+    },
+    "Karnataka|Raichur|2": {
+      "latitude": 16.083333,
+      "longitude": 77.166667,
+      "preci": 5.82e-05,
+      "lai": 7.0,
+      "temp": 310.66400000000004
+    },
+    "Tamil Nadu|Tenkasi (Tirunelveli)|6": {
+      "latitude": 8.9707606,
+      "longitude": 77.3036864,
+      "preci": 0.9300106017,
+      "lai": 9.0,
+      "temp": 304.92
+    },
+    "Maharashtra|Kolhapur|7": {
+      "latitude": 16.7028412,
+      "longitude": 74.2405329,
+      "preci": 1.439750798,
+      "lai": 4.0,
+      "temp": 301.88
+    },
+    "Maharashtra|Ahmednagar|11": {
+      "latitude": 19.1627725,
+      "longitude": 74.8580243,
+      "preci": 0.0004237234006,
+      "lai": 13.0,
+      "temp": 303.2966666
+    },
+    "Karnataka|Chikkaballapura|11": {
+      "latitude": 13.4358702,
+      "longitude": 77.7312434,
+      "preci": 0.07124832105,
+      "lai": 13.0,
+      "temp": 300.085
+    },
+    "Kerala|Trivandrum|12": {
+      "latitude": 8.4882267,
+      "longitude": 76.947551,
+      "preci": 0.473091389,
+      "lai": 31.0,
+      "temp": 300.76
+    },
+    "Maharashtra|Thane|1": {
+      "latitude": 19.1943294,
+      "longitude": 72.9701779,
+      "preci": 3.79e-05,
+      "lai": 10.0,
+      "temp": 304.7766666
+    },
+    "Odisha|Bolangir|1": {
+      "latitude": 20.7502257,
+      "longitude": 83.2499464,
+      "preci": 0.008809665092,
+      "lai": 9.0,
+      "temp": 302.44
+    },
+    "Maharashtra|Satara|2": {
+      "latitude": 17.63612885,
+      "longitude": 74.29827808,
+      "preci": 7.82e-05,
+      "lai": 7.0,
+      "temp": 305.836
+    },
+    "Maharashtra|Pune|2": {
+      "latitude": 18.521428,
+      "longitude": 73.8544541,
+      "preci": 9.5e-05,
+      "lai": 9.0,
+      "temp": 305.296
+    },
+    "Maharashtra|Nashik|3": {
+      "latitude": 20.0112475,
+      "longitude": 73.7902364,
+      "preci": 5.56e-05,
+      "lai": 7.0,
+      "temp": 310.6566666
+    },
+    "Maharashtra|Ahmednagar|3": {
+      "latitude": 19.1627725,
+      "longitude": 74.8580243,
+      "preci": 0.04168389914,
+      "lai": 6.0,
+      "temp": 309.66
+    },
+    "Kerala|Trivandrum|5": {
+      "latitude": 8.4882267,
+      "longitude": 76.947551,
+      "preci": 1.219771472,
+      "lai": 9.0,
+      "temp": 300.26
+    },
+    "Kerala|Thiruvananthapuram|6": {
+      "latitude": 8.4882267,
+      "longitude": 76.947551,
+      "preci": 0.7189253545,
+      "lai": 23.0,
+      "temp": 299.4133334
+    },
+    "Maharashtra|Satara|7": {
+      "latitude": 17.63612885,
+      "longitude": 74.29827808,
+      "preci": 1.242829167,
+      "lai": 5.0,
+      "temp": 303.64
+    },
+    "Maharashtra|Pune|7": {
+      "latitude": 18.521428,
+      "longitude": 73.8544541,
+      "preci": 1.56877296,
+      "lai": 5.0,
+      "temp": 300.22
+    },
+    "Maharashtra|Kolhapur|8": {
+      "latitude": 16.7028412,
+      "longitude": 74.2405329,
+      "preci": 0.2327067055,
+      "lai": 9.0,
+      "temp": 298.7066666
+    },
+    "Maharashtra|Nanded|11": {
+      "latitude": 19.09400875,
+      "longitude": 77.48319215,
+      "preci": 0.07439863145,
+      "lai": 7.0,
+      "temp": 301.1533334
+    },
+    "Maharashtra|Akola|12": {
+      "latitude": 20.76181225,
+      "longitude": 77.19211567,
+      "preci": 0.05797235484,
+      "lai": 17.0,
+      "temp": 302.7933334
+    },
+    "Maharashtra|Akola|3": {
+      "latitude": 20.76181225,
+      "longitude": 77.19211567,
+      "preci": 0.01140150866,
+      "lai": 5.0,
+      "temp": 311.4666666
+    },
+    "Maharashtra|Jalgaon|5": {
+      "latitude": 20.84288265,
+      "longitude": 75.52612464,
+      "preci": 0.0002075557817,
+      "lai": 3.0,
+      "temp": 315.88
+    },
+    "Karnataka|Vijayapura|6": {
+      "latitude": 16.666667,
+      "longitude": 75.916667,
+      "preci": 0.1594723727,
+      "lai": 4.0,
+      "temp": 306.66400000000004
+    }
+  },
+  "district_locations": [
+    {
+      "state": "Tamil Nadu",
+      "district": "Vellore",
+      "latitude": 12.7948109,
+      "longitude": 79.00064110000001,
+      "observed_district_months": 7,
+      "latest_observed_month": "2015-06"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Salem",
+      "latitude": 11.0600516,
+      "longitude": 77.06795810000001,
+      "observed_district_months": 7,
+      "latest_observed_month": "2019-01"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Namakkal",
+      "latitude": 11.28422485,
+      "longitude": 78.16615284,
+      "observed_district_months": 2,
+      "latest_observed_month": "2009-09"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Krishnagiri",
+      "latitude": 12.5188835,
+      "longitude": 78.2206536,
+      "observed_district_months": 1,
+      "latest_observed_month": "2009-06"
+    },
+    {
+      "state": "Goa",
+      "district": "South Goa",
+      "latitude": 15.21961365,
+      "longitude": 74.1152813,
+      "observed_district_months": 2,
+      "latest_observed_month": "2009-12"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Theni",
+      "latitude": 9.9696643,
+      "longitude": 77.47420049,
+      "observed_district_months": 6,
+      "latest_observed_month": "2019-09"
+    },
+    {
+      "state": "Kerala",
+      "district": "Malappuram",
+      "latitude": 11.10684475,
+      "longitude": 76.1099551,
+      "observed_district_months": 1,
+      "latest_observed_month": "2009-08"
+    },
+    {
+      "state": "Kerala",
+      "district": "Mallapuram",
+      "latitude": 10.82220375,
+      "longitude": 76.46703714,
+      "observed_district_months": 1,
+      "latest_observed_month": "2009-08"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Karur",
+      "latitude": 10.9301522,
+      "longitude": 78.08485455,
+      "observed_district_months": 6,
+      "latest_observed_month": "2019-02"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Tirunelveli",
+      "latitude": 8.7284271,
+      "longitude": 77.7112925,
+      "observed_district_months": 3,
+      "latest_observed_month": "2013-02"
+    },
+    {
+      "state": "Odisha",
+      "district": "Puri",
+      "latitude": 19.8076083,
+      "longitude": 85.8252538,
+      "observed_district_months": 1,
+      "latest_observed_month": "2009-09"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Tiruchirappalli",
+      "latitude": 10.7992254,
+      "longitude": 78.6811423,
+      "observed_district_months": 5,
+      "latest_observed_month": "2014-07"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Trichy",
+      "latitude": 10.7992254,
+      "longitude": 78.6811423,
+      "observed_district_months": 3,
+      "latest_observed_month": "2019-03"
+    },
+    {
+      "state": "West Bengal",
+      "district": "Howrah",
+      "latitude": 22.5736296,
+      "longitude": 88.3251045,
+      "observed_district_months": 1,
+      "latest_observed_month": "2009-10"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Perambalur",
+      "latitude": 11.2287716,
+      "longitude": 78.81825555,
+      "observed_district_months": 1,
+      "latest_observed_month": "2009-10"
+    },
+    {
+      "state": "West Bengal",
+      "district": "Malda",
+      "latitude": 25.0057449,
+      "longitude": 88.1398483,
+      "observed_district_months": 1,
+      "latest_observed_month": "2009-11"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Ratnagiri",
+      "latitude": 17.2826079,
+      "longitude": 73.4569787,
+      "observed_district_months": 1,
+      "latest_observed_month": "2009-11"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Coimbatore",
+      "latitude": 11.0600516,
+      "longitude": 77.0679581,
+      "observed_district_months": 2,
+      "latest_observed_month": "2011-09"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Dindigul",
+      "latitude": 10.3303299,
+      "longitude": 78.06739791,
+      "observed_district_months": 9,
+      "latest_observed_month": "2018-04"
+    },
+    {
+      "state": "Puducherry",
+      "district": "Puducherry",
+      "latitude": 11.9340568,
+      "longitude": 79.8306447,
+      "observed_district_months": 3,
+      "latest_observed_month": "2019-04"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Virudhunagar",
+      "latitude": 9.5208936,
+      "longitude": 77.8784564,
+      "observed_district_months": 4,
+      "latest_observed_month": "2018-07"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Thane",
+      "latitude": 19.1943294,
+      "longitude": 72.9701779,
+      "observed_district_months": 2,
+      "latest_observed_month": "2021-01"
+    },
+    {
+      "state": "Rajasthan",
+      "district": "Jaipur",
+      "latitude": 26.9154576,
+      "longitude": 75.8189817,
+      "observed_district_months": 1,
+      "latest_observed_month": "2010-03"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Tumkur",
+      "latitude": 13.3400771,
+      "longitude": 77.1006208,
+      "observed_district_months": 29,
+      "latest_observed_month": "2020-11"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Chamarajnagar",
+      "latitude": 14.3683154,
+      "longitude": 76.6538415,
+      "observed_district_months": 1,
+      "latest_observed_month": "2010-05"
+    },
+    {
+      "state": "Kerala",
+      "district": "Wayanad",
+      "latitude": 11.715219,
+      "longitude": 76.12690295,
+      "observed_district_months": 1,
+      "latest_observed_month": "2010-07"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Kutch",
+      "latitude": 23.583333,
+      "longitude": 70.0,
+      "observed_district_months": 1,
+      "latest_observed_month": "2010-08"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Pudukkottai",
+      "latitude": 10.5,
+      "longitude": 78.833333,
+      "observed_district_months": 2,
+      "latest_observed_month": "2014-09"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Kodagu",
+      "latitude": 12.38217745,
+      "longitude": 75.66531992,
+      "observed_district_months": 1,
+      "latest_observed_month": "2010-08"
+    },
+    {
+      "state": "West Bengal",
+      "district": "Nadia",
+      "latitude": 23.48454125,
+      "longitude": 88.55676307,
+      "observed_district_months": 2,
+      "latest_observed_month": "2012-08"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Belgaum",
+      "latitude": 15.8572666,
+      "longitude": 74.5069343,
+      "observed_district_months": 4,
+      "latest_observed_month": "2013-05"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Tiruvannamalai",
+      "latitude": 12.22721295,
+      "longitude": 79.07015555,
+      "observed_district_months": 2,
+      "latest_observed_month": "2010-10"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Sabarkantha",
+      "latitude": 24.0294885,
+      "longitude": 73.0459884,
+      "observed_district_months": 2,
+      "latest_observed_month": "2011-09"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Beed",
+      "latitude": 18.9918442,
+      "longitude": 75.909784,
+      "observed_district_months": 11,
+      "latest_observed_month": "2021-08"
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Bhind",
+      "latitude": 26.5,
+      "longitude": 78.75,
+      "observed_district_months": 6,
+      "latest_observed_month": "2018-10"
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Morena",
+      "latitude": 26.166667,
+      "longitude": 77.5,
+      "observed_district_months": 2,
+      "latest_observed_month": "2018-03"
+    },
+    {
+      "state": "Rajasthan",
+      "district": "Bikaner",
+      "latitude": 28.0159286,
+      "longitude": 73.3171367,
+      "observed_district_months": 1,
+      "latest_observed_month": "2010-11"
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Satna",
+      "latitude": 24.5,
+      "longitude": 81.0,
+      "observed_district_months": 1,
+      "latest_observed_month": "2010-12"
+    },
+    {
+      "state": "Telangana",
+      "district": "Mahabubnagar",
+      "latitude": 16.69656855,
+      "longitude": 77.95911462,
+      "observed_district_months": 6,
+      "latest_observed_month": "2014-06"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Bidar",
+      "latitude": 18.083333,
+      "longitude": 77.333333,
+      "observed_district_months": 5,
+      "latest_observed_month": "2021-02"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Amreli",
+      "latitude": 20.866667,
+      "longitude": 70.75,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-04"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Kheda",
+      "latitude": 22.75,
+      "longitude": 72.833333,
+      "observed_district_months": 3,
+      "latest_observed_month": "2013-04"
+    },
+    {
+      "state": "Rajasthan",
+      "district": "Barmer",
+      "latitude": 25.5819034,
+      "longitude": 71.61966243,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-04"
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Khargone",
+      "latitude": 21.825599,
+      "longitude": 75.614182,
+      "observed_district_months": 9,
+      "latest_observed_month": "2017-11"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Nashik",
+      "latitude": 20.0112475,
+      "longitude": 73.7902364,
+      "observed_district_months": 14,
+      "latest_observed_month": "2021-05"
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Betul",
+      "latitude": 21.8796162,
+      "longitude": 77.87568125,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-07"
+    },
+    {
+      "state": "Jharkhand",
+      "district": "East Singhbhum",
+      "latitude": 22.8092139,
+      "longitude": 86.2091549,
+      "observed_district_months": 3,
+      "latest_observed_month": "2017-08"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Erode",
+      "latitude": 11.3692044,
+      "longitude": 77.67662687,
+      "observed_district_months": 2,
+      "latest_observed_month": "2019-03"
+    },
+    {
+      "state": "Jharkhand",
+      "district": "West Singhbhum",
+      "latitude": 22.7859232,
+      "longitude": 86.1716093,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-08"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Parbhani",
+      "latitude": 19.29031365,
+      "longitude": 76.60290343,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-08"
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Tikamgarh",
+      "latitude": 24.85577805,
+      "longitude": 79.04706347,
+      "observed_district_months": 2,
+      "latest_observed_month": "2011-11"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Osmanabad",
+      "latitude": 18.16984395,
+      "longitude": 76.11796321,
+      "observed_district_months": 4,
+      "latest_observed_month": "2021-09"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Akola",
+      "latitude": 20.76181225,
+      "longitude": 77.19211567,
+      "observed_district_months": 3,
+      "latest_observed_month": "2022-03"
+    },
+    {
+      "state": "Haryana",
+      "district": "Panchkula",
+      "latitude": 30.7137692,
+      "longitude": 76.868276,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-10"
+    },
+    {
+      "state": "West Bengal",
+      "district": "Bardhaman",
+      "latitude": 23.41146995,
+      "longitude": 87.84499445,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-10"
+    },
+    {
+      "state": "West Bengal",
+      "district": "Burdwan",
+      "latitude": 23.2495714,
+      "longitude": 87.8681751,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-10"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Ahmednagar",
+      "latitude": 19.1627725,
+      "longitude": 74.8580243,
+      "observed_district_months": 12,
+      "latest_observed_month": "2021-07"
+    },
+    {
+      "state": "West Bengal",
+      "district": "Hooghly",
+      "latitude": 22.9052114,
+      "longitude": 88.3760639,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-10"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Vadodara",
+      "latitude": 22.2973142,
+      "longitude": 73.1942567,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-10"
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Burhanpur",
+      "latitude": 21.3118839,
+      "longitude": 76.2291992,
+      "observed_district_months": 2,
+      "latest_observed_month": "2017-10"
+    },
+    {
+      "state": "Haryana",
+      "district": "Yamuna Nagar",
+      "latitude": 30.1389108,
+      "longitude": 77.301064,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-10"
+    },
+    {
+      "state": "Jharkhand",
+      "district": "Dhanbad",
+      "latitude": 23.7952809,
+      "longitude": 86.4309638,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-10"
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Khandwa",
+      "latitude": 21.9778642,
+      "longitude": 76.56882823,
+      "observed_district_months": 3,
+      "latest_observed_month": "2017-09"
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Rajgarh",
+      "latitude": 23.87167135,
+      "longitude": 76.7748902,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-11"
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Gwalior",
+      "latitude": 26.2037247,
+      "longitude": 78.1573628,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-11"
+    },
+    {
+      "state": "West Bengal",
+      "district": "Jalpaiguri",
+      "latitude": 26.473304800000005,
+      "longitude": 88.67886686000001,
+      "observed_district_months": 3,
+      "latest_observed_month": "2012-06"
+    },
+    {
+      "state": "Bihar",
+      "district": "Nalanda",
+      "latitude": 25.1364914,
+      "longitude": 85.44365465,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-11"
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Bhopal",
+      "latitude": 23.2584857,
+      "longitude": 77.401989,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-11"
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Chhindwara",
+      "latitude": 22.13983105,
+      "longitude": 78.80964495,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-11"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Washim",
+      "latitude": 20.28741775,
+      "longitude": 77.2369655,
+      "observed_district_months": 2,
+      "latest_observed_month": "2016-09"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Jalgaon",
+      "latitude": 20.84288265,
+      "longitude": 75.52612464,
+      "observed_district_months": 2,
+      "latest_observed_month": "2022-05"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Patan",
+      "latitude": 23.77405735,
+      "longitude": 71.68373466,
+      "observed_district_months": 1,
+      "latest_observed_month": "2011-12"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "district": "Visakhapatnam",
+      "latitude": 17.7222517,
+      "longitude": 83.32670984,
+      "observed_district_months": 2,
+      "latest_observed_month": "2014-08"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Cuddalore",
+      "latitude": 11.7564329,
+      "longitude": 79.7634644,
+      "observed_district_months": 2,
+      "latest_observed_month": "2012-02"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Thoothukudi",
+      "latitude": 8.8052602,
+      "longitude": 78.1452745,
+      "observed_district_months": 3,
+      "latest_observed_month": "2017-08"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Villupuram",
+      "latitude": 11.9415377,
+      "longitude": 79.4861469,
+      "observed_district_months": 2,
+      "latest_observed_month": "2019-02"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Narmada",
+      "latitude": 21.8678464,
+      "longitude": 73.5025585,
+      "observed_district_months": 1,
+      "latest_observed_month": "2012-04"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Jamnagar",
+      "latitude": 22.4732415,
+      "longitude": 70.0552102,
+      "observed_district_months": 2,
+      "latest_observed_month": "2012-06"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Tiruchirapalli",
+      "latitude": 10.8219673,
+      "longitude": 78.6830614,
+      "observed_district_months": 4,
+      "latest_observed_month": "2018-05"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Dharmapuri",
+      "latitude": 12.09680475,
+      "longitude": 78.19304301,
+      "observed_district_months": 1,
+      "latest_observed_month": "2012-04"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Sangli",
+      "latitude": 17.1726928,
+      "longitude": 74.58676543,
+      "observed_district_months": 8,
+      "latest_observed_month": "2019-05"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Ahmadabad",
+      "latitude": 23.0216238,
+      "longitude": 72.5797068,
+      "observed_district_months": 1,
+      "latest_observed_month": "2012-05"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Panchmahal",
+      "latitude": 22.7748893,
+      "longitude": 73.620404,
+      "observed_district_months": 3,
+      "latest_observed_month": "2013-11"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Bharuch",
+      "latitude": 21.75,
+      "longitude": 73.0,
+      "observed_district_months": 1,
+      "latest_observed_month": "2012-05"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Thanjavur",
+      "latitude": 10.7860267,
+      "longitude": 79.1381497,
+      "observed_district_months": 3,
+      "latest_observed_month": "2014-10"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "district": "Prakasam",
+      "latitude": 15.6589741,
+      "longitude": 79.47164373,
+      "observed_district_months": 1,
+      "latest_observed_month": "2013-03"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "district": "Chittoor",
+      "latitude": 13.1601048,
+      "longitude": 79.15555062,
+      "observed_district_months": 1,
+      "latest_observed_month": "2013-03"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Gadag",
+      "latitude": 15.4206667,
+      "longitude": 75.6225644,
+      "observed_district_months": 4,
+      "latest_observed_month": "2016-11"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Mehsana",
+      "latitude": 23.6015557,
+      "longitude": 72.3867981,
+      "observed_district_months": 1,
+      "latest_observed_month": "2013-04"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Shimoga",
+      "latitude": 13.9326093,
+      "longitude": 75.574978,
+      "observed_district_months": 5,
+      "latest_observed_month": "2019-06"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Tiruvarur",
+      "latitude": 10.7760127,
+      "longitude": 79.6199369,
+      "observed_district_months": 1,
+      "latest_observed_month": "2013-07"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Raichur",
+      "latitude": 16.083333,
+      "longitude": 77.166667,
+      "observed_district_months": 4,
+      "latest_observed_month": "2020-02"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Kolar",
+      "latitude": 13.1367201,
+      "longitude": 78.1337246,
+      "observed_district_months": 5,
+      "latest_observed_month": "2019-06"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Latur",
+      "latitude": 18.35159075,
+      "longitude": 76.75542361,
+      "observed_district_months": 2,
+      "latest_observed_month": "2016-11"
+    },
+    {
+      "state": "Telangana",
+      "district": "Medak",
+      "latitude": 17.9375095,
+      "longitude": 78.21174499,
+      "observed_district_months": 2,
+      "latest_observed_month": "2015-11"
+    },
+    {
+      "state": "Telangana",
+      "district": "Nalgonda",
+      "latitude": 16.8579636,
+      "longitude": 79.21749353,
+      "observed_district_months": 1,
+      "latest_observed_month": "2014-02"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Bijapur",
+      "latitude": 16.8269911,
+      "longitude": 75.7175387,
+      "observed_district_months": 4,
+      "latest_observed_month": "2018-06"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Chitradurga",
+      "latitude": 14.2266443,
+      "longitude": 76.4005122,
+      "observed_district_months": 2,
+      "latest_observed_month": "2015-05"
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Sehore",
+      "latitude": 23.115688200000005,
+      "longitude": 77.06623939,
+      "observed_district_months": 6,
+      "latest_observed_month": "2017-10"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Chamrajnagar",
+      "latitude": 11.9269937,
+      "longitude": 76.9424311,
+      "observed_district_months": 1,
+      "latest_observed_month": "2014-05"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Koppal",
+      "latitude": 15.3484144,
+      "longitude": 76.1547421,
+      "observed_district_months": 1,
+      "latest_observed_month": "2014-07"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Thiruvannamalai",
+      "latitude": 9.539867,
+      "longitude": 77.6197904,
+      "observed_district_months": 3,
+      "latest_observed_month": "2015-10"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Dharwad",
+      "latitude": 15.454050500000001,
+      "longitude": 75.0066516,
+      "observed_district_months": 9,
+      "latest_observed_month": "2019-10"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Pudukottai",
+      "latitude": 10.3826515,
+      "longitude": 78.8191259,
+      "observed_district_months": 2,
+      "latest_observed_month": "2019-02"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Ballari",
+      "latitude": 15.2485413,
+      "longitude": 76.8323648,
+      "observed_district_months": 2,
+      "latest_observed_month": "2015-10"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Madurai",
+      "latitude": 9.9261153,
+      "longitude": 78.1140983,
+      "observed_district_months": 9,
+      "latest_observed_month": "2019-11"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Dhule",
+      "latitude": 21.13170235,
+      "longitude": 74.48990147,
+      "observed_district_months": 1,
+      "latest_observed_month": "2014-11"
+    },
+    {
+      "state": "Arunachal Pradesh",
+      "district": "East Siang",
+      "latitude": 28.3,
+      "longitude": 95.15,
+      "observed_district_months": 2,
+      "latest_observed_month": "2019-07"
+    },
+    {
+      "state": "Dadra and Nagar Haveli",
+      "district": "Dadra and Nagar Haveli",
+      "latitude": 20.2712521,
+      "longitude": 73.0014588,
+      "observed_district_months": 1,
+      "latest_observed_month": "2015-08"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Ramanagara",
+      "latitude": 12.7252766,
+      "longitude": 77.2804797,
+      "observed_district_months": 2,
+      "latest_observed_month": "2018-06"
+    },
+    {
+      "state": "Rajasthan",
+      "district": "Nagaur",
+      "latitude": 27.0607859,
+      "longitude": 74.17667538,
+      "observed_district_months": 1,
+      "latest_observed_month": "2015-11"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Vijayapur",
+      "latitude": 16.8054103,
+      "longitude": 75.7179353,
+      "observed_district_months": 2,
+      "latest_observed_month": "2016-11"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Satara",
+      "latitude": 17.63612885,
+      "longitude": 74.29827808,
+      "observed_district_months": 13,
+      "latest_observed_month": "2022-06"
+    },
+    {
+      "state": "Telangana",
+      "district": "Mahaboobnagar",
+      "latitude": 17.720535,
+      "longitude": 79.627202,
+      "observed_district_months": 2,
+      "latest_observed_month": "2017-08"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Pune",
+      "latitude": 18.521428,
+      "longitude": 73.8544541,
+      "observed_district_months": 9,
+      "latest_observed_month": "2021-07"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Raigad",
+      "latitude": 18.4928092,
+      "longitude": 73.13807095,
+      "observed_district_months": 1,
+      "latest_observed_month": "2016-05"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Hassan",
+      "latitude": 13.0070817,
+      "longitude": 76.0992703,
+      "observed_district_months": 6,
+      "latest_observed_month": "2020-04"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Bangalore Rural",
+      "latitude": 13.0010872,
+      "longitude": 77.3361225,
+      "observed_district_months": 1,
+      "latest_observed_month": "2016-05"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Mandya",
+      "latitude": 12.5238888,
+      "longitude": 76.8961961,
+      "observed_district_months": 2,
+      "latest_observed_month": "2017-01"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Bagalkot",
+      "latitude": 16.1853166,
+      "longitude": 75.6967919,
+      "observed_district_months": 4,
+      "latest_observed_month": "2019-11"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Chikkaballapura",
+      "latitude": 13.4358702,
+      "longitude": 77.7312434,
+      "observed_district_months": 4,
+      "latest_observed_month": "2020-11"
+    },
+    {
+      "state": "Rajasthan",
+      "district": "Alwar",
+      "latitude": 27.5,
+      "longitude": 76.5,
+      "observed_district_months": 1,
+      "latest_observed_month": "2016-08"
+    },
+    {
+      "state": "Uttar Pradesh",
+      "district": "Budaun",
+      "latitude": 28.06831165,
+      "longitude": 79.04607312,
+      "observed_district_months": 1,
+      "latest_observed_month": "2016-09"
+    },
+    {
+      "state": "Assam",
+      "district": "Kamrup",
+      "latitude": 26.12755515,
+      "longitude": 91.29987148,
+      "observed_district_months": 1,
+      "latest_observed_month": "2016-10"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Mahesana",
+      "latitude": 23.601555699999995,
+      "longitude": 72.3867981,
+      "observed_district_months": 3,
+      "latest_observed_month": "2017-03"
+    },
+    {
+      "state": "Rajasthan",
+      "district": "Ganganagar",
+      "latitude": 29.9049489,
+      "longitude": 73.87929341,
+      "observed_district_months": 1,
+      "latest_observed_month": "2016-10"
+    },
+    {
+      "state": "Madhya Pradesh",
+      "district": "Barwani",
+      "latitude": 22.0333621,
+      "longitude": 74.8978374,
+      "observed_district_months": 2,
+      "latest_observed_month": "2017-09"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Chamarajanagar",
+      "latitude": 11.934600600000001,
+      "longitude": 76.9328209,
+      "observed_district_months": 3,
+      "latest_observed_month": "2021-01"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Yadgiri",
+      "latitude": 16.7469536,
+      "longitude": 77.1327594,
+      "observed_district_months": 1,
+      "latest_observed_month": "2017-02"
+    },
+    {
+      "state": "Andhra Pradesh",
+      "district": "Kadapa",
+      "latitude": 14.4752936,
+      "longitude": 78.8216861,
+      "observed_district_months": 1,
+      "latest_observed_month": "2017-03"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Junagarh",
+      "latitude": 21.25,
+      "longitude": 70.333333,
+      "observed_district_months": 1,
+      "latest_observed_month": "2017-03"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Junagadh",
+      "latitude": 21.5174104,
+      "longitude": 70.4642754,
+      "observed_district_months": 1,
+      "latest_observed_month": "2017-04"
+    },
+    {
+      "state": "Meghalaya",
+      "district": "West Garo Hills",
+      "latitude": 25.60631425,
+      "longitude": 90.21139055,
+      "observed_district_months": 1,
+      "latest_observed_month": "2017-06"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Vijayapura",
+      "latitude": 16.666667,
+      "longitude": 75.916667,
+      "observed_district_months": 2,
+      "latest_observed_month": "2022-06"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Morbi",
+      "latitude": 22.8176662,
+      "longitude": 70.8345928,
+      "observed_district_months": 1,
+      "latest_observed_month": "2017-10"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Nandurbar",
+      "latitude": 21.51450155,
+      "longitude": 74.54070115,
+      "observed_district_months": 1,
+      "latest_observed_month": "2017-12"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Kalaburagi",
+      "latitude": 17.166667,
+      "longitude": 77.083333,
+      "observed_district_months": 4,
+      "latest_observed_month": "2018-12"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Kalaburgi",
+      "latitude": 17.31506295,
+      "longitude": 76.83148612,
+      "observed_district_months": 2,
+      "latest_observed_month": "2019-09"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Davangere",
+      "latitude": 14.4679807,
+      "longitude": 75.9195682,
+      "observed_district_months": 2,
+      "latest_observed_month": "2018-12"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Sivaganga",
+      "latitude": 9.851231,
+      "longitude": 78.53047155,
+      "observed_district_months": 3,
+      "latest_observed_month": "2018-09"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Kolhapur",
+      "latitude": 16.7028412,
+      "longitude": 74.2405329,
+      "observed_district_months": 6,
+      "latest_observed_month": "2021-12"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Haveri",
+      "latitude": 14.7874825,
+      "longitude": 75.3996731,
+      "observed_district_months": 1,
+      "latest_observed_month": "2018-06"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Shivamogga",
+      "latitude": 13.9326093,
+      "longitude": 75.574978,
+      "observed_district_months": 1,
+      "latest_observed_month": "2018-06"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Bengaluru",
+      "latitude": 12.9767936,
+      "longitude": 77.590082,
+      "observed_district_months": 1,
+      "latest_observed_month": "2018-08"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Virudhunagar- Sivakasi",
+      "latitude": 9.4477045,
+      "longitude": 77.8000434,
+      "observed_district_months": 1,
+      "latest_observed_month": "2018-08"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Tiruppur",
+      "latitude": 11.1017815,
+      "longitude": 77.345192,
+      "observed_district_months": 1,
+      "latest_observed_month": "2018-09"
+    },
+    {
+      "state": "Jharkhand",
+      "district": "Khunti",
+      "latitude": 23.10018105,
+      "longitude": 85.34545936,
+      "observed_district_months": 1,
+      "latest_observed_month": "2019-03"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Belagavi",
+      "latitude": 15.8572666,
+      "longitude": 74.5069343,
+      "observed_district_months": 1,
+      "latest_observed_month": "2019-04"
+    },
+    {
+      "state": "Gujarat",
+      "district": "Devbhoomi Dwarka",
+      "latitude": 22.2105363,
+      "longitude": 69.653336,
+      "observed_district_months": 1,
+      "latest_observed_month": "2019-05"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Bangalore Urban",
+      "latitude": 12.94514225,
+      "longitude": 77.553645,
+      "observed_district_months": 1,
+      "latest_observed_month": "2019-06"
+    },
+    {
+      "state": "Kerala",
+      "district": "Idukki",
+      "latitude": 9.8497872,
+      "longitude": 76.9797914,
+      "observed_district_months": 1,
+      "latest_observed_month": "2019-07"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Chikkaballapur",
+      "latitude": 13.6102243,
+      "longitude": 77.5127721,
+      "observed_district_months": 1,
+      "latest_observed_month": "2019-10"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Virudhunagar Sivakasi",
+      "latitude": 9.4477045,
+      "longitude": 77.8000434,
+      "observed_district_months": 1,
+      "latest_observed_month": "2019-11"
+    },
+    {
+      "state": "Odisha",
+      "district": "Jajpur",
+      "latitude": 20.8522696,
+      "longitude": 86.3385714,
+      "observed_district_months": 1,
+      "latest_observed_month": "2019-11"
+    },
+    {
+      "state": "Kerala",
+      "district": "Trivandrum",
+      "latitude": 8.4882267,
+      "longitude": 76.947551,
+      "observed_district_months": 3,
+      "latest_observed_month": "2021-05"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Bengaluru Urban",
+      "latitude": 12.94514225,
+      "longitude": 77.553645,
+      "observed_district_months": 1,
+      "latest_observed_month": "2019-11"
+    },
+    {
+      "state": "Karnataka",
+      "district": "Uttara Kannada",
+      "latitude": 14.72447415,
+      "longitude": 74.64223734,
+      "observed_district_months": 1,
+      "latest_observed_month": "2019-12"
+    },
+    {
+      "state": "Tamil Nadu",
+      "district": "Tenkasi (Tirunelveli)",
+      "latitude": 8.9707606,
+      "longitude": 77.3036864,
+      "observed_district_months": 1,
+      "latest_observed_month": "2020-06"
+    },
+    {
+      "state": "Odisha",
+      "district": "Bolangir",
+      "latitude": 20.7502257,
+      "longitude": 83.2499464,
+      "observed_district_months": 1,
+      "latest_observed_month": "2021-01"
+    },
+    {
+      "state": "Kerala",
+      "district": "Thiruvananthapuram",
+      "latitude": 8.4882267,
+      "longitude": 76.947551,
+      "observed_district_months": 1,
+      "latest_observed_month": "2021-06"
+    },
+    {
+      "state": "Maharashtra",
+      "district": "Nanded",
+      "latitude": 19.09400875,
+      "longitude": 77.48319215,
+      "observed_district_months": 1,
+      "latest_observed_month": "2021-11"
+    }
+  ],
+  "seasonal_month_means": {
+    "6": 43.1,
+    "7": 179.77142857142857,
+    "8": 113.91666666666667,
+    "9": 31.73913043478261,
+    "10": 85.54901960784314,
+    "11": 54.64705882352941,
+    "12": 23.692307692307693,
+    "1": 36.473684210526315,
+    "2": 35.611111111111114,
+    "3": 27.464285714285715,
+    "4": 34.15,
+    "5": 35.7027027027027
+  },
+  "validation_metrics": {
+    "ridge_regression": {
+      "mae_reported_cases": 20.71,
+      "rmse_reported_cases": 34.42
+    },
+    "random_forest": {
+      "mae_reported_cases": 23.53,
+      "rmse_reported_cases": 38.54
+    },
+    "gradient_boosting": {
+      "mae_reported_cases": 25.72,
+      "rmse_reported_cases": 41.99
+    },
+    "seasonal_month_mean_baseline": {
+      "mae_reported_cases": 53.26,
+      "rmse_reported_cases": 76.51
+    }
+  }
+}

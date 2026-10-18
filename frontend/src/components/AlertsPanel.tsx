@@ -42,7 +42,7 @@ export default function AlertsPanel({ limit }: { limit?: number }) {
                   <div className="h-1.5 w-20 rounded-full bg-secondary overflow-hidden">
                     <div className="h-full rounded-full bg-primary" style={{ width: `${a.confidence}%` }} />
                   </div>
-                  <span className="text-[10px] text-muted-foreground font-mono">{a.confidence}% confidence</span>
+                  <span className="text-[10px] text-muted-foreground font-mono">{a.confidence}% illustrative score · demo</span>
                 </div>
               </div>
             </div>

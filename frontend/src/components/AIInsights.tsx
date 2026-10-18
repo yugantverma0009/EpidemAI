@@ -16,7 +16,7 @@ export default function AIInsights() {
     <div className="space-y-3">
       <div className="flex items-center gap-2 mb-4">
         <Brain className="h-5 w-5 text-primary" />
-        <h3 className="font-display text-sm font-semibold tracking-wider uppercase">AI-Generated Insights</h3>
+        <h3 className="font-display text-sm font-semibold tracking-wider uppercase">Example analysis prompts</h3>
       </div>
       {aiInsights.map((insight, i) => {
         const cfg = typeConfig[insight.type];

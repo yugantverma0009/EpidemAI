@@ -1,0 +1,457 @@
+[
+  {
+    "scheme_id": "pmjay",
+    "name": "Ayushman Bharat PM-JAY",
+    "kind": "health_cover",
+    "jurisdiction": "Central",
+    "topics": [
+      "hospital",
+      "senior",
+      "worker"
+    ],
+    "summary": "Hospitalisation cover for people who meet the applicable beneficiary criteria. The 70+ expansion is a separate route; verify and enrol through the official beneficiary service.",
+    "benefit": "Up to ₹5 lakh per eligible family per year under the national scheme. The 70+ expansion was announced irrespective of income; card creation and beneficiary verification still apply. State implementation and interactions with other public schemes can vary.",
+    "criteria": [
+      "General PM-JAY beneficiary status is determined through the official beneficiary identification process and applicable State/UT rules.",
+      "People aged 70 and above can check the Ayushman Vay Vandana route irrespective of income.",
+      "ASHA workers, Anganwadi Workers and Anganwadi Helpers and their families were included through a separate expansion; official verification is required."
+    ],
+    "documents": [
+      "The official beneficiary portal explains the current verification and enrolment requirements. Do not submit identity documents to EpidemAI."
+    ],
+    "actions": [
+      {
+        "label": "Check or verify on the official beneficiary portal",
+        "url": "https://beneficiary.nha.gov.in/"
+      },
+      {
+        "label": "Call PM-JAY helpline 14555",
+        "url": "tel:14555"
+      },
+      {
+        "label": "Find PM-JAY hospitals",
+        "url": "https://abdm.gov.in/UHI"
+      }
+    ],
+    "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2294278&lang=1&reg=1",
+    "source_label": "Ministry of Health and Family Welfare / PIB",
+    "source_date": "2026-08-04",
+    "review_status": "source_linked",
+    "checked_date": "2026-10-17"
+  },
+  {
+    "scheme_id": "delhi-arogya-nidhi",
+    "name": "Delhi Arogya Nidhi",
+    "kind": "financial_assistance",
+    "jurisdiction": "Delhi",
+    "topics": [
+      "hospital",
+      "financial_assistance"
+    ],
+    "summary": "Delhi financial assistance for qualifying patients receiving treatment at government hospitals. The official scheme record lists a National Food Security Card and Delhi residence criteria.",
+    "benefit": "Financial assistance up to ₹1.5 lakh is described on the official myScheme record. Amounts and terms must be confirmed with the Delhi authority before relying on them.",
+    "criteria": [
+      "The myScheme record lists a National Food Security Card.",
+      "It lists at least three years of continuous Delhi residence before application.",
+      "Treatment must be at a government hospital in Delhi.",
+      "The final decision and required documents are confirmed by the responsible Delhi authority."
+    ],
+    "documents": [
+      "National Food Security Card",
+      "Proof of continuous Delhi residence",
+      "Government hospital estimate and treatment records; see the official scheme page for the current list."
+    ],
+    "actions": [
+      {
+        "label": "Review details and verify with Delhi",
+        "url": "https://www.myscheme.gov.in/schemes/dan"
+      }
+    ],
+    "source_url": "https://www.myscheme.gov.in/schemes/dan",
+    "source_label": "myScheme (Government of India scheme portal)",
+    "source_date": "2026-08-20",
+    "review_status": "source_linked",
+    "checked_date": "2026-10-17"
+  },
+  {
+    "scheme_id": "jsy",
+    "name": "Janani Suraksha Yojana (JSY)",
+    "kind": "maternity_assistance",
+    "jurisdiction": "Central; state-specific criteria",
+    "topics": [
+      "pregnancy",
+      "financial_assistance"
+    ],
+    "summary": "A maternity programme that provides cash assistance for eligible institutional deliveries. Criteria and amounts depend on state category and other scheme conditions.",
+    "benefit": "Cash assistance may be available for eligible institutional delivery; the applicable amount and conditions must be checked with the State Health Mission or official scheme office.",
+    "criteria": [
+      "Pregnancy alone does not confirm JSY cash eligibility.",
+      "NHM criteria differ between low-performing and high-performing states and depend on facility and beneficiary category.",
+      "Check the current state rules and official enrolment process."
+    ],
+    "documents": [
+      "Ask the local ASHA/health facility or State Health Mission for the current document list."
+    ],
+    "actions": [
+      {
+        "label": "Review NHM JSY criteria",
+        "url": "https://nhm.gov.in/nhm/index1.php?lang=1&level=3&lid=309&sublinkid=841"
+      },
+      {
+        "label": "Find state schemes on myScheme",
+        "url": "https://www.myscheme.gov.in/"
+      }
+    ],
+    "source_url": "https://nhm.gov.in/nhm/index1.php?lang=1&level=3&lid=309&sublinkid=841",
+    "source_label": "National Health Mission",
+    "source_date": null,
+    "review_status": "source_linked",
+    "checked_date": "2026-10-17"
+  },
+  {
+    "scheme_id": "jssk",
+    "name": "Janani Shishu Suraksha Karyakram (JSSK)",
+    "kind": "public_service",
+    "jurisdiction": "Central; delivered through public health institutions",
+    "topics": [
+      "pregnancy",
+      "child",
+      "public_care",
+      "diagnostics",
+      "medicines"
+    ],
+    "summary": "Public-facility entitlements for delivery-related care and eligible sick newborns/infants. Ask the public facility or ASHA how the service is provided locally.",
+    "benefit": "NHM describes free delivery including C-section, medicines and consumables, diagnostics, blood when needed, diet, exemption from user charges and transport. Similar entitlements extend to sick newborns and infants up to one year, subject to programme conditions.",
+    "criteria": [
+      "Pregnant women delivering in public health institutions are covered by the described entitlements.",
+      "Similar provisions apply to sick newborns and infants accessing public institutions; confirm the current local process."
+    ],
+    "documents": [
+      "Ask the public facility or ASHA about local registration and records to bring."
+    ],
+    "actions": [
+      {
+        "label": "Review NHM JSSK details",
+        "url": "https://www.nhm.gov.in/collections/index1.php?lang=1&level=3&lid=308&sublinkid=842"
+      },
+      {
+        "label": "Find a public health centre",
+        "url": "https://aam.mohfw.gov.in/home"
+      }
+    ],
+    "source_url": "https://www.nhm.gov.in/collections/index1.php?lang=1&level=3&lid=308&sublinkid=842",
+    "source_label": "National Health Mission",
+    "source_date": "2026-07-27",
+    "review_status": "source_linked",
+    "checked_date": "2026-10-17"
+  },
+  {
+    "scheme_id": "uip",
+    "name": "Universal Immunisation Programme (UIP)",
+    "kind": "public_service",
+    "jurisdiction": "Central; service delivered locally",
+    "topics": [
+      "pregnancy",
+      "child",
+      "public_care"
+    ],
+    "summary": "Government immunisation information for eligible children and pregnant women. It is a public-health programme, not an insurance scheme or means-tested benefit.",
+    "benefit": "MoHFW describes vaccines provided through UIP for eligible beneficiaries. Follow the current official schedule and confirm a local session with the health facility.",
+    "criteria": [
+      "Vaccination schedule depends on age, pregnancy and prior doses; a healthcare worker can review the individual schedule."
+    ],
+    "documents": [
+      "Bring any available vaccination card or record to the public facility; ask the facility about local requirements."
+    ],
+    "actions": [
+      {
+        "label": "Review MoHFW UIP information",
+        "url": "https://www.mohfw.gov.in/sites/default/files/Universal%20Immunization%20Programme.pdf"
+      },
+      {
+        "label": "Find an Ayushman Arogya Mandir",
+        "url": "https://aam.mohfw.gov.in/home"
+      }
+    ],
+    "source_url": "https://www.mohfw.gov.in/sites/default/files/Universal%20Immunization%20Programme.pdf",
+    "source_label": "Ministry of Health and Family Welfare",
+    "source_date": null,
+    "review_status": "source_linked",
+    "checked_date": "2026-10-17"
+  },
+  {
+    "scheme_id": "aam",
+    "name": "Ayushman Arogya Mandir (AAM)",
+    "kind": "public_service",
+    "jurisdiction": "Central programme; local services vary",
+    "topics": [
+      "public_care",
+      "diagnostics",
+      "medicines",
+      "pregnancy",
+      "child",
+      "senior"
+    ],
+    "summary": "Community-level comprehensive primary healthcare. Programme design includes preventive and primary care; a specific centre's services and hours must be confirmed locally.",
+    "benefit": "The official portal describes a range of primary healthcare services, including maternal and child health, screening, essential medicines and diagnostics. This is not a personal insurance or cash-benefit determination.",
+    "criteria": [
+      "Use public service information without scheme eligibility screening.",
+      "Confirm exact service, hours and availability with the centre."
+    ],
+    "documents": [
+      "No scheme documents are required to browse this information. Ask the centre about any visit-specific records."
+    ],
+    "actions": [
+      {
+        "label": "Open official Ayushman Arogya Mandir portal",
+        "url": "https://aam.mohfw.gov.in/home"
+      },
+      {
+        "label": "Search nearby centres on a map",
+        "url": "https://www.google.com/maps/search/?api=1&query=Ayushman+Arogya+Mandir"
+      }
+    ],
+    "source_url": "https://aam.mohfw.gov.in/home",
+    "source_label": "Ministry of Health and Family Welfare",
+    "source_date": "2026-09-16",
+    "review_status": "source_linked",
+    "checked_date": "2026-10-17"
+  },
+  {
+    "scheme_id": "pmbjp",
+    "name": "Pradhan Mantri Bhartiya Janaushadhi Pariyojana (PMBJP)",
+    "kind": "public_service",
+    "jurisdiction": "Central; participating Kendras",
+    "topics": [
+      "medicines",
+      "public_care"
+    ],
+    "summary": "Participating Janaushadhi Kendras provide generic medicines at lower prices. This is not a promise that a particular medicine is free or in stock.",
+    "benefit": "The official PMBI site describes affordable generic medicines through dedicated outlets. Check the current product price and stock with the Kendra; do not change a prescription without a clinician or pharmacist.",
+    "criteria": [
+      "No personal eligibility match is needed to browse the programme.",
+      "Product availability and price vary; confirm with the outlet."
+    ],
+    "documents": [
+      "No scheme documents are required to browse programme information."
+    ],
+    "actions": [
+      {
+        "label": "Open official PMBJP information",
+        "url": "https://janaushadhi.gov.in/about-pmbjb"
+      },
+      {
+        "label": "Search nearby Janaushadhi Kendras",
+        "url": "https://www.google.com/maps/search/?api=1&query=Pradhan+Mantri+Bhartiya+Janaushadhi+Kendra"
+      }
+    ],
+    "source_url": "https://janaushadhi.gov.in/about-pmbjb",
+    "source_label": "Pharmaceuticals & Medical Devices Bureau of India",
+    "source_date": null,
+    "review_status": "source_linked",
+    "checked_date": "2026-10-17"
+  },
+  {
+    "scheme_id": "ntep",
+    "name": "National TB Elimination Programme (NTEP)",
+    "kind": "public_service",
+    "jurisdiction": "Central; public and identified treatment centres",
+    "topics": [
+      "diagnostics",
+      "public_care"
+    ],
+    "summary": "TB-specific public diagnostic and treatment services. This is listed as a general public programme, not as a diagnosis or suggestion that a person has TB.",
+    "benefit": "The Central TB Division describes free diagnostic and treatment services through public health services. Confirm the service and location with an official TB centre.",
+    "criteria": [
+      "A healthcare professional determines whether TB evaluation is relevant.",
+      "The navigator does not use symptoms to identify or diagnose TB."
+    ],
+    "documents": [
+      "Ask the health facility about records needed for a visit."
+    ],
+    "actions": [
+      {
+        "label": "Open Central TB Division",
+        "url": "https://tbcindia.mohfw.gov.in/"
+      },
+      {
+        "label": "Call TB helpline 1800-11-6666",
+        "url": "tel:1800-11-6666"
+      }
+    ],
+    "source_url": "https://tbcindia.mohfw.gov.in/",
+    "source_label": "Central TB Division, MoHFW",
+    "source_date": null,
+    "review_status": "source_linked",
+    "checked_date": "2026-10-17"
+  },
+  {
+    "scheme_id": "abha",
+    "name": "ABHA — Ayushman Bharat Health Account",
+    "kind": "digital_tool",
+    "jurisdiction": "Central",
+    "topics": [
+      "digital_health"
+    ],
+    "summary": "A digital health account intended to support access to and consent-based sharing of health records in the ABDM ecosystem. It is not medical-cost coverage or insurance.",
+    "benefit": "Use the official portal to learn about creating and managing an ABHA account. EpidemAI does not ask for an ABHA number and does not link records to this prototype.",
+    "criteria": [
+      "Optional digital-health service; it is not required to use the Individual Health Portal."
+    ],
+    "documents": [
+      "Any identity verification, if needed, must happen only on the official ABHA destination."
+    ],
+    "actions": [
+      {
+        "label": "Review ABHA on the National Portal of India",
+        "url": "https://www.india.gov.in/services/details/abha-ayushman-bharat-health-account"
+      }
+    ],
+    "source_url": "https://www.india.gov.in/services/details/abha-ayushman-bharat-health-account",
+    "source_label": "National Portal of India",
+    "source_date": "2026-05-06",
+    "review_status": "source_linked",
+    "checked_date": "2026-10-17"
+  },
+  {
+    "scheme_id": "delhi-pmjay-topup",
+    "name": "Delhi PM-JAY state top-up",
+    "kind": "health_cover",
+    "jurisdiction": "Delhi",
+    "topics": [
+      "hospital",
+      "financial_assistance"
+    ],
+    "summary": "Delhi announced an additional ₹5 lakh annual family cover for eligible PM-JAY beneficiary families. Check current State Health Agency rules and beneficiary status before relying on the top-up.",
+    "benefit": "The cited Government of India announcement describes ₹5 lakh in additional annual cover for eligible families under Delhi implementation. This is not a separate benefit for every Delhi resident.",
+    "criteria": [
+      "A person must meet PM-JAY beneficiary requirements and the current Delhi implementation rules.",
+      "The announcement is not an individual eligibility confirmation; verify with the official beneficiary service and Delhi State Health Agency."
+    ],
+    "documents": [
+      "Use the official beneficiary service for eligibility and enrollment requirements; do not submit identity documents to EpidemAI."
+    ],
+    "actions": [
+      {
+        "label": "Check PM-JAY beneficiary status",
+        "url": "https://beneficiary.nha.gov.in/"
+      },
+      {
+        "label": "PM-JAY helpline 14555",
+        "url": "tel:14555"
+      },
+      {
+        "label": "Delhi implementation announcement",
+        "url": "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=2119281&lang=2&reg=48"
+      }
+    ],
+    "source_url": "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=2119281&lang=2&reg=48",
+    "source_label": "Press Information Bureau, Government of India",
+    "source_date": null,
+    "checked_date": "2026-10-17",
+    "review_status": "source_linked"
+  },
+  {
+    "scheme_id": "dgehs",
+    "name": "Delhi Government Employees Health Scheme (DGEHS)",
+    "kind": "employee_health_scheme",
+    "jurisdiction": "Delhi",
+    "topics": [
+      "hospital",
+      "government_employee",
+      "diagnostics",
+      "medicines"
+    ],
+    "summary": "A medical-benefit scheme for eligible serving Delhi government employees, pensioners and eligible family members. It is separate from PM-JAY and ABHA.",
+    "benefit": "The Delhi Directorate General of Health Services describes outpatient care, investigations and treatment through recognized government facilities and notified empanelled providers, subject to current scheme rules and membership.",
+    "criteria": [
+      "The official scheme page lists serving GNCTD employees and pensioners (including eligible family members) as beneficiary groups.",
+      "Membership, contribution, referral and provider rules depend on current DGEHS terms; check the official portal."
+    ],
+    "documents": [
+      "Check current membership, contribution and claim documents on the official DGEHS site."
+    ],
+    "actions": [
+      {
+        "label": "Review DGEHS rules and provider information",
+        "url": "https://dgehs.delhi.gov.in/dghs/dgehs"
+      }
+    ],
+    "source_url": "https://dgehs.delhi.gov.in/dghs/dgehs",
+    "source_label": "Directorate General of Health Services, Government of NCT of Delhi",
+    "source_date": null,
+    "checked_date": "2026-10-17",
+    "review_status": "source_linked"
+  },
+  {
+    "scheme_id": "up-nhm",
+    "name": "Uttar Pradesh National Health Mission information",
+    "kind": "state_programme_directory",
+    "jurisdiction": "Uttar Pradesh",
+    "topics": [
+      "public_care",
+      "pregnancy",
+      "child",
+      "diagnostics",
+      "medicines"
+    ],
+    "summary": "The Uttar Pradesh NHM portal is a starting point for state health-programme information, notices and service updates. It is not a single cash benefit or an eligibility determination.",
+    "benefit": "Programme-specific services and beneficiary criteria differ. Use the UP NHM and Health Department portals to find current details, local contacts and application routes.",
+    "criteria": [
+      "State programmes may depend on residence, life stage, beneficiary category or facility.",
+      "This portal record does not assert eligibility for any individual scheme."
+    ],
+    "documents": [
+      "Check the linked official state portal for programme-specific requirements."
+    ],
+    "actions": [
+      {
+        "label": "Open Uttar Pradesh National Health Mission",
+        "url": "https://upnrhm.gov.in/"
+      },
+      {
+        "label": "Browse schemes on myScheme",
+        "url": "https://www.myscheme.gov.in/"
+      }
+    ],
+    "source_url": "https://upnrhm.gov.in/",
+    "source_label": "Uttar Pradesh National Health Mission",
+    "source_date": null,
+    "checked_date": "2026-10-17",
+    "review_status": "source_linked"
+  },
+  {
+    "scheme_id": "rbsk",
+    "name": "Rashtriya Bal Swasthya Karyakram (RBSK)",
+    "kind": "public_service",
+    "jurisdiction": "Central",
+    "topics": [
+      "child",
+      "public_care"
+    ],
+    "summary": "A public child-health screening and early-intervention programme. Ask a public health facility or local health worker how screening is arranged in your area.",
+    "benefit": "The official RBSK portal provides programme information. Screening scope, age groups, referral and local service availability should be confirmed with the health system.",
+    "criteria": [
+      "This is child-focused public-health information, not a cash benefit or diagnosis.",
+      "The navigator does not use symptoms to determine whether a child has a condition."
+    ],
+    "documents": [
+      "Ask the local public health facility about the applicable screening and referral process."
+    ],
+    "actions": [
+      {
+        "label": "Open the official RBSK portal",
+        "url": "https://rbsk.mohfw.gov.in/rbsk/ImportantInfo.aspx"
+      },
+      {
+        "label": "Find Uttar Pradesh NHM information",
+        "url": "https://upnrhm.gov.in/"
+      }
+    ],
+    "source_url": "https://rbsk.mohfw.gov.in/rbsk/ImportantInfo.aspx",
+    "source_label": "Ministry of Health and Family Welfare, RBSK Portal",
+    "source_date": null,
+    "checked_date": "2026-10-17",
+    "review_status": "source_linked"
+  }
+]

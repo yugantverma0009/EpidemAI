@@ -1,0 +1,41 @@
+{
+  "disease": "Malaria",
+  "data_file": "epiclim_final_data.csv",
+  "observed_district_month_rows": 326,
+  "district_count": 156,
+  "source_date_start": "2009-05-04",
+  "source_date_end": "2022-06-13",
+  "train_rows": 292,
+  "test_rows": 34,
+  "train_through_month": "2019-01",
+  "test_from_month": "2019-04",
+  "test_through_month": "2022-06",
+  "best_model": "random_forest",
+  "evaluation": {
+    "split": "chronological holdout by calendar month",
+    "future_weather": "held-out rows use climate normals from training period only",
+    "selected_artifact_model": "random_forest",
+    "ridge_regression": {
+      "mae_reported_cases": 52.17,
+      "rmse_reported_cases": 86.85
+    },
+    "random_forest": {
+      "mae_reported_cases": 50.02,
+      "rmse_reported_cases": 77.91
+    },
+    "gradient_boosting": {
+      "mae_reported_cases": 81.5,
+      "rmse_reported_cases": 137.14
+    },
+    "seasonal_month_mean_baseline": {
+      "mae_reported_cases": 146.65,
+      "rmse_reported_cases": 252.11
+    }
+  },
+  "target": "sum of reported malaria outbreak cases in observed district-months",
+  "available_models": [
+    "ridge_regression",
+    "random_forest",
+    "gradient_boosting"
+  ]
+}

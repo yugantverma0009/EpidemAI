@@ -1,0 +1,97 @@
+{
+  "trained_diseases": [
+    "Dengue",
+    "Acute Diarrhoeal Disease",
+    "Chikungunya",
+    "Cholera",
+    "Malaria",
+    "Acute Encephalitis Syndrome"
+  ],
+  "total_models": 18,
+  "diseases": {
+    "Dengue": {
+      "best_model": "ridge_regression",
+      "best_mae": 67.07,
+      "baseline_mae": 197.71,
+      "improvement_pct": 66.1,
+      "models": [
+        "ridge_regression",
+        "random_forest",
+        "gradient_boosting"
+      ],
+      "district_count": 299,
+      "data_rows": 879,
+      "train_through": "2019-09"
+    },
+    "Acute Diarrhoeal Disease": {
+      "best_model": "ridge_regression",
+      "best_mae": 32.96,
+      "baseline_mae": 43.16,
+      "improvement_pct": 23.6,
+      "models": [
+        "ridge_regression",
+        "random_forest",
+        "gradient_boosting"
+      ],
+      "district_count": 636,
+      "data_rows": 2892,
+      "train_through": "2019-10"
+    },
+    "Chikungunya": {
+      "best_model": "ridge_regression",
+      "best_mae": 20.71,
+      "baseline_mae": 53.26,
+      "improvement_pct": 61.1,
+      "models": [
+        "ridge_regression",
+        "random_forest",
+        "gradient_boosting"
+      ],
+      "district_count": 161,
+      "data_rows": 439,
+      "train_through": "2019-06"
+    },
+    "Cholera": {
+      "best_model": "random_forest",
+      "best_mae": 106.38,
+      "baseline_mae": 191.34,
+      "improvement_pct": 44.4,
+      "models": [
+        "ridge_regression",
+        "random_forest",
+        "gradient_boosting"
+      ],
+      "district_count": 179,
+      "data_rows": 378,
+      "train_through": "2018-07"
+    },
+    "Malaria": {
+      "best_model": "random_forest",
+      "best_mae": 50.02,
+      "baseline_mae": 146.65,
+      "improvement_pct": 65.9,
+      "models": [
+        "ridge_regression",
+        "random_forest",
+        "gradient_boosting"
+      ],
+      "district_count": 156,
+      "data_rows": 326,
+      "train_through": "2019-01"
+    },
+    "Acute Encephalitis Syndrome": {
+      "best_model": "ridge_regression",
+      "best_mae": 13.92,
+      "baseline_mae": 60.71,
+      "improvement_pct": 77.1,
+      "models": [
+        "ridge_regression",
+        "random_forest",
+        "gradient_boosting"
+      ],
+      "district_count": 41,
+      "data_rows": 67,
+      "train_through": "2017-08"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "disease": "Chikungunya",
+  "data_file": "epiclim_final_data.csv",
+  "observed_district_month_rows": 439,
+  "district_count": 161,
+  "source_date_start": "2009-06-15",
+  "source_date_end": "2022-06-12",
+  "train_rows": 374,
+  "test_rows": 65,
+  "train_through_month": "2019-06",
+  "test_from_month": "2019-07",
+  "test_through_month": "2022-06",
+  "best_model": "ridge_regression",
+  "evaluation": {
+    "split": "chronological holdout by calendar month",
+    "future_weather": "held-out rows use climate normals from training period only",
+    "selected_artifact_model": "ridge_regression",
+    "ridge_regression": {
+      "mae_reported_cases": 20.71,
+      "rmse_reported_cases": 34.42
+    },
+    "random_forest": {
+      "mae_reported_cases": 23.53,
+      "rmse_reported_cases": 38.54
+    },
+    "gradient_boosting": {
+      "mae_reported_cases": 25.72,
+      "rmse_reported_cases": 41.99
+    },
+    "seasonal_month_mean_baseline": {
+      "mae_reported_cases": 53.26,
+      "rmse_reported_cases": 76.51
+    }
+  },
+  "target": "sum of reported chikungunya outbreak cases in observed district-months",
+  "available_models": [
+    "ridge_regression",
+    "random_forest",
+    "gradient_boosting"
+  ]
+}

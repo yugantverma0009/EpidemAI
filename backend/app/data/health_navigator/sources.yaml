@@ -1,0 +1,20 @@
+# Source URLs are intentionally explicit and domain-limited. Add official
+# national or state listing/detail pages here; crawls stay on the registered host.
+- name: myScheme - national and state health schemes
+  level: mixed
+  state: null
+  listing_url: https://www.myscheme.gov.in/
+  url_list:
+    - https://www.myscheme.gov.in/sitemap.xml
+- name: National Health Mission - maternal and child programmes
+  level: central
+  state: null
+  active: false
+  listing_url: https://www.nhm.gov.in/
+  url_list:
+    - https://www.nhm.gov.in/index1.php?lang=1&level=3&lid=309&sublinkid=841
+- name: Delhi health programmes
+  level: state
+  state: Delhi
+  url_list:
+    - https://www.myscheme.gov.in/schemes/dan

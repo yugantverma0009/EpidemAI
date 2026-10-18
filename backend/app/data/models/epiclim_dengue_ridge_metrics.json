@@ -1,0 +1,166 @@
+{
+  "disease": "Dengue",
+  "data_file": "epiclim_final_data.csv",
+  "observed_district_month_rows": 879,
+  "district_count": 299,
+  "source_date_start": "2009-08-31",
+  "source_date_end": "2022-06-08",
+  "train_rows": 743,
+  "test_rows": 136,
+  "train_through_month": "2019-09",
+  "test_from_month": "2019-10",
+  "test_through_month": "2022-06",
+  "evaluation": {
+    "split": "expanding-window rolling-origin evaluation with 12-month test windows, plus final chronological holdout",
+    "feature_availability": "calendar month, state, and district are known at forecast time; report-date climate observations are excluded from this model",
+    "ridge_regression": {
+      "mae_reported_cases": 66.42254405382725,
+      "rmse_reported_cases": 492.3172596491003
+    },
+    "seasonal_district_mean_baseline": {
+      "mae_reported_cases": 159.3624957135914,
+      "rmse_reported_cases": 590.2853338313791
+    },
+    "rolling_origin_folds": [
+      {
+        "train_through_month": "2014-11",
+        "test_from_month": "2014-12",
+        "test_through_month": "2015-11",
+        "train_rows": 313,
+        "test_rows": 93,
+        "ridge_regression": {
+          "mae_reported_cases": 1059.8191247254697,
+          "rmse_reported_cases": 7639.671927240079
+        },
+        "seasonal_district_mean_baseline": {
+          "mae_reported_cases": 1089.3036833937624,
+          "rmse_reported_cases": 7639.322622898711
+        }
+      },
+      {
+        "train_through_month": "2015-11",
+        "test_from_month": "2015-12",
+        "test_through_month": "2016-11",
+        "train_rows": 406,
+        "test_rows": 94,
+        "ridge_regression": {
+          "mae_reported_cases": 51.378953918168776,
+          "rmse_reported_cases": 135.48166532678874
+        },
+        "seasonal_district_mean_baseline": {
+          "mae_reported_cases": 208.11478261881956,
+          "rmse_reported_cases": 684.1042930339645
+        }
+      },
+      {
+        "train_through_month": "2016-11",
+        "test_from_month": "2016-12",
+        "test_through_month": "2017-11",
+        "train_rows": 500,
+        "test_rows": 101,
+        "ridge_regression": {
+          "mae_reported_cases": 65.27435776394904,
+          "rmse_reported_cases": 223.30920415698034
+        },
+        "seasonal_district_mean_baseline": {
+          "mae_reported_cases": 157.71382839290254,
+          "rmse_reported_cases": 430.4094749895105
+        }
+      },
+      {
+        "train_through_month": "2017-11",
+        "test_from_month": "2017-12",
+        "test_through_month": "2018-11",
+        "train_rows": 601,
+        "test_rows": 69,
+        "ridge_regression": {
+          "mae_reported_cases": 145.25175620756656,
+          "rmse_reported_cases": 373.19531795843807
+        },
+        "seasonal_district_mean_baseline": {
+          "mae_reported_cases": 214.9755982038185,
+          "rmse_reported_cases": 467.6541771638835
+        }
+      },
+      {
+        "train_through_month": "2018-11",
+        "test_from_month": "2019-01",
+        "test_through_month": "2019-12",
+        "train_rows": 670,
+        "test_rows": 108,
+        "ridge_regression": {
+          "mae_reported_cases": 40.16079114424824,
+          "rmse_reported_cases": 90.0081521639344
+        },
+        "seasonal_district_mean_baseline": {
+          "mae_reported_cases": 271.36490833566023,
+          "rmse_reported_cases": 1391.3981193200734
+        }
+      },
+      {
+        "train_through_month": "2019-12",
+        "test_from_month": "2020-01",
+        "test_through_month": "2021-02",
+        "train_rows": 778,
+        "test_rows": 25,
+        "ridge_regression": {
+          "mae_reported_cases": 16.652108896245164,
+          "rmse_reported_cases": 23.14138327108092
+        },
+        "seasonal_district_mean_baseline": {
+          "mae_reported_cases": 155.7673412930787,
+          "rmse_reported_cases": 473.9331456684128
+        }
+      },
+      {
+        "train_through_month": "2021-02",
+        "test_from_month": "2021-03",
+        "test_through_month": "2022-03",
+        "train_rows": 803,
+        "test_rows": 68,
+        "ridge_regression": {
+          "mae_reported_cases": 111.00419397406577,
+          "rmse_reported_cases": 696.1638439441854
+        },
+        "seasonal_district_mean_baseline": {
+          "mae_reported_cases": 202.55957297078592,
+          "rmse_reported_cases": 758.156098443997
+        }
+      },
+      {
+        "train_through_month": "2022-03",
+        "test_from_month": "2022-04",
+        "test_through_month": "2022-06",
+        "train_rows": 871,
+        "test_rows": 8,
+        "ridge_regression": {
+          "mae_reported_cases": 22.748287947919827,
+          "rmse_reported_cases": 26.804025224102954
+        },
+        "seasonal_district_mean_baseline": {
+          "mae_reported_cases": 174.562382518797,
+          "rmse_reported_cases": 356.8930258936162
+        }
+      }
+    ],
+    "rolling_origin_weighted": {
+      "ridge_regression": {
+        "mae_reported_cases": 234.08448982343157,
+        "rmse_reported_cases": 3111.056431334521
+      },
+      "seasonal_district_mean_baseline": {
+        "mae_reported_cases": 353.36146417010184,
+        "rmse_reported_cases": 3190.0935654443056
+      }
+    },
+    "selected_artifact_model": "ridge_regression"
+  },
+  "target": "sum of reported dengue outbreak cases in observed district-months",
+  "limitations": [
+    "The source is irregular outbreak-event reporting, not a complete district-time panel.",
+    "The model estimates reported cases in observed district-months, not all infections.",
+    "No-report periods are not assumed to have zero cases.",
+    "Holdout performance is not prospective or independent validation.",
+    "Experimental use only; not an operational public-health alert."
+  ]
+}

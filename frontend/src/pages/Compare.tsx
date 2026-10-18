@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
+import DemonstrationNotice from "@/components/DemonstrationNotice";
 import { useCities } from "@/hooks/useApi";
 import type { CityData } from "@/data/mockData";
 import { motion } from "framer-motion";
@@ -51,10 +52,11 @@ export default function Compare() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <div className="container mx-auto px-4 pt-20 pb-10">
+      <main id="main-content" tabIndex={-1} className="container mx-auto px-4 pt-20 pb-10">
+        <DemonstrationNotice className="mb-6" />
         <div className="mb-6">
           <h1 className="font-display text-2xl font-bold">City Comparison</h1>
-          <p className="text-sm text-muted-foreground">Compare risk scores, symptoms, and outbreak trends between two cities side by side.</p>
+          <p className="text-sm text-muted-foreground">Compare illustrative index values and bundled indicators for two sample cities. The scores are not validated risk measures.</p>
         </div>
 
         {/* City selectors */}
@@ -80,9 +82,9 @@ export default function Compare() {
           </div>
         </div>
 
-        {/* Risk Score Comparison */}
+        {/* Sample index comparison */}
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="rounded-xl border border-border bg-card p-6 mb-6">
-          <h3 className="mb-4 font-display text-sm font-semibold uppercase tracking-wider text-muted-foreground">Risk Score Comparison</h3>
+          <h3 className="mb-4 font-display text-sm font-semibold uppercase tracking-wider text-muted-foreground">Sample index comparison</h3>
           <div className="flex items-center justify-around">
             <RiskGaugeSmall score={effectiveCityA.riskScore} label={`${effectiveCityA.name}: ${effectiveCityA.riskScore}/100`} />
             <div className="text-center">
@@ -202,7 +204,7 @@ export default function Compare() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </main>
     </div>
   );
 }
