@@ -1,123 +1,185 @@
 # EpidemAI
 
-EpidemAI is a two-part local app:
+**Public health signals, translated into practical next steps.**
 
-- `frontend/` — Vite + React dashboard on `http://localhost:8080`
-- `backend/` — FastAPI API on `http://localhost:8000`
+EpidemAI is a prototype public-health platform for exploring disease signals and connecting people with health information. It brings together two experiences: an exploratory surveillance dashboard for public-health teams and an individual portal for general symptom guidance, historical local context, and government health scheme discovery.
 
-The landing page provides separate Government and Individual Health Portal entry points. The individual portal lives at `/health-portal` and reuses the symptom assistant at `/health-assistant`. The government view remains a demonstration interface; secure government authentication is not configured.
+> **Demo status:** This repository is a research and demonstration prototype. Dashboard records are bundled sample data, and the district forecast is based on historical research data through June 2022. It is not a live surveillance system, medical device, or source of diagnosis or official decisions.
 
-### Health assistant demo
+## Why EpidemAI
 
-Open **Individual Health Portal → Report symptoms → Load sample demo**. The sample uses fictional symptoms and Wardha, Maharashtra, which has matching records in the bundled historical dataset. Review the symptom summary, acknowledge the general-information notice, and continue to see the assistant guidance and dated district records. The sample is not a real person's location or live outbreak data. The assistant does not diagnose, estimate an individual's disease probability, or select tests. See [the full implementation guide](PERSONAL_HEALTH_ASSISTANT_IMPLEMENTATION.md) for data sources and limitations.
+Public-health information is spread across dashboards, reports, and service directories. EpidemAI makes these workflows easier to explore in one accessible interface while showing users where data came from and what the tools can and cannot tell them.
 
-For an explanation of the app, its current data sources, analysis helpers, and TinyFish's role, see [Project overview](docs/PROJECT_OVERVIEW.md). For TinyFish implementation and operations, see [TinyFish integration](docs/TINYFISH_INTEGRATION.md).
+- **For public-health exploration:** see city and district signals, compare locations, inspect trends, and explore hypothetical environmental changes.
+- **For individuals:** report symptoms through a guided assistant, review general next steps, explore dated local records, and discover relevant health schemes and care services.
+- **For maintainers:** connect optional public-health news collection and source-linked scheme updates without putting provider credentials in browser code.
 
-## Local Run
+## Try the demo
 
-From the project root:
+Start both services from the repository root:
 
 ```bash
-chmod +x run-local.sh
 ./run-local.sh
 ```
 
-This starts both services together with the frontend already pointed at the backend API. The local URLs are `http://localhost:8080` and `http://localhost:8000`.
+Then open:
 
-## Notes
+- **App:** <http://localhost:8080>
+- **API health:** <http://localhost:8000/api/health>
+- **Interactive API docs:** <http://localhost:8000/docs>
 
-- `run-local.sh` uses an available backend virtual environment (`.venv-new`, `.venv-local`, or `.venv`) and `frontend/node_modules`. If those dependencies are missing, install them using the commands in `backend/README.md` and `frontend/package.json`.
-- `/health-portal` and `/health-assistant` are an individual-facing prototype with opt-in history and no account system. `/gov-portal` is a sample dashboard without secure government authentication; do not use it for official decisions or confidential data.
-- Frontend production build works with:
+### A quick walkthrough
+
+1. Open **Individual Health Portal** from the landing page.
+2. Choose **Report symptoms**, then **Load sample demo**.
+3. Review the fictional symptom summary and the general-information notice.
+4. Continue to see safety guidance and historical district records for Wardha, Maharashtra.
+5. Open **Schemes & care** to explore source-linked public benefit and care information.
+6. Return to the landing page and explore the government dashboard, maps, comparisons, and forecast tools.
+
+The sample scenario is fictional; Wardha is selected because the bundled historical dataset contains matching records. It is not a real person or a current outbreak report.
+
+## What you can explore
+
+| Experience | What it includes |
+| --- | --- |
+| Public-health dashboard | City summaries, maps, charts, alerts, and news |
+| Disease map | Geographic view of city-level demonstration signals |
+| Trends and comparisons | Explore historical sample trends and compare selected cities |
+| Predictive tools | Inspect experimental district estimates and risk-region summaries |
+| What-if explorer | Explore hypothetical changes to environmental inputs |
+| Reporter prototype | Preview a field-reporting workflow |
+| Individual Health Portal | Symptom guidance, local historical context, and opt-in browser history |
+| Schemes & care | Filter scheme and service information using user-provided details, with source links |
+| Optional news ingestion | Collect and normalize public-health articles through TinyFish |
+
+## How it works
+
+```text
+React + TypeScript (Vite)
+       │ JSON over HTTP
+       ▼
+FastAPI API ── sample dashboard services
+       ├─────── historical EpiClim forecast service
+       ├─────── rule-based health assistant
+       ├─────── source-linked scheme catalog and optional sync
+       └─────── optional TinyFish news ingestion → SQLite
+```
+
+The frontend lives in `frontend/`; the API and analysis helpers live in `backend/`. The API is documented automatically at `/docs` while running. A more detailed code map and data-source explanation is in [Project overview](docs/PROJECT_OVERVIEW.md). See also the [personal health assistant implementation guide](PERSONAL_HEALTH_ASSISTANT_IMPLEMENTATION.md) and [TinyFish integration guide](docs/TINYFISH_INTEGRATION.md).
+
+## Data and model transparency
+
+- Dashboard city metrics, alerts, trends, and much of the news feed use bundled demonstration records in `backend/app/data/seed_data.py`.
+- EpiClim uses a bundled district-level research dataset with irregular outbreak reports. The included trained dengue model uses data ending in June 2022; its outputs are historical experimental estimates, not current forecasts.
+- Analysis helpers include moving averages, damped trend projection, statistical anomaly checks, and keyword matching. These are exploratory prototype methods and have not been validated for operational public-health decisions.
+- TinyFish is an optional article collection path. Collected articles do not become verified case counts or official alerts.
+- Scheme information is source-linked. Matching results are informational and do not constitute an official eligibility decision.
+
+## Privacy and responsible use
+
+- The symptom assistant provides general information, not diagnosis, an individual disease probability, or test selection. It can miss warning signs; seek professional care when seriously unwell.
+- Symptom history is optional and browser/session scoped; the prototype has no account system or cross-device history. Review the in-app privacy choices before saving anything.
+- Do not enter confidential or identifying health information into this demonstration.
+- The government portal is a sample interface without secure government authentication. Do not use it for official decisions.
+- Always follow the linked source or consult a qualified health professional or responsible authority for decisions.
+
+## Run locally
+
+### Prerequisites
+
+- Node.js and npm
+- Python 3.10 or newer
+
+The launcher uses an existing backend environment from `.venv-new`, `.venv-local`, or `.venv`, plus `frontend/node_modules`. If dependencies are not installed, set them up first:
 
 ```bash
 cd frontend
-npm run build
+npm install
+cd ../backend
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cd ..
 ```
 
-## Deploy
-
-### Frontend on Vercel
-
-Deploy the `frontend/` folder as a separate Vercel project.
-
-Dashboard values:
-
-- Framework Preset: `Vite`
-- Root Directory: `frontend`
-- Build Command: `npm run build`
-- Output Directory: `dist`
-- Install Command: `npm install`
-
-Environment variable:
-
-- `VITE_API_URL=https://your-render-backend.onrender.com/api`
-
-CLI commands:
+Then start the app:
 
 ```bash
-cd frontend
-vercel login
-vercel link
-vercel env add VITE_API_URL production
-vercel --prod
+./run-local.sh
 ```
 
-When Vercel prompts for the env value, paste:
+Copy the example environment files if you need to change local settings:
 
-```text
-https://your-render-backend.onrender.com/api
+```bash
+cp frontend/.env.example frontend/.env
+cp backend/.env.example backend/.env
 ```
 
-### Backend on Render
+The default local setup uses bundled data and does not require external API keys. Keep secrets in the backend environment only; never put them in frontend `VITE_*` variables.
 
-Deploy the `backend/` folder as a separate Render Web Service. A root-level `render.yaml` is included for the basic service definition.
+### Run services separately
 
-Dashboard values:
+Backend, from `backend/` with its virtual environment activated:
 
-- Runtime: `Python 3`
-- Root Directory: `backend`
-- Build Command: `pip install -r requirements.txt`
-- Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-
-Environment variables:
-
-- `ENVIRONMENT=production`
-- `CORS_ORIGINS=https://your-frontend-project.vercel.app`
-
-The backend health endpoint after deploy will be:
-
-```text
-https://your-render-backend.onrender.com/api/health
+```bash
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-### Recommended Order
+Frontend, from `frontend/`:
 
-1. Deploy backend on Render first.
-2. Copy the Render backend URL.
-3. Add that URL as `VITE_API_URL` in Vercel.
-4. Deploy frontend on Vercel.
-5. Copy the Vercel frontend URL.
-6. Set `CORS_ORIGINS` in Render to that Vercel URL and redeploy the backend once.
+```bash
+npm run dev -- --host 0.0.0.0 --port 8080
+```
 
-### TinyFish news ingestion
+The frontend API base can be set with `VITE_API_URL`, for example `http://localhost:8000/api`. The backend's `CORS_ORIGINS` must include the frontend's exact origin.
 
-The backend can collect public-health news with TinyFish and serve normalized articles through the existing `GET /api/news` endpoint. API keys stay on the backend.
+## Optional integrations
 
-For the integration flow, code map, security notes, and deployment details, see [TinyFish integration in EpidemAI](docs/TINYFISH_INTEGRATION.md).
+### TinyFish news collection
 
-Set these variables in `backend/.env` locally and in Render for deployment:
-
-- `TINYFISH_API_KEY` — create a key in your TinyFish account.
-- `TINYFISH_SOURCE_URLS` — comma-separated public source homepages; up to five are collected per run.
-- `INGEST_API_KEY` — a separate strong secret authorizing collection runs.
-- `TINYFISH_DB_PATH` — optional SQLite path. By default data is stored under `backend/app/data`; on Render, use a persistent disk mount path to retain articles across deploys.
-
-Trigger collection manually (this may consume TinyFish usage):
+TinyFish collection is optional and requires a TinyFish API key plus a separate ingestion secret. Configure `TINYFISH_API_KEY`, `TINYFISH_SOURCE_URLS`, and `INGEST_API_KEY` in `backend/.env`. Then request a collection run:
 
 ```bash
 curl -X POST http://localhost:8000/api/ingest/tinyfish \
   -H "X-Ingest-Key: YOUR_INGEST_API_KEY"
 ```
 
-Check setup and stored article count at `GET /api/ingest/tinyfish/status`. To collect regularly, schedule the POST with a trusted scheduler and store `INGEST_API_KEY` there as a secret.
+Check configuration and stored article count at `GET /api/ingest/tinyfish/status`. Collection can consume provider usage. Read the [TinyFish integration guide](docs/TINYFISH_INTEGRATION.md) before enabling it.
+
+### Government scheme refresh
+
+The scheme catalog can be refreshed from configured sources when an Anthropic API key and model are provided in the backend environment. Review proposed source changes and the sync implementation before enabling automated refresh. The bundled catalog remains available without credentials.
+
+## Build the frontend
+
+```bash
+cd frontend
+npm run build
+```
+
+## Deployment
+
+The repository includes a `render.yaml` backend service definition. The frontend can be deployed as a Vite app on a static hosting provider.
+
+- **Frontend:** root directory `frontend`, build command `npm run build`, output directory `dist`, set `VITE_API_URL` to the deployed backend's `/api` URL.
+- **Backend:** root directory `backend`, install with `pip install -r requirements.txt`, start with `uvicorn app.main:app --host 0.0.0.0 --port $PORT`; configure `ENVIRONMENT` and `CORS_ORIGINS`.
+- **Persistence:** configure persistent storage for SQLite-backed TinyFish articles if they must survive host restarts or redeploys.
+
+See the repository deployment configuration and integration guide for provider-specific setup. Never commit `.env` files or expose backend secrets to the frontend.
+
+## Repository map
+
+```text
+frontend/src/pages/       App pages and user workflows
+frontend/src/components/  Reusable interface components
+frontend/src/hooks/       API and data hooks
+backend/app/api/routes/   FastAPI route handlers
+backend/app/services/     Analysis, assistant, forecast, and integration logic
+backend/app/data/         Seed records, datasets, models, and scheme catalog
+docs/                     Project, implementation, and integration guides
+```
+
+## Contributing
+
+Issues and pull requests are welcome. For useful reports, include the page or endpoint, reproduction steps, expected behavior, and observed behavior. Please avoid sharing personal health information, secrets, or private credentials in issues.
