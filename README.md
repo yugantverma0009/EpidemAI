@@ -167,6 +167,12 @@ EpidemAI/
         └── hooks/useApi.ts                      # TanStack Query API hooks
 ```
 
+## ☁️ Deployment
+
+- **Frontend on Vercel:** Import the repository, set the project root to `frontend`, and add `VITE_API_URL` in Project Settings → Environment Variables. Set it to the Render backend URL followed by `/api` (for example, `https://epidemai-backend.onrender.com/api`), then redeploy.
+- **Backend on Render:** Create a Blueprint Instance from the repository root; [`render.yaml`](./render.yaml) configures the FastAPI service on the Free plan, including its health check and production environment.
+- The Render Blueprint allows the `https://epidemai.vercel.app` frontend origin. If the Vercel domain differs, update `CORS_ORIGINS` in Render to match it. Free Render services spin down when idle, so the first request after inactivity may take longer.
+
 ---
 
 ## 🛡️ Responsible AI & Clinical Disclaimer
