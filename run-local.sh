@@ -5,15 +5,12 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 BACKEND_DIR="$ROOT_DIR/backend"
 FRONTEND_DIR="$ROOT_DIR/frontend"
-BACKEND_PYTHON="$BACKEND_DIR/.venv-py312/bin/python"
-if [ ! -x "$BACKEND_PYTHON" ]; then
-  BACKEND_PYTHON="$BACKEND_DIR/.venv/bin/python"
-fi
+BACKEND_PYTHON="$BACKEND_DIR/.venv-new/bin/python"
 if [ ! -x "$BACKEND_PYTHON" ]; then
   BACKEND_PYTHON="$BACKEND_DIR/.venv-local/bin/python"
 fi
 if [ ! -x "$BACKEND_PYTHON" ]; then
-  BACKEND_PYTHON="$BACKEND_DIR/.venv-new/bin/python"
+  BACKEND_PYTHON="$BACKEND_DIR/.venv/bin/python"
 fi
 
 if [ ! -x "$BACKEND_PYTHON" ]; then
@@ -44,7 +41,7 @@ trap cleanup EXIT INT TERM
 
 echo "Starting backend on http://localhost:8000 ..."
 cd "$BACKEND_DIR"
-"$BACKEND_PYTHON" -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload &
+"$BACKEND_PYTHON" -m uvicorn app.main:app --host 0.0.0.0 --port 8000 &
 BACKEND_PID=$!
 
 echo "Starting frontend on http://localhost:8080 ..."

@@ -16,6 +16,9 @@ LEGACY_MODEL_PATH = MODELS_DIR / "epiclim_dengue_ridge.json"
 LSTM_MODEL_PATH = MODELS_DIR / "epiclim_dengue_lstm.json"
 LSTM_METRICS_PATH = MODELS_DIR / "epiclim_dengue_lstm_metrics.json"
 
+NUMERIC_FEATURES = ["month", "month_sin", "month_cos", "latitude", "longitude", "preci", "lai", "temp"]
+CATEGORICAL_FEATURES = ["state", "district"]
+
 # Cache loaded models
 _model_cache: dict[str, dict] = {}
 _historical_index: dict[tuple[str, str, str], list[dict]] | None = None
@@ -150,7 +153,6 @@ def _predict_with_model(model: dict, features: dict) -> float | None:
         categories = model["encoder_categories"]
 
         # Build numeric features
-        from app.services.train_multi_disease import NUMERIC_FEATURES
         numeric = np.array([features.get(f, 0.0) for f in NUMERIC_FEATURES], dtype=np.float64)
         numeric_scaled = (numeric - scaler_mean) / scaler_scale
 
@@ -175,21 +177,23 @@ def _predict_with_model(model: dict, features: dict) -> float | None:
 
 def _predict_with_sklearn(disease: str, model_type: str, features_list: list[dict]) -> list[float | None]:
     """Load sklearn pipeline from joblib and predict."""
-    slug = _disease_slug(disease)
-    pkl_path = MODELS_DIR / f"epiclim_{slug}_{model_type}.pkl"
-    if not pkl_path.exists():
+    try:
+        slug = _disease_slug(disease)
+        pkl_path = MODELS_DIR / f"epiclim_{slug}_{model_type}.pkl"
+        if not pkl_path.exists():
+            return [None] * len(features_list)
+
+        import joblib
+        pipeline = joblib.load(pkl_path)
+
+        X_numeric = np.array([[f.get(feat, 0.0) for feat in NUMERIC_FEATURES] for f in features_list], dtype=np.float64)
+        cat_data = np.array([[f.get("state", ""), f.get("district", "")] for f in features_list], dtype=object)
+        X_combined = np.hstack([X_numeric, cat_data])
+
+        raw = pipeline.predict(X_combined)
+        return [max(0.0, math.expm1(min(float(v), 30))) for v in raw]
+    except Exception:
         return [None] * len(features_list)
-
-    import joblib
-    pipeline = joblib.load(pkl_path)
-
-    from app.services.train_multi_disease import NUMERIC_FEATURES
-    X_numeric = np.array([[f.get(feat, 0.0) for feat in NUMERIC_FEATURES] for f in features_list], dtype=np.float64)
-    cat_data = np.array([[f.get("state", ""), f.get("district", "")] for f in features_list], dtype=object)
-    X_combined = np.hstack([X_numeric, cat_data])
-
-    raw = pipeline.predict(X_combined)
-    return [max(0.0, math.expm1(min(float(v), 30))) for v in raw]
 
 
 def get_available_diseases() -> dict:

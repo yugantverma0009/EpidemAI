@@ -39,11 +39,13 @@ yarn-error.log*
 # Local Virtual Environments
 .venv*/
 
-# Documents & Readme
+# Documents & Presentation
 *.pdf
 *.doc
 *.docx
 *.ppt
 *.pptx
-README.md
+EPIDEMAI_MASTER_PRESENTATION_AND_ARCHITECTURE.md
+docs/
 backend/README.md
+

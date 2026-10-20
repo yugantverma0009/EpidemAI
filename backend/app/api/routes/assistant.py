@@ -9,7 +9,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from app.services.assistant import assistant_store
-from app.services.assistant.diagnostic_prediction_service import predict_diseases_and_tests
+from app.services.assistant.disease_prediction_service import predict_diseases_and_tests
 from app.services.assistant.followup_service import get_followup_questions
 from app.services.assistant.guidance_service import get_guidance
 from app.services.assistant.local_context_service import get_local_context
@@ -126,13 +126,24 @@ def triage(request: TriageRequest):
     max_duration = max(durations) if durations else None
     guidance = get_guidance(symptom_names, max_duration)
 
-    prediction = predict_diseases_and_tests(
-        symptoms=symptom_names,
+    # Fetch regional surveillance records if state & district provided
+    regional_items = []
+    if request.state and request.district:
+        try:
+            ctx = get_local_context(request.state, request.district)
+            regional_items = ctx.get("items", [])
+        except Exception:
+            regional_items = []
+
+    # Run Clinical & Cost-Saving Diagnostic Testing Engine
+    diagnostic_assessment = predict_diseases_and_tests(
+        symptoms=[{"name": s.name, "duration_days": s.duration_days, "severity": s.severity} for s in request.symptoms],
         duration_days=max_duration,
         state=request.state,
         district=request.district,
         age_group=request.age_group,
         gender=request.gender,
+        historical_context_items=regional_items,
     )
 
     return {
@@ -140,11 +151,9 @@ def triage(request: TriageRequest):
         "care_level": guidance["care_level"],
         "follow_up_questions": get_followup_questions(set(symptom_names), set(request.answers)),
         "guidance": guidance,
-        "predicted_diseases": prediction["predicted_diseases"],
-        "targeted_tests": prediction["targeted_tests"],
-        "cost_optimization": prediction["cost_optimization"],
-        "blanket_panel_avoided": prediction["blanket_panel_avoided"],
-        "patient_context": prediction["patient_context"],
+        "disease_predictions": diagnostic_assessment["predictions"],
+        "recommended_tests": diagnostic_assessment["recommended_tests"],
+        "cost_optimization": diagnostic_assessment["cost_optimization"],
         "disclaimer": _disclaimer(),
     }
 
@@ -237,3 +246,37 @@ def get_checkins(entry_id: str, token: str = Depends(_require_token)):
     if result is None:
         raise HTTPException(status_code=404, detail="Entry not found")
     return result
+
+
+class AgentChatRequest(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True)
+    message: str = Field(min_length=1, max_length=2000)
+    conversation_history: list[dict[str, str]] = Field(default_factory=list, max_length=30)
+    state: str | None = Field(default=None, max_length=100)
+    district: str | None = Field(default=None, max_length=100)
+    age_group: str | None = Field(default=None, max_length=50)
+    income_band: str | None = Field(default=None, max_length=50)
+    occupation: str | None = Field(default=None, max_length=50)
+
+
+@router.post("/agent/chat")
+async def agent_chat(request: AgentChatRequest):
+    """Personal Health Assistant multi-tool clinical triage and healthcare orchestrator."""
+    from app.services.assistant.gemini_agent_service import process_agent_chat
+
+    location = {"state": request.state or "", "district": request.district or ""}
+    profile = {
+        "age_group": request.age_group or "unknown",
+        "income_band": request.income_band or "unknown",
+        "occupation": request.occupation or "unknown",
+    }
+    result = await process_agent_chat(
+        message=request.message,
+        conversation_history=request.conversation_history,
+        location=location,
+        user_profile=profile,
+    )
+    return {
+        **result,
+        "disclaimer": _disclaimer(),
+    }

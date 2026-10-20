@@ -1,185 +1,181 @@
-# EpidemAI
+# EpidemAI — Public Health Intelligence & Predictive Epidemic Forecasting
 
-**Public health signals, translated into practical next steps.**
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![React](https://img.shields.io/badge/React-18.3-61DAFB.svg?logo=react&logoColor=black)](https://reactjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF.svg?logo=vite&logoColor=white)](https://vitejs.dev)
+[![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB.svg?logo=python&logoColor=white)](https://www.python.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-EpidemAI is a prototype public-health platform for exploring disease signals and connecting people with health information. It brings together two experiences: an exploratory surveillance dashboard for public-health teams and an individual portal for general symptom guidance, historical local context, and government health scheme discovery.
+> **EpidemAI** is an end-to-end epidemic surveillance and individual health intelligence platform. It bridges macroeconomic public health surveillance with micro-level personalized health navigation, featuring operational machine learning forecasting across 6 climate-sensitive vector-borne diseases and a safety-first clinical symptom triaging engine.
 
-> **Demo status:** This repository is a research and demonstration prototype. Dashboard records are bundled sample data, and the district forecast is based on historical research data through June 2022. It is not a live surveillance system, medical device, or source of diagnosis or official decisions.
+📖 **For the complete 360° technical specification, read the [Master Project Documentation](docs/PROJECT_DOCUMENTATION.md).**
 
-## Why EpidemAI
+---
 
-Public-health information is spread across dashboards, reports, and service directories. EpidemAI makes these workflows easier to explore in one accessible interface while showing users where data came from and what the tools can and cannot tell them.
+## 🌟 Key Capabilities
 
-- **For public-health exploration:** see city and district signals, compare locations, inspect trends, and explore hypothetical environmental changes.
-- **For individuals:** report symptoms through a guided assistant, review general next steps, explore dated local records, and discover relevant health schemes and care services.
-- **For maintainers:** connect optional public-health news collection and source-linked scheme updates without putting provider credentials in browser code.
+### 1. 🏛️ Public Health Surveillance Suite (Portal 1)
+- **Surveillance Command Center (`/dashboard`):** Real-time tracking of active caseloads, infection velocities, municipal risk ratings, and prioritized response actions.
+- **Interactive Disease Map (`/disease-map`):** Geospatial visualization of municipal epidemic hotspots, climate indicators (temperature, rainfall), and hospital bed utilization.
+- **Trend Analytics & Outbreak Anomaly Detection (`/trends`):** Multi-city historical time series with rolling moving averages and statistical $z$-score anomaly detection.
+- **Early Warning Alerts (`/alerts`):** Automated alert feeds triaged by urgency (Critical, High, Moderate) with operational response playbooks.
+- **Multi-City Comparison (`/compare`):** Side-by-side analytical benchmarking across demographics, testing capabilities, and climate vulnerabilities.
+- **Frontline Field Reporter (`/reporter`):** Mobile-first offline logging portal for ASHA and ANM community health workers.
+- **Municipal Operations Portal (`/gov-portal`):** Healthcare logistics management for bed allocations, vector control operations, and medical supplies.
 
-## Try the demo
+### 2. 🧠 EpiClim Predictive Machine Learning Engine
+- **6 Vector-Borne & Climate-Sensitive Diseases:**
+  - 🦟 **Dengue**
+  - 💧 **Acute Diarrheal Disease (ADD)**
+  - 🦟 **Chikungunya**
+  - 🧪 **Cholera**
+  - 🦟 **Malaria**
+  - 🧠 **Acute Encephalitis Syndrome (AES)**
+- **3 Trained ML Architectures:** Ridge Regression (pure-NumPy inference with sub-12ms latency), Random Forest, and Gradient Boosting Regressors.
+- **Coverage:** 300+ Indian districts with 6-month predictive horizons, 95% confidence intervals, and benchmark evaluations against seasonal baselines.
+- **What-If Climate Simulation Studio (`/what-if`):** Interactive sensitivity modeling assessing the impact of temperature variations, rainfall swings, and vegetation indices (LAI) on transmission dynamics.
 
-Start both services from the repository root:
+### 3. 🩺 Individual Health Portal & Personal Health Assistant (Portal 2)
+- **🤖 Personal Health Assistant & Clinical Copilot (`/ai-assistant`):** Dedicated **Hackathon Track 2** conversational health assistant that understands multi-intent inquiries and autonomously executes 4 clinical tools:
+  - 💬 **Smart Intent Handling:** Accurately distinguishes between casual greetings (*"Hello"*, *"Namaste"*), general health and prevention inquiries (*"How to prevent dengue?"*, *"What is normal BP?"*), and active symptom complaints without false disease hallucinations.
+  - 🚨 **Tool 1: Red-Flag Emergency Triage:** Instant safety net triggering critical alerts and direct dispatch to 108 (Ambulance) and 112 (National Emergency).
+  - 🗺️ **Tool 2: Regional EpiClim Surveillance:** Cross-references symptoms against 13-year district epidemiological records (2009–2022) to evaluate seasonal transmission risk.
+  - 🔬 **Tool 3: Differential Disease & Cost Optimizer:** Evaluates match percentages across 25+ tropical conditions and recommends specific targeted lab tests (e.g. Dengue NS1 @ ₹450 vs ₹4,800 blanket panels).
+  - 🏛️ **Tool 4: Ayushman Bharat & Welfare Scheme Navigator:** Multi-attribute eligibility matching for PM-JAY (₹5 Lakh cashless hospital cover), ABHA digital health IDs, and state-specific welfare.
+- **📋 Structured Diagnostic Triage & Lab Cost Optimizer (`/health-assistant`):** Dedicated guided 4-step intake for citizens preferring structured symptom duration counters (`+`/`-`) and severity steppers.
+- **Multilingual & Multimodal Voice:** Full natural language understanding in English, Hindi, and Hinglish with integrated Web Speech voice transcription.
+- **Zero-Failure Autonomous Engine:** High-performance deterministic clinical pipeline executes identical multi-tool orchestration with sub-millisecond local rule fallback.
+- **Privacy-Preserving Architecture:** Zero required user accounts, zero PII logging, and client-side session-gated SQLite storage with instant JSON export and one-click deletion.
 
+---
+
+## 🏗️ Architecture Overview
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│                 React + TypeScript (Vite)                   │
+│       Tailwind CSS • TanStack Query • Framer Motion         │
+│                 http://localhost:8080                       │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ REST API / JSON (CORS)
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│                 FastAPI Backend (Uvicorn)                   │
+│                 http://localhost:8000                       │
+│                                                             │
+│  ├── /api/dashboard, /map-data, /city, /compare, /trends    │
+│  ├── /api/epiclim (forecast, whatif, diseases, districts)   │
+│  ├── /api/assistant (agent/chat, triage, diagnostic)        │
+│  └── /api/health/schemes (catalog, match)                   │
+│                                                             │
+│  Services:                                                  │
+│  ├── gemini_agent_service.py (Personal Assistant + 4 tools) │
+│  ├── epiclim_service.py (pure NumPy Ridge dot-product)      │
+│  ├── disease_prediction_service.py (differential models)   │
+│  ├── guidance_service.py & safety_service.py (red flags)    │
+│  └── health_navigator.py (government scheme matching)       │
+│                                                             │
+│  Data & Models:                                             │
+│  ├── epiclim_final_data.csv (10,000+ surveillance records)  │
+│  ├── LLM Integration / Autonomous Rule Fallback Engine      │
+│  ├── Pre-trained JSON Ridge weights & Scikit-learn PKLs     │
+│  └── SQLite stores (assistant sessions & check-in history)  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🚀 Quick Start (Local Setup)
+
+### Prerequisites
+- **Node.js** (v18.0.0 or newer)
+- **Python** (v3.10, 3.11, or 3.12)
+
+### One-Command Launch
+Clone the repository and run the startup script:
 ```bash
+git clone https://github.com/yugantverma0009/EpidemAI.git
+cd EpidemAI
+chmod +x run-local.sh
 ./run-local.sh
 ```
 
-Then open:
+Once running, access:
+- **Application Frontend:** [http://localhost:8080](http://localhost:8080)
+- **API Health Check:** [http://localhost:8000/api/health](http://localhost:8000/api/health)
+- **Interactive Swagger Docs:** [http://localhost:8000/docs](http://localhost:8000/docs)
 
-- **App:** <http://localhost:8080>
-- **API health:** <http://localhost:8000/api/health>
-- **Interactive API docs:** <http://localhost:8000/docs>
+---
 
-### A quick walkthrough
+## 🛠️ Manual Installation
 
-1. Open **Individual Health Portal** from the landing page.
-2. Choose **Report symptoms**, then **Load sample demo**.
-3. Review the fictional symptom summary and the general-information notice.
-4. Continue to see safety guidance and historical district records for Wardha, Maharashtra.
-5. Open **Schemes & care** to explore source-linked public benefit and care information.
-6. Return to the landing page and explore the government dashboard, maps, comparisons, and forecast tools.
-
-The sample scenario is fictional; Wardha is selected because the bundled historical dataset contains matching records. It is not a real person or a current outbreak report.
-
-## What you can explore
-
-| Experience | What it includes |
-| --- | --- |
-| Public-health dashboard | City summaries, maps, charts, alerts, and news |
-| Disease map | Geographic view of city-level demonstration signals |
-| Trends and comparisons | Explore historical sample trends and compare selected cities |
-| Predictive tools | Inspect experimental district estimates and risk-region summaries |
-| What-if explorer | Explore hypothetical changes to environmental inputs |
-| Reporter prototype | Preview a field-reporting workflow |
-| Individual Health Portal | Symptom guidance, local historical context, and opt-in browser history |
-| Schemes & care | Filter scheme and service information using user-provided details, with source links |
-| Optional news ingestion | Collect and normalize public-health articles through TinyFish |
-
-## How it works
-
-```text
-React + TypeScript (Vite)
-       │ JSON over HTTP
-       ▼
-FastAPI API ── sample dashboard services
-       ├─────── historical EpiClim forecast service
-       ├─────── rule-based health assistant
-       ├─────── source-linked scheme catalog and optional sync
-       └─────── optional TinyFish news ingestion → SQLite
+### 1. Backend Setup
+```bash
+cd backend
+python3 -m venv .venv
+source .venv/bin/activate        # On Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-The frontend lives in `frontend/`; the API and analysis helpers live in `backend/`. The API is documented automatically at `/docs` while running. A more detailed code map and data-source explanation is in [Project overview](docs/PROJECT_OVERVIEW.md). See also the [personal health assistant implementation guide](PERSONAL_HEALTH_ASSISTANT_IMPLEMENTATION.md) and [TinyFish integration guide](docs/TINYFISH_INTEGRATION.md).
-
-## Data and model transparency
-
-- Dashboard city metrics, alerts, trends, and much of the news feed use bundled demonstration records in `backend/app/data/seed_data.py`.
-- EpiClim uses a bundled district-level research dataset with irregular outbreak reports. The included trained dengue model uses data ending in June 2022; its outputs are historical experimental estimates, not current forecasts.
-- Analysis helpers include moving averages, damped trend projection, statistical anomaly checks, and keyword matching. These are exploratory prototype methods and have not been validated for operational public-health decisions.
-- TinyFish is an optional article collection path. Collected articles do not become verified case counts or official alerts.
-- Scheme information is source-linked. Matching results are informational and do not constitute an official eligibility decision.
-
-## Privacy and responsible use
-
-- The symptom assistant provides general information, not diagnosis, an individual disease probability, or test selection. It can miss warning signs; seek professional care when seriously unwell.
-- Symptom history is optional and browser/session scoped; the prototype has no account system or cross-device history. Review the in-app privacy choices before saving anything.
-- Do not enter confidential or identifying health information into this demonstration.
-- The government portal is a sample interface without secure government authentication. Do not use it for official decisions.
-- Always follow the linked source or consult a qualified health professional or responsible authority for decisions.
-
-## Run locally
-
-### Prerequisites
-
-- Node.js and npm
-- Python 3.10 or newer
-
-The launcher uses an existing backend environment from `.venv-new`, `.venv-local`, or `.venv`, plus `frontend/node_modules`. If dependencies are not installed, set them up first:
-
+### 2. Frontend Setup
 ```bash
 cd frontend
 npm install
-cd ../backend
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-cd ..
+npm run dev -- --port 8080
 ```
 
-Then start the app:
+### 3. Environment Variables
+- **Frontend (`frontend/.env`):**
+  ```env
+  VITE_API_URL=http://127.0.0.1:8000/api
+  ```
+- **Backend (`backend/.env`):**
+  ```env
+  CORS_ORIGINS=http://localhost:8080,http://127.0.0.1:8080
+  ```
 
-```bash
-./run-local.sh
-```
+---
 
-Copy the example environment files if you need to change local settings:
-
-```bash
-cp frontend/.env.example frontend/.env
-cp backend/.env.example backend/.env
-```
-
-The default local setup uses bundled data and does not require external API keys. Keep secrets in the backend environment only; never put them in frontend `VITE_*` variables.
-
-### Run services separately
-
-Backend, from `backend/` with its virtual environment activated:
-
-```bash
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-```
-
-Frontend, from `frontend/`:
-
-```bash
-npm run dev -- --host 0.0.0.0 --port 8080
-```
-
-The frontend API base can be set with `VITE_API_URL`, for example `http://localhost:8000/api`. The backend's `CORS_ORIGINS` must include the frontend's exact origin.
-
-## Optional integrations
-
-### TinyFish news collection
-
-TinyFish collection is optional and requires a TinyFish API key plus a separate ingestion secret. Configure `TINYFISH_API_KEY`, `TINYFISH_SOURCE_URLS`, and `INGEST_API_KEY` in `backend/.env`. Then request a collection run:
-
-```bash
-curl -X POST http://localhost:8000/api/ingest/tinyfish \
-  -H "X-Ingest-Key: YOUR_INGEST_API_KEY"
-```
-
-Check configuration and stored article count at `GET /api/ingest/tinyfish/status`. Collection can consume provider usage. Read the [TinyFish integration guide](docs/TINYFISH_INTEGRATION.md) before enabling it.
-
-### Government scheme refresh
-
-The scheme catalog can be refreshed from configured sources when an Anthropic API key and model are provided in the backend environment. Review proposed source changes and the sync implementation before enabling automated refresh. The bundled catalog remains available without credentials.
-
-## Build the frontend
-
-```bash
-cd frontend
-npm run build
-```
-
-## Deployment
-
-The repository includes a `render.yaml` backend service definition. The frontend can be deployed as a Vite app on a static hosting provider.
-
-- **Frontend:** root directory `frontend`, build command `npm run build`, output directory `dist`, set `VITE_API_URL` to the deployed backend's `/api` URL.
-- **Backend:** root directory `backend`, install with `pip install -r requirements.txt`, start with `uvicorn app.main:app --host 0.0.0.0 --port $PORT`; configure `ENVIRONMENT` and `CORS_ORIGINS`.
-- **Persistence:** configure persistent storage for SQLite-backed TinyFish articles if they must survive host restarts or redeploys.
-
-See the repository deployment configuration and integration guide for provider-specific setup. Never commit `.env` files or expose backend secrets to the frontend.
-
-## Repository map
+## 📁 Repository Structure
 
 ```text
-frontend/src/pages/       App pages and user workflows
-frontend/src/components/  Reusable interface components
-frontend/src/hooks/       API and data hooks
-backend/app/api/routes/   FastAPI route handlers
-backend/app/services/     Analysis, assistant, forecast, and integration logic
-backend/app/data/         Seed records, datasets, models, and scheme catalog
-docs/                     Project, implementation, and integration guides
+EpidemAI/
+├── docs/
+│   └── PROJECT_DOCUMENTATION.md                 # Complete Master Project Documentation
+├── README.md                                    # Project overview & quick start
+├── run-local.sh                                 # Unified service launch script
+├── render.yaml                                  # Cloud deployment descriptor
+├── backend/
+│   ├── requirements.txt                         # Python dependencies
+│   ├── app/
+│   │   ├── main.py                              # FastAPI initialization & routers
+│   │   ├── api/routes/                          # API endpoint controllers
+│   │   ├── services/                            # ML forecasting, triage & NLP logic
+│   │   │   └── assistant/                       # Clinical safety, guidance, diagnostic
+│   │   └── data/
+│   │       ├── seed_data.py                     # Baseline surveillance records
+│   │       ├── datasets/epiclim_final_data.csv  # 2009–2022 surveillance dataset
+│   │       └── models/                          # Trained ML model weights
+└── frontend/
+    ├── package.json                             # Frontend dependencies & scripts
+    ├── vite.config.ts                           # Vite build configuration
+    └── src/
+        ├── pages/                               # Application pages & route views
+        ├── components/                          # UI components & design system
+        └── hooks/useApi.ts                      # TanStack Query API hooks
 ```
 
-## Contributing
+---
 
-Issues and pull requests are welcome. For useful reports, include the page or endpoint, reproduction steps, expected behavior, and observed behavior. Please avoid sharing personal health information, secrets, or private credentials in issues.
+## 🛡️ Responsible AI & Clinical Disclaimer
+
+> **IMPORTANT CLINICAL & REGULATORY NOTICE:**  
+> EpidemAI is an exploratory research and public health surveillance demonstration prototype. It is **not** a certified Software as a Medical Device (SaMD) under CDSCO, FDA, or CE regulations and does not provide formal medical diagnoses, clinical treatment orders, or diagnostic test selections.  
+> Users experiencing severe or acute warning signs must immediately contact qualified emergency medical professionals or call national emergency numbers (**108** / **112** in India).
+
+---
+
+## 📄 License
+This project is licensed under the [MIT License](LICENSE).

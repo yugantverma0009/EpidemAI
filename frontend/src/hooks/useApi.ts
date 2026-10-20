@@ -38,26 +38,6 @@ export function useBackendHealth() {
   });
 }
 
-export type TinyFishStatus = {
-  configured: boolean;
-  ingestion_enabled: boolean;
-  scheduler_enabled: boolean;
-  collection_interval_seconds: number;
-  sources_configured: number;
-  articles_stored: number;
-};
-
-export function useTinyFishStatus() {
-  return useQuery({
-    queryKey: ["tinyfishStatus"],
-    queryFn: () => apiFetch<TinyFishStatus>("/ingest/tinyfish/status"),
-    enabled: hasConfiguredApi,
-    staleTime: 30_000,
-    refetchInterval: 60_000,
-    retry: 0,
-  });
-}
-
 export type DelhiClimateReference = {
   available: boolean;
   city: string;

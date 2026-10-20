@@ -7,52 +7,35 @@ export type AssistantSymptom = {
 
 export type AssistantQuestion = { id: string; text: string };
 
-export type PredictedDisease = {
-  id: string;
-  name: string;
-  category: string;
-  match_score: number;
-  confidence_level: "High" | "Moderate" | "Low";
-  matching_symptoms: string[];
-  description: string;
-  regional_risk: string;
-  regional_records_count: number;
-};
-
 export type TargetedTest = {
   test_name: string;
-  for_condition: string;
-  timing: string;
   purpose: string;
-  priority: "High" | "Secondary";
-  estimated_cost_inr: string;
+  estimated_cost_inr: number;
+  priority: string;
+  sample_type: string;
   turnaround_time: string;
-  free_in_government: boolean;
+};
+
+export type DiseasePrediction = {
+  id: string;
+  disease: string;
+  probability: number;
+  urgency: "low" | "moderate" | "high";
+  matched_symptoms: string[];
+  key_indicators: string;
+  description: string;
+  regional_boost?: boolean;
+  regional_note?: string | null;
+  targeted_tests: TargetedTest[];
+  blanket_cost_inr?: number;
 };
 
 export type CostOptimization = {
-  targeted_cost_range_inr: string;
-  blanket_panel_cost_inr: string;
-  estimated_savings_percentage: number;
-  estimated_savings_inr: string;
-  avoided_unnecessary_tests: string[];
-  subsidized_note: string;
-};
-
-export type BlanketPanelAvoided = {
-  panel_name: string;
-  typical_commercial_cost: string;
-  drawbacks: string[];
-  included_unnecessary_tests: string[];
-};
-
-export type PatientContext = {
-  symptoms_evaluated: number;
-  duration_days: number | null;
-  district?: string;
-  state?: string;
-  age_group?: string;
-  gender?: string;
+  blanket_panel_cost_inr: number;
+  targeted_tests_cost_inr: number;
+  estimated_savings_inr: number;
+  savings_percentage: number;
+  cost_rationale: string;
 };
 
 export type AssistantTriageResult = {
@@ -74,11 +57,9 @@ export type AssistantTriageResult = {
     sources: { name: string; url: string }[];
     content_review_status: string;
   };
-  predicted_diseases?: PredictedDisease[];
-  targeted_tests?: TargetedTest[];
+  disease_predictions?: DiseasePrediction[];
+  recommended_tests?: TargetedTest[];
   cost_optimization?: CostOptimization;
-  blanket_panel_avoided?: BlanketPanelAvoided;
-  patient_context?: PatientContext;
   disclaimer: string;
   content_review_status?: string;
 };

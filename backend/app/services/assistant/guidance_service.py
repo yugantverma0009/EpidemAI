@@ -15,12 +15,12 @@ def get_guidance(symptom_names: list[str], duration_days: int | None = None) -> 
         ],
         "discussion_topics": [],
         "testing_guidance": {
-            "status": "targeted_recommendations_available",
-            "message": "Based on your reported symptoms and regional profile, prioritized targeted tests have been identified to help you avoid expensive generic testing panels.",
+            "status": "reviewed_pathway_unavailable",
+            "message": "A clinician can decide whether testing is appropriate after considering your symptoms, timing, examination, and current local guidance. This assistant does not select or rule out tests.",
             "questions": [
-                "Based on my specific symptom duration, do you recommend targeted testing (e.g. Dengue NS1 or Malaria RDT) before running broader panels?",
-                "Could we start with the primary high-yield test to confirm the diagnosis and save testing costs?",
-                "Are these diagnostic tests covered or available free at the local government CHC or District Hospital?",
+                "What possible causes should we consider based on my symptoms and examination?",
+                "Would a test change the next step in my care?",
+                "If testing is appropriate, which test and timing fit my situation?",
             ],
         },
         "sources": [],

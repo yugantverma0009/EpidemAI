@@ -10,30 +10,9 @@ load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.routes import dashboard, map_data, city, compare, alerts, trends, insights, news, top_risk_regions, tinyfish, epiclim, climate, assistant, health_navigator
+from app.api.routes import dashboard, map_data, city, compare, alerts, trends, insights, news, top_risk_regions, epiclim, climate, assistant, health_navigator
 
 logger = logging.getLogger(__name__)
-
-
-async def _tinyfish_scheduler() -> None:
-    interval = max(0, int(os.getenv("TINYFISH_COLLECTION_INTERVAL_SECONDS", "0") or 0))
-    if interval <= 0:
-        return
-
-    from app.services.tinyfish_service import collect_news, is_configured
-
-    if not is_configured():
-        logger.warning("TinyFish scheduler is enabled, but TinyFish credentials or sources are missing")
-        return
-
-    logger.info("TinyFish scheduled collection enabled (interval: %s seconds)", interval)
-    while True:
-        await asyncio.sleep(interval)
-        try:
-            result = await asyncio.to_thread(collect_news)
-            logger.info("TinyFish scheduled collection finished: %s", result)
-        except Exception:
-            logger.exception("TinyFish scheduled collection failed")
 
 
 async def _scheme_sync_scheduler() -> None:
@@ -57,8 +36,6 @@ async def _scheme_sync_scheduler() -> None:
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    interval = max(0, int(os.getenv("TINYFISH_COLLECTION_INTERVAL_SECONDS", "0") or 0))
-    task = asyncio.create_task(_tinyfish_scheduler()) if interval > 0 else None
     from app.services import scheme_sync_db
     from app.services.scheme_sync_engine import load_sources
     scheme_sync_db.init()
@@ -68,11 +45,10 @@ async def lifespan(_: FastAPI):
     try:
         yield
     finally:
-        for background_task in (task, scheme_task):
-            if background_task:
-                background_task.cancel()
-                with suppress(asyncio.CancelledError):
-                    await background_task
+        if scheme_task:
+            scheme_task.cancel()
+            with suppress(asyncio.CancelledError):
+                await scheme_task
 
 
 app = FastAPI(title="EpidemAI API", version="1.0.0", lifespan=lifespan)
@@ -98,7 +74,6 @@ app.include_router(trends.router, prefix="/api")
 app.include_router(insights.router, prefix="/api")
 app.include_router(news.router, prefix="/api")
 app.include_router(top_risk_regions.router, prefix="/api")
-app.include_router(tinyfish.router, prefix="/api")
 app.include_router(epiclim.router, prefix="/api")
 app.include_router(climate.router, prefix="/api")
 app.include_router(assistant.router, prefix="/api")

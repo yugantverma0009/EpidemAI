@@ -17,6 +17,7 @@ const WhatIf = lazy(() => import("./pages/WhatIf"));
 const Reporter = lazy(() => import("./pages/Reporter"));
 const GovPortal = lazy(() => import("./pages/GovPortal"));
 const HealthAssistant = lazy(() => import("./pages/HealthAssistant"));
+const AiAssistant = lazy(() => import("./pages/AiAssistant"));
 const HealthPortal = lazy(() => import("./pages/HealthPortal"));
 const HealthProfile = lazy(() => import("./pages/HealthProfile"));
 const HealthSchemes = lazy(() => import("./pages/HealthSchemes"));
@@ -75,6 +76,7 @@ function AnimatedRoutes() {
           <Route path="/health-profile" element={<HealthProfile />} />
           <Route path="/health-schemes" element={<HealthSchemes />} />
           <Route path="/health-assistant" element={<HealthAssistant />} />
+          <Route path="/ai-assistant" element={<AiAssistant />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </motion.div>
